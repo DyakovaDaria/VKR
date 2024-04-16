@@ -21,6 +21,9 @@ const WeekCalendar = () => {
       newSelectedDay.getDate() + (direction === "next" ? 7 : -7)
     );
     setSelectedDay(newSelectedDay);
+
+
+    
   };
 
   // Инициализация недели при монтировании компонента и при изменении selectedDay
