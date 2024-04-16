@@ -1,0 +1,51 @@
+.teacherNavbarCont {
+    background-color: #EDEDEE;
+    width: 100%;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.logo {
+    max-width: 110px;
+    max-height: 35px;
+    margin: 0 auto 0 20px;
+}
+
+.navItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 75%;
+    border-radius: 15px;
+    color: #787878;
+    margin: 0 60px 0 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.selectedNavItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 75%;
+    border-radius: 15px;
+    background-color: #E02B8B;
+    opacity: .15;
+    color: #E02B8B;
+    margin: 0 10px 0 20px;
+    border: none;
+    cursor: pointer;
+}
+
+svg {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
