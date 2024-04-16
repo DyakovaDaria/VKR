@@ -1,6 +1,6 @@
 import { LoginForm } from "../features/Login";
 
-export const LoginPage = () => {
+const LoginPage = () => {
   return (
     <div>
       <LoginForm></LoginForm>

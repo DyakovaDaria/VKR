@@ -1,8 +1,27 @@
 import React, { useState, useEffect } from "react";
+import styles from "./WeekCalendar.module.css";
 
 const WeekCalendar = () => {
   // Состояние для текущей недели
   const [currentWeek, setCurrentWeek] = useState([]);
+
+  // Массив с названиями дней недели
+  const daysOfWeek = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+
+  const months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+  ];
 
   // Состояние для выбранного дня
   const [selectedDay, setSelectedDay] = useState(new Date());
@@ -21,9 +40,6 @@ const WeekCalendar = () => {
       newSelectedDay.getDate() + (direction === "next" ? 7 : -7)
     );
     setSelectedDay(newSelectedDay);
-
-
-    
   };
 
   // Инициализация недели при монтировании компонента и при изменении selectedDay
@@ -38,26 +54,63 @@ const WeekCalendar = () => {
   }, [selectedDay]);
 
   return (
-    <div>
-      <div className="week-navigation">
-        <button onClick={() => changeWeek("prev")}>&lt;</button>
+    <div className={styles.calendarContainer}>
+      <p>{months[selectedDay.getMonth()]}</p>
+      <div className={styles.week}>
+        <button
+          onClick={() => changeWeek("prev")}
+          className={styles.nextButton}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={styles.icon}
+            viewBox="0 0 320 512"
+          >
+            <path
+              fill="#dc0d7a"
+              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+            />
+          </svg>
+        </button>
         {currentWeek.map((day, index) => (
-          <div>
+          <div className={styles.dayOfWeek}>
             <button
               key={index}
               className={
                 day.toDateString() === selectedDay.toDateString()
-                  ? "selected"
-                  : ""
+                  ? styles.selectedButton
+                  : styles.dateButton
               }
               onClick={() => setSelectedDay(day)}
             >
               {day.getDate()}
             </button>
-            <p></p>
+            <p
+              className={
+                day.toDateString() === selectedDay.toDateString()
+                  ? styles.selectedWeekDay
+                  : ""
+              }
+            >
+              {daysOfWeek[day.getDay()]}
+            </p>
           </div>
         ))}
-        <button onClick={() => changeWeek("next")}>&gt;</button>
+        <button
+          onClick={() => changeWeek("next")}
+          className={styles.nextButton}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={styles.icon}
+            viewBox="0 0 320 512"
+          >
+            <path
+              fill="#dc0d7a"
+              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   );

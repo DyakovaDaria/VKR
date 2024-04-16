@@ -1,0 +1,56 @@
+.dayOfWeek {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.week {
+  display: flex;
+  flex-direction: row;
+}
+
+.dateButton {
+  background-color: #ededee;
+  color: #787878;
+  border: none;
+  border-radius: 10px;
+  height: 45px;
+  width: 45px;
+  font-size: medium;
+}
+
+.selectedButton {
+  background-color: #ededee;
+  color: #dc0d7a;
+  border: solid #dc0d7a 1px;
+  border-radius: 10px;
+  height: 45px;
+  width: 45px;
+  font-size: medium;
+}
+
+.selectedWeekDay {
+  color: #dc0d7a;
+}
+
+.nextButton {
+  background-color: transparent;
+  border: none;
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+}
+
+.calendarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+}
