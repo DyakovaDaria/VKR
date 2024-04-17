@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import loginStyles from "./loginForm.module.css";
+import loginStyles from "./LoginForm.module.css";
 import logo from "../../../shared/assets/elcentro-logo.png";
 import { validation } from "../lib/validation";
-import { loginUser } from "../model/loginThunks";
+import { loginUser } from "../model/LoginThunks";
 
 const LoginForm = () => {
   const dispatch = useDispatch();

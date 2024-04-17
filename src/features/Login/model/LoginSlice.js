@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, logoutUser, fetchUserInformation } from "./loginThunks";
+import { loginUser, logoutUser, fetchUserInformation } from './LoginThunks';
 
 const initialState = {
   token: localStorage.getItem("token") || null,
