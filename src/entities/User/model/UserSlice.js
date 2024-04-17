@@ -1,33 +1,44 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { loginUser, logoutUser } from './UserThunks'; 
 
 const initialState = {
-  token: null,  
-  role: null,   
-  username: null,
+  token: null,
+  user: null,
+  loading: false,
+  error: null
 };
 
-export const UserSlice = createSlice({
+const UserSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state, action) => {
-      const { token, role, username } = action.payload;
-      state.token = token;
-      state.role = role;
-      state.username = username;
-    },
-    setToken: (state, action) => {
-      state.token = action.payload;
-    },
-    logout: (state) => {
+    clearUserState(state) {
       state.token = null;
-      state.role = null;
-      state.username = null;
+      state.user = null;
+      state.error = null;
+      state.loading = false;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      // .addCase(loginUser.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(loginUser.fulfilled, (state, action) => {
+      //   state.token = action.payload.token;
+      //   state.user = action.payload.user;
+      //   state.loading = false;
+      // })
+      // .addCase(loginUser.rejected, (state, action) => {
+      //   state.error = action.payload;
+      //   state.loading = false;
+      // })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.token = null;
+        state.user = null;
+      });
+  }
 });
 
-export const { setUser, setToken, logout } = UserSlice.actions;
-
-
+export const { clearUserState } = UserSlice.actions;
 export default UserSlice.reducer;

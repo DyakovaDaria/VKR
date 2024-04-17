@@ -1,33 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser } from './loginThunks';
 
-const loginSlice = createSlice({
+const initialState = {
+  username: '',
+  password: '',
+  loading: false,
+  error: null
+};
+
+const LoginSlice = createSlice({
   name: 'login',
-  initialState: {
-    user: null,
-    loading: false,
-    error: null
-  },
+  initialState,
   reducers: {
-    logoutUser(state) {
-      state.user = null;
+    setUsername(state, action) {
+      state.username = action.payload;
+    },
+    setPassword(state, action) {
+      state.password = action.payload;
+    },
+    resetForm(state) {
+      state.username = '';
+      state.password = '';
+      state.error = null;
+      state.loading = false;
     }
-  },
-//   extraReducers: {
-//     [loginUser.pending]: (state) => {
-//       state.loading = true;
-//       state.error = null;
-//     },
-//     [loginUser.fulfilled]: (state, action) => {
-//       state.loading = false;
-//       state.user = action.payload;
-//     },
-//     [loginUser.rejected]: (state, action) => {
-//       state.loading = false;
-//       state.error = action.payload;
-//     }
-//   }
+  }
 });
 
-export const { logoutUser } = loginSlice.actions;
-export default loginSlice.reducer;
+export const { setUsername, setPassword, resetForm } = LoginSlice.actions;
+export default LoginSlice.reducer;

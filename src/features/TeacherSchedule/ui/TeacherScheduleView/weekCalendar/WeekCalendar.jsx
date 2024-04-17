@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./WeekCalendar.module.css";
+import { setSelectedDate } from "../../../model/TeacherScheduleSlice";
 
 const WeekCalendar = () => {
+  const dispatch = useDispatch();
+  const selectedDate = useSelector(
+    (state) => state.teacherSchedule.selectedDate
+  );
   // Состояние для текущей недели
   const [currentWeek, setCurrentWeek] = useState([]);
 
@@ -24,9 +30,6 @@ const WeekCalendar = () => {
     "Декабрь",
   ];
 
-  // Состояние для выбранного дня
-  const [selectedDay, setSelectedDay] = useState(new Date());
-
   // Функция для получения начала недели
   const getWeekStart = (date) => {
     const weekStart = new Date(date);
@@ -34,29 +37,33 @@ const WeekCalendar = () => {
     return weekStart;
   };
 
+  const handleDateSelect = (date) => {
+    dispatch(setSelectedDate(date));
+  };
+
   // Функция для изменения недели
   const changeWeek = (direction) => {
-    const newSelectedDay = new Date(selectedDay);
+    const newSelectedDay = new Date(selectedDate);
     newSelectedDay.setDate(
       newSelectedDay.getDate() + (direction === "next" ? 7 : -7)
     );
-    setSelectedDay(newSelectedDay);
+    handleDateSelect(newSelectedDay);
   };
 
   // Инициализация недели при монтировании компонента и при изменении selectedDay
   useEffect(() => {
-    const weekStart = getWeekStart(selectedDay);
+    const weekStart = getWeekStart(selectedDate);
     const newWeek = Array.from({ length: 7 }).map((_, index) => {
       const day = new Date(weekStart);
       day.setDate(day.getDate() + index);
       return day;
     });
     setCurrentWeek(newWeek);
-  }, [selectedDay]);
+  }, [selectedDate]);
 
   return (
     <div className={styles.calendarContainer}>
-      <p>{months[selectedDay.getMonth()]}</p>
+      <p>{months[selectedDate.getMonth()]}</p>
       <div className={styles.week}>
         <button
           onClick={() => changeWeek("prev")}
@@ -78,17 +85,19 @@ const WeekCalendar = () => {
             <button
               key={index}
               className={
-                day.toDateString() === selectedDay.toDateString()
+                day.toDateString() === selectedDate.toDateString()
                   ? styles.selectedButton
                   : styles.dateButton
               }
-              onClick={() => setSelectedDay(day)}
+              onClick={() => {
+                handleDateSelect(day);
+              }}
             >
               {day.getDate()}
             </button>
             <p
               className={
-                day.toDateString() === selectedDay.toDateString()
+                day.toDateString() === selectedDate.toDateString()
                   ? styles.selectedWeekDay
                   : ""
               }

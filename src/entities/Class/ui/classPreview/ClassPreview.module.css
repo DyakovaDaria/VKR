@@ -1,15 +1,28 @@
 .groupClassPreviewCont {
-    background-color: #EDEDEE;
-    border-radius: 15px;
-    width: 100%;
-    height: 110px;
-    border-left: #ADD6EA solid 9px;
+  background-color: #ededee;
+  border-radius: 15px;
+  width: 60%;
+  height: fit-content;
+  border-left: #add6ea solid 9px;
+  margin-top: 15px;
 }
 
 .indClassPreviewCont {
-    background-color: #EDEDEE;
-    border-radius: 15px;
-    width: 100%;
-    height: 110px;
-    border-left: #DDBFD9 solid 9px;
+  background-color: #ededee;
+  border-radius: 15px;
+  width: 60%;
+  height: fit-content;
+  border-left: #ddbfd9 solid 9px;
+  margin-top: 15px;
+}
+
+.classInfoCont {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 30px;
+}
+
+.classInfoCont > p,
+.classInfoCont > h3 {
+  margin: 0 0 5px 0;
 }
