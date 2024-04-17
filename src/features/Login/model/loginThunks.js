@@ -3,7 +3,6 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 const LOGIN_API = "http://yourapiurl.com/api/Identities/Login";
-const LOGOUT_API = "http://yourapiurl.com/api/Identities/Logout";
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
@@ -24,11 +23,25 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const fetchUserInformation = createAsyncThunk(
+  "auth/fetchUserInformation",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${LOGIN_API}/${userId}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue("Unable to fetch user information");
+    }
+  }
+);
+
 export const logoutUser = createAsyncThunk(
   "auth/logoutUser",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.post(LOGOUT_API);
+      const response = await axios.post(LOGIN_API);
       localStorage.removeItem("token");
       return response.data;
     } catch (error) {
