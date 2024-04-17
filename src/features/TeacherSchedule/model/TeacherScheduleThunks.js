@@ -18,6 +18,42 @@ export const fetchScheduleForDate = createAsyncThunk(
             teacher: "Иванова Ольга",
             group: "Продолжающие",
           },
+          {
+            title: "Танго",
+            description: "",
+            startTime: "10:00",
+            endTime: "11:30",
+            classroom: "205",
+            teacher: "Иванова Ольга",
+            group: "Продолжающие",
+          },
+          {
+            title: "Танго",
+            description: "",
+            startTime: "10:00",
+            endTime: "11:30",
+            classroom: "205",
+            teacher: "Иванова Ольга",
+            group: "Продолжающие",
+          },
+          {
+            title: "Танго",
+            description: "",
+            startTime: "10:00",
+            endTime: "11:30",
+            classroom: "205",
+            teacher: "Иванова Ольга",
+            group: "Продолжающие",
+          },
+          {
+            title: "Танго",
+            description: "",
+            startTime: "10:00",
+            endTime: "11:30",
+            classroom: "205",
+            teacher: "Иванова Ольга",
+            group: "Продолжающие",
+          },
         ];
       } else {
         return [];

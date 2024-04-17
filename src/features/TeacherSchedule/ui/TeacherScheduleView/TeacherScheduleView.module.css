@@ -1,8 +1,54 @@
 .teacherScheduleCont {
   width: 100%;
-  height: fit-content;
+  height: 100vh - 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.classesList {
+  width: 70%;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
+  margin-top: 10px;
+}
+
+.classesList::-webkit-scrollbar {
+  height: 5px;
+  width: 10px;
+}
+
+.classesList::-webkit-scrollbar-track {
+  background-color: #EDEDEE;
+  border-radius: 10px;
+}
+
+.classesList::-webkit-scrollbar-thumb {
+  background-color: #E02B8B;
+  border-radius: 10px;
+}
+
+.editScheduleBtn {
+  background-color: #E02B8B;
+  border: none;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 50px 0 auto;
+}
+
+.editSvg {
+  height: 70%;
+  width: 70%;
+  margin: 0 0 0 0;
 }
