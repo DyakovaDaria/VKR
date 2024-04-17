@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./WeekCalendar.module.css";
-import { setSelectedDate } from "../../../model/TeacherScheduleSlice";
+import { setSelectedDate } from "../model/WeekCalendarSlice";
 
 const WeekCalendar = () => {
   const dispatch = useDispatch();

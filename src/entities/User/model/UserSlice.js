@@ -5,7 +5,8 @@ const initialState = {
   token: null,
   user: null,
   loading: false,
-  error: null
+  error: null,
+  image: null,
 };
 
 const UserSlice = createSlice({

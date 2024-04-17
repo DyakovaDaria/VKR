@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchScheduleForDate } from "../../model/TeacherScheduleThunks";
 import { ClassPreview } from "../../../../entities/Class";
-import WeekCalendar from "./weekCalendar/WeekCalendar";
+import WeekCalendar from "../../../../widgets/weekCalendar/ui/WeekCalendar";
 import styles from "./TeacherScheduleView.module.css";
 
 const TeacherScheduleView = ({ teacherId }) => {
   const dispatch = useDispatch();
-  const { schedule, loading, error, selectedDate } = useSelector(
+  const { schedule, loading, error} = useSelector(
     (state) => state.teacherSchedule
+  );
+
+  const {selectedDate} = useSelector(
+    (state) => state.weekCalendar
   );
 
   useEffect(() => {
