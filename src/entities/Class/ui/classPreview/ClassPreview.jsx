@@ -8,7 +8,7 @@ const ClassPreview = () => {
     const lesson = useSelector(state => state.class.lesson);
     return (
         <div className={styles.groupClassPreviewCont}>
-
+            
         </div>
     );
 }
