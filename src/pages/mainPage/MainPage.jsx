@@ -18,6 +18,9 @@ const MainPage = () => {
   return (
     <div>
       {chooseMenu()}
+      <div>
+        
+      </div>
     </div>
   );
 };

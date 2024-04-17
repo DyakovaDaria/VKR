@@ -1,0 +1,48 @@
+.eventPreviewCont {
+    background-color: #EDEDEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.firstEventPreviewCont {
+    background-color: #EDEDEE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 30%;
+    border-radius: 15px;
+}
+
+.eventImgContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.firstEventImgContainer {
+    width: 50%;
+    height: 100%;
+}
+
+.firstEventPreviewCont > h3 {
+    color: #DC0D7A;
+    font-size: larger;
+}
+
+.firstEventPreviewCont > p {
+    color: #787878;
+}
+
+.eventPreviewCont > h3 {
+    color: #DC0D7A;
+    font-size: medium;
+}
+
+.eventPreviewCont > p {
+    color: #787878;
+}
