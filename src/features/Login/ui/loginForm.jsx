@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import loginStyles from "./loginForm.module.css";
 import logo from "../../../shared/assets/elcentro-logo.png";
 import { validation } from "../lib/validation";
-// import { loginUser } from './model/loginThunks';
+import { loginUser } from "../model/loginThunks";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const authState = useSelector((state) => state.auth);
   const [errors, setErrors] = useState({});
   const [credentials, setCredentials] = useState({
     username: "",
@@ -43,7 +44,7 @@ const LoginForm = () => {
 
   return (
     <div className={loginStyles.mainContainer}>
-      <img src={logo}/>
+      <img src={logo} />
       <form onSubmit={handleSubmit} className={loginStyles.loginForm}>
         <h3>Вход</h3>
         <div className={loginStyles.inputData}>
@@ -76,6 +77,7 @@ const LoginForm = () => {
           Войти
         </button>
       </form>
+      {authState.error && <p className="error">Error: {authState.error}</p>}
     </div>
   );
 };
