@@ -1,0 +1,15 @@
+.groupClassPreviewCont {
+    background-color: #EDEDEE;
+    border-radius: 15px;
+    width: 100%;
+    height: 110px;
+    border-left: #ADD6EA solid 9px;
+}
+
+.indClassPreviewCont {
+    background-color: #EDEDEE;
+    border-radius: 15px;
+    width: 100%;
+    height: 110px;
+    border-left: #DDBFD9 solid 9px;
+}
