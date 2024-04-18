@@ -7,7 +7,7 @@ import { loginUser } from "../model/LoginThunks";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const authState = useSelector((state) => state.auth);
+  const authState = useSelector((state) => state.login);
   const [errors, setErrors] = useState({});
   const [credentials, setCredentials] = useState({
     username: "",
@@ -36,10 +36,6 @@ const LoginForm = () => {
     } else {
       setErrors(validationErrors);
     }
-  };
-
-  const handleCloseError = () => {
-    setErrors({});
   };
 
   return (
