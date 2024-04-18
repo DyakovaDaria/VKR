@@ -13,16 +13,20 @@
 .eventInfoCont {
     margin: 10px 10px 10px auto;
     height: 100%;
-    width: 30%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-right: 70px;
 }
 
 .eventImgContainer {
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
 
 .eventPreviewCont > h3 {
@@ -32,4 +36,10 @@
 
 .eventPreviewCont > p {
     color: #787878;
+}
+
+.eventImgContainer > img {
+    height: 140px;
+    width: 240px;
+    margin-left: 40px;
 }

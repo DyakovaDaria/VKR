@@ -1,0 +1,15 @@
+.groupPreviewCont {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  height: 100px;
+  width: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.groupPreviewCont > h4,
+.groupPreviewCont > p {
+  margin: 0 0 0 0;
+}
