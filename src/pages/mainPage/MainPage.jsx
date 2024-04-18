@@ -2,6 +2,7 @@ import TeacherNavbar from "../../widgets/TeacherNavbar/TeacherNavbar";
 import StudentNavbar from "../../widgets/studentNavbar/StudentNavbar";
 import AdminNavbar from '../../widgets/adminNavbar/AdminNavbar'
 import { useSelector, useDispatch } from "react-redux";
+import { EventsList } from "../../widgets/eventsList";
 
 const MainPage = () => {
   const { role } = useSelector((state) => state.login);
@@ -18,9 +19,7 @@ const MainPage = () => {
   return (
     <div>
       {chooseMenu()}
-      <div>
-        
-      </div>
+      <EventsList></EventsList>
     </div>
   );
 };
