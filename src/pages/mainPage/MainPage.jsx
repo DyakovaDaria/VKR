@@ -1,4 +1,4 @@
-import TeacherNavbar from "../../widgets/TeacherNavbar/TeacherNavbar";
+import TeacherNavbar from "../../widgets/teacherNavbar/TeacherNavbar";
 import StudentNavbar from "../../widgets/studentNavbar/StudentNavbar";
 import AdminNavbar from '../../widgets/adminNavbar/AdminNavbar'
 import { useSelector, useDispatch } from "react-redux";
