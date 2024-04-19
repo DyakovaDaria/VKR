@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { fetchScheduleForDate } from "../../model/TeacherScheduleThunks";
 import { ClassPreview } from "../../../../entities/Class";
 import WeekCalendar from "../../../../widgets/weekCalendar/ui/WeekCalendar";
@@ -7,6 +8,7 @@ import styles from "./TeacherScheduleView.module.css";
 
 const TeacherScheduleView = ({ teacherId }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { schedule, loading, error} = useSelector(
     (state) => state.teacherSchedule
   );
@@ -14,6 +16,10 @@ const TeacherScheduleView = ({ teacherId }) => {
   const {selectedDate} = useSelector(
     (state) => state.weekCalendar
   );
+
+  const handleEditClick = () => {
+    navigate('/teacher-schedule-edit', { state: { teacherId: teacherId } });
+  };
 
   useEffect(() => {
     dispatch(
@@ -35,7 +41,7 @@ const TeacherScheduleView = ({ teacherId }) => {
           <ClassPreview key={classInfo.id} classInfo={classInfo}></ClassPreview>
         ))}
       </div>
-      <button className={styles.editScheduleBtn}>
+      <button className={styles.editScheduleBtn} onClick={handleEditClick}>
         <svg className={styles.editSvg} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <path
             fill="#ffffff"

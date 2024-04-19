@@ -1,4 +1,3 @@
-import { ClassPreview } from "../../entities/Class";
 import TeacherScheduleView from "../../features/TeacherSchedule/ui/TeacherScheduleView/TeacherScheduleView";
 import TeacherNavbar from "../../widgets/teacherNavbar/TeacherNavbar";
 

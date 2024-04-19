@@ -63,3 +63,14 @@ export const fetchScheduleForDate = createAsyncThunk(
     }
   }
 );
+
+export const updateScheduleForDate = createAsyncThunk(
+  "schedule/updateScheduleForDate",
+  async (updatedSchedule, { rejectWithValue }) => {
+    try {
+      return updatedSchedule;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
