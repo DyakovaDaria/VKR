@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSchedule } from "../../../model/TeacherScheduleSlice";
+import { updateSchedule, toggleClassCreationModal } from "../../../model/TeacherScheduleSlice";
 import {
   selectClassroom,
   loadClassrooms,
@@ -58,10 +58,10 @@ const AddClassForm = () => {
   };
 
   const handleClose = () => {
-    // dispatch(toggleQuestionCreationModal(false));
+    dispatch(toggleClassCreationModal(false));
   };
   const [startTime, setStartTime] = useState("10:00");
-  const [finishTime, setFinishTime] = useState("11:00");
+  const [finishTime, setFinishTime] = useState("11:00"); 
 
   React.useEffect(() => {
     dispatch(loadClassrooms());
@@ -140,7 +140,7 @@ const AddClassForm = () => {
         <h3>Ученик</h3>
         <input type="text" class={addClassFormStyles.studentNameInp} placeholder="Введите ФИО Ученика"/>
         <button class={addClassFormStyles.acceptBtn}>Сохранить</button>
-        <button class={addClassFormStyles.cancelBtn}>Отменить</button>
+        <button class={addClassFormStyles.cancelBtn} onClick={handleClose}>Отменить</button>
       </form>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateSchedule, toggleClassCreationModal } from "../../model/TeacherScheduleSlice";
+import { fetchScheduleForDate } from "../../model/TeacherScheduleThunks";
 import {selectClassroom, setClassrooms} from '../../../../entities/Classroom';
 import { ClassPreview } from "../../../../entities/Class";
 import teacherSchedEditStyles from "./TeacherScheduleEdit.module.css";
@@ -11,7 +12,11 @@ const TeacherScheduleEdit = ({ teacherId }) => {
   const { schedule, loading, error, selectedDate, classCreationMode } = useSelector(
     (state) => state.teacherSchedule
   );
-  const [editableSchedule, setEditableSchedule] = useState(schedule);
+
+  useEffect(() => {
+    dispatch(fetchScheduleForDate({ teacherId, date: selectedDate.toISOString().split("T")[0] }));
+  }, [dispatch, teacherId, selectedDate]);
+
   const months = [
     "Января",
     "Февраля",
@@ -26,11 +31,6 @@ const TeacherScheduleEdit = ({ teacherId }) => {
     "Ноября",
     "Декабря",
   ];
-  useEffect(() => {
-    if (!loading && !error) {
-      setEditableSchedule(schedule);
-    }
-  }, [schedule, loading, error]);
 
   const handleSave = (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ const TeacherScheduleEdit = ({ teacherId }) => {
       updateSchedule({
         teacherId,
         date: selectedDate,
-        schedule: editableSchedule,
+        schedule: schedule,
       })
     );
   };
@@ -58,7 +58,7 @@ const TeacherScheduleEdit = ({ teacherId }) => {
       </h3>
       <div className={teacherSchedEditStyles.classesListEdit}>
         <div className={teacherSchedEditStyles.classesList}>
-          {editableSchedule.map((classInfo) => (
+          {schedule.map((classInfo) => (
             <ClassPreview
               key={classInfo.id}
               classInfo={classInfo}
