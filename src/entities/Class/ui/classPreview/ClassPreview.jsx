@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./ClassPreview.module.css";
+import classPreviewStyles from "./ClassPreview.module.css";
 
 const ClassPreview = ({ classInfo }) => {
   const dispatch = useDispatch();
   return (
-    <div className={styles.groupClassPreviewCont}>
-      <div className={styles.classInfoCont}>
+    <div className={classPreviewStyles.groupClassPreviewCont}>
+      <div className={classPreviewStyles.classInfoCont}>
         <h3>{classInfo.title}</h3>
         <p>
           {classInfo.startTime} - {classInfo.endTime}

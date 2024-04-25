@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateSchedule } from "../../model/TeacherScheduleSlice";
 import { ClassPreview } from "../../../../entities/Class";
-import styles from "./TeacherScheduleEdit.module.css";
+import teacherSchedEditStyles from "./TeacherScheduleEdit.module.css";
 
 const TeacherScheduleEdit = ({ teacherId }) => {
   const dispatch = useDispatch();
@@ -45,13 +45,13 @@ const TeacherScheduleEdit = ({ teacherId }) => {
   if (error) return <p>Error loading schedule: {error}</p>;
 
   return (
-    <div className={styles.editScheduleContainer}>
+    <div className={teacherSchedEditStyles.editScheduleContainer}>
       <h3>
         {selectedDate.toISOString().split("T")[0].split("-")[2]}{" "}
         {months[selectedDate.getMonth()]}
       </h3>
-      <div className={styles.classesListEdit}>
-        <div className={styles.classesList}>
+      <div className={teacherSchedEditStyles.classesListEdit}>
+        <div className={teacherSchedEditStyles.classesList}>
           {editableSchedule.map((classInfo) => (
             <ClassPreview
               key={classInfo.id}
@@ -59,7 +59,7 @@ const TeacherScheduleEdit = ({ teacherId }) => {
             ></ClassPreview>
           ))}
         </div>
-        <button className={styles.addNewClassBtn}>
+        <button className={teacherSchedEditStyles.addNewClassBtn}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
               fill="#ffffff"
@@ -68,7 +68,7 @@ const TeacherScheduleEdit = ({ teacherId }) => {
           </svg>
         </button>
       </div>
-      <button className={styles.saveButton}>Сохранить</button>
+      <button className={teacherSchedEditStyles.saveButton}>Сохранить</button>
     </div>
   );
 };

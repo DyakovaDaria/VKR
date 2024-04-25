@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./UserProfile.module.css";
+import userProfileStyles from "./UserProfile.module.css";
 import { fetchUserDetails } from "../../model/UserThunks";
 import GroupPreview from "../../../Group/ui/groupPreview/GroupPreview";
 import userProfilePic from "../../../../shared/assets/userPic.png";
@@ -19,14 +19,14 @@ function UserProfile({ userId }) {
   if (!userDetails) return <div>No User Details Found</div>;
 
   return (
-    <div className={styles.userProfileCont}>
-      <div className={styles.userInfoCont}>
-        <img src={userDetails.pic ? userDetails.pic : userProfilePic} />
+    <div className={userProfileStyles.userProfileCont}>
+      <div className={userProfileStyles.userInfoCont}>
+        <img src={userDetails.pic ? userDetails.pic : userProfilePic} className={userProfileStyles.profilePic}/>
         <h3>
           {userDetails.lastName} {userDetails.name} {userDetails.secondName}
         </h3>
         <p>{role === "student" ? "Студент" : "Преподаватель"}</p>
-        <p className={styles.contactText}>контактные данные</p>
+        <p className={userProfileStyles.contactText}>контактные данные</p>
         <p>
           <strong> {userDetails.email}</strong>
         </p>
@@ -34,16 +34,16 @@ function UserProfile({ userId }) {
           <strong>{userDetails.phone}</strong>{" "}
         </p>
       </div>
-      <div className={styles.userAdditionalInfoCont}>
-        <div className={styles.userDescriptionCont}>
+      <div className={userProfileStyles.userAdditionalInfoCont}>
+        <div className={userProfileStyles.userDescriptionCont}>
           <h3> Описание </h3>
-          <div className={styles.userDescriptionText}>
+          <div className={userProfileStyles.userDescriptionText}>
             <p>{userDetails.description}</p>
           </div>
         </div>
-        <div className={styles.userGroupsCont}>
+        <div className={userProfileStyles.userGroupsCont}>
           <h3>Группы</h3>
-          <div className={styles.userGroupsListCont}>
+          <div className={userProfileStyles.userGroupsListCont}>
             {userDetails.groups.map((group) => (
               <GroupPreview groupInfo={group}></GroupPreview>
             ))}

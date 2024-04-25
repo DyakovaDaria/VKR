@@ -63,9 +63,9 @@ h3 {
   transform: translateY(3px);
 }
 
-img {
+.logo {
   height: 100px;
-  max-width: 300px;
+  width: 300px;
   margin-bottom: 3%;
   margin-top: 5%;
 }

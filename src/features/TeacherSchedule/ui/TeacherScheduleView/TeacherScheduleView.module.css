@@ -1,6 +1,6 @@
 .teacherScheduleCont {
   width: 100%;
-  height: 100vh - 90px;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   align-items: center;

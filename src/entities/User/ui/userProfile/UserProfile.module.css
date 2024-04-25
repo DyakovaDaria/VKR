@@ -65,7 +65,8 @@
   margin-top: 5px;
 }
 
-img {
+.profilePic {
+  margin-top: 20px;
   height: 150px;
   width: 150px;
 }

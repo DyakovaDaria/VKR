@@ -40,7 +40,7 @@ const LoginForm = () => {
 
   return (
     <div className={loginStyles.mainContainer}>
-      <img src={logo} />
+      <img src={logo} className={loginStyles.logo}/>
       <form onSubmit={handleSubmit} className={loginStyles.loginForm}>
         <h3>Вход</h3>
         <div className={loginStyles.inputData}>
