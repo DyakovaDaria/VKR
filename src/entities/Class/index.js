@@ -1,7 +1,11 @@
-import reducer from './model/ClassSlice';
-import ClassPreview from './ui/classPreview/ClassPreview';
+import reducer from "./model/ClassSlice";
+import ClassPreview from "./ui/classPreview/ClassPreview";
+
+export { reducer as classReducer, ClassPreview };
 
 export {
-  reducer as classReducer,
-  ClassPreview
-};
+  setLessonType,
+  setLessonDetails,
+  setGroup,
+  setStudent,
+} from "./model/ClassSlice";

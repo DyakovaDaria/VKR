@@ -5,6 +5,7 @@ import { classReducer } from '../entities/Class';
 import {teacherScheduleReducer} from '../features/TeacherSchedule';
 import {weekCalendarReducer} from '../widgets/weekCalendar';
 import { eventsListReducer } from '../widgets/eventsList';
+import {classroomReducer} from '../entities/Classroom';
 
 
 export const store = configureStore({
@@ -15,5 +16,6 @@ export const store = configureStore({
     teacherSchedule: teacherScheduleReducer,
     weekCalendar: weekCalendarReducer,
     eventsList: eventsListReducer,
+    classroom: classroomReducer,
   },
 });

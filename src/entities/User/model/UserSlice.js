@@ -37,7 +37,7 @@ const UserSlice = createSlice({
       .addCase(updateUserDetails.rejected, (state, action) => {
         state.error = action.error.message;
         state.loading = false;
-      });
+      }); 
   }
 });
 

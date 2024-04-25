@@ -11,7 +11,7 @@ const scheduleSlice = createSlice({
     error: null,
     schedule: [],
     selectedDate: new Date(),
-    isEditMode: false,
+    classCreationMode: false,
   },
   reducers: {
     setSelectedDate: (state, action) => {
@@ -23,6 +23,9 @@ const scheduleSlice = createSlice({
       if (index !== -1) {
         state.schedule[index] = { ...state.schedule[index], ...changes };
       }
+    },
+    toggleClassCreationModal: (state, action) => {
+      state.classCreationMode = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -54,5 +57,5 @@ const scheduleSlice = createSlice({
   },
 });
 
-export const { setSelectedDate, updateSchedule } = scheduleSlice.actions;
+export const { setSelectedDate, updateSchedule, toggleClassCreationModal } = scheduleSlice.actions;
 export default scheduleSlice.reducer;

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateSchedule } from "../../model/TeacherScheduleSlice";
+import { updateSchedule, toggleClassCreationModal } from "../../model/TeacherScheduleSlice";
+import {selectClassroom, setClassrooms} from '../../../../entities/Classroom';
 import { ClassPreview } from "../../../../entities/Class";
 import teacherSchedEditStyles from "./TeacherScheduleEdit.module.css";
+import AddClassForm from "./addClassForm/AddClassForm";
 
 const TeacherScheduleEdit = ({ teacherId }) => {
   const dispatch = useDispatch();
-  const { schedule, loading, error, selectedDate } = useSelector(
+  const { schedule, loading, error, selectedDate, classCreationMode } = useSelector(
     (state) => state.teacherSchedule
   );
   const [editableSchedule, setEditableSchedule] = useState(schedule);
@@ -41,6 +43,10 @@ const TeacherScheduleEdit = ({ teacherId }) => {
     );
   };
 
+  const handleAddNewClass = () => {
+    dispatch(toggleClassCreationModal(true))
+  }
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading schedule: {error}</p>;
 
@@ -59,7 +65,7 @@ const TeacherScheduleEdit = ({ teacherId }) => {
             ></ClassPreview>
           ))}
         </div>
-        <button className={teacherSchedEditStyles.addNewClassBtn}>
+        <button className={teacherSchedEditStyles.addNewClassBtn} onClick={handleAddNewClass}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
               fill="#ffffff"
@@ -69,6 +75,11 @@ const TeacherScheduleEdit = ({ teacherId }) => {
         </button>
       </div>
       <button className={teacherSchedEditStyles.saveButton}>Сохранить</button>
+      {classCreationMode && (
+        <div className={teacherSchedEditStyles.popupOverlay} >
+          {<AddClassForm></AddClassForm>}
+        </div>
+      )}
     </div>
   );
 };
