@@ -117,7 +117,9 @@ const AddClassForm = () => {
           onChange={handleInputChange}
           placeholder="Введите ФИО Ученика"
         />
-        <button class={addClassFormStyles.acceptBtn} onClick={handleSave}>Сохранить</button>
+        <button class={addClassFormStyles.acceptBtn} onClick={handleSave}>
+          Сохранить
+        </button>
         <button class={addClassFormStyles.cancelBtn} onClick={handleClose}>
           Отменить
         </button>
