@@ -1,46 +1,47 @@
 .icon {
-
+  height: 30px;
+  width: 30px;
 }
 
 .goBackBtn {
-    border: none;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #E02B8B;
-    font-size: medium;
-    font-weight: 600;
-    margin: 10px auto auto 15px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e02b8b;
+  font-size: medium;
+  font-weight: 600;
+  margin: 10px auto auto 15px;
 }
 
 .classInfoWrap {
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    height: fit-content;
-    background-color: #EDEDEE;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    padding: 10px 15px 15px 25px;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  background-color: #ededee;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  padding: 10px 15px 15px 25px;
 }
 
 .classInfoWrapCont {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .classInfoCont {
-    width: 100%;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

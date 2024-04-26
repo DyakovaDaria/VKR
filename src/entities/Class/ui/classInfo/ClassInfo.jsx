@@ -14,8 +14,8 @@ const ClassInfo = () => {
   const navigate = useNavigate();
   const lesson = useSelector((state) => state.class.lesson);
   const goBack = () => {
-    navigate('/main-page');
-  }
+    navigate("/main-page");
+  };
   return (
     <div className={classInfoStyles.classInfoCont}>
       <button className={classInfoStyles.goBackBtn} onClick={goBack}>
