@@ -9,14 +9,17 @@ import {
   loadClassrooms,
 } from "../../../../../entities/Classroom";
 import addClassFormStyles from "./AddClassForm.module.css";
+import { validation } from "../../../lib/validation";
 
 const AddClassForm = () => {
   const dispatch = useDispatch();
+  const { selectedDate } = useSelector((state) => state.teacherSchedule);
   const [newClass, setNewClass] = useState({
     type: "individual",
     id: Date.now,
     title: "",
     description: "",
+    date: selectedDate,
     startTime: "",
     endTime: "",
     classroom: "",
@@ -25,17 +28,29 @@ const AddClassForm = () => {
     student: null,
   });
   const classrooms = useSelector((state) => state.classroom.list);
-  const [selectedClassroom, setSelectedClassroom] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewClass((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSave = () => {
+  const handleSave = (event) => {
     console.log(newClass);
-    // dispatch(addClass({ teacherId, date, classData }));
-    dispatch(toggleClassCreationModal(false));
+    event.preventDefault();
+    const validationErrors = validation(
+      newClass.startTime,
+      newClass.endTime,
+      newClass.classroom,
+      newClass.student
+    );
+    if (Object.keys(validationErrors).length === 0) {
+      dispatch(updateSchedule(newClass));
+      dispatch(toggleClassCreationModal(false));
+    } else {
+      // setErrors(validationErrors);
+
+      alert("All fields must be filled out.");
+    }
   };
 
   const handleClose = () => {
@@ -61,7 +76,7 @@ const AddClassForm = () => {
 
   return (
     <div className={addClassFormStyles.addClassForm}>
-      <form>
+      <form onSubmit={handleSave}>
         <h3>Время</h3>
         <div className={addClassFormStyles.timeContainer}>
           <div className={addClassFormStyles.startTimeContainer}>
@@ -117,7 +132,10 @@ const AddClassForm = () => {
           onChange={handleInputChange}
           placeholder="Введите ФИО Ученика"
         />
-        <button class={addClassFormStyles.acceptBtn} onClick={handleSave}>
+        <button
+          type="submit"
+          class={addClassFormStyles.acceptBtn}
+        >
           Сохранить
         </button>
         <button class={addClassFormStyles.cancelBtn} onClick={handleClose}>

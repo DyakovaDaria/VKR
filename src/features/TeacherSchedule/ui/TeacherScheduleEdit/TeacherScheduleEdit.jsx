@@ -36,8 +36,6 @@ const TeacherScheduleEdit = ({ teacherId }) => {
     e.preventDefault();
     dispatch(
       updateSchedule({
-        teacherId,
-        date: selectedDate,
         schedule: schedule,
       })
     );
@@ -58,7 +56,7 @@ const TeacherScheduleEdit = ({ teacherId }) => {
       </h3>
       <div className={teacherSchedEditStyles.classesListEdit}>
         <div className={teacherSchedEditStyles.classesList}>
-          {schedule.map((classInfo) => (
+          {schedule?.map((classInfo) => (
             <ClassPreview
               key={classInfo.id}
               classInfo={classInfo}

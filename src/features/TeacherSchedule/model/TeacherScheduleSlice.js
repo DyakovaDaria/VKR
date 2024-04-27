@@ -9,7 +9,63 @@ const scheduleSlice = createSlice({
   initialState: {
     loading: false,
     error: null,
-    schedule: [],
+    schedule: [
+      {
+        title: "Танго",
+        description: "",
+        date: Date.now,
+        startTime: "10:00",
+        endTime: "11:30",
+        classroom: "205",
+        type: 'group',
+        teacher: "Иванова Ольга",
+        group: "Продолжающие",
+      },
+      {
+        title: "Танго",
+        description: "",
+        date: Date.now,
+        startTime: "10:00",
+        endTime: "11:30",
+        classroom: "205",
+        type: 'group',
+        teacher: "Иванова Ольга",
+        group: "Продолжающие",
+      },
+      {
+        title: "Танго",
+        description: "",
+        date: Date.now,
+        startTime: "10:00",
+        endTime: "11:30",
+        classroom: "205",
+        type: 'group',
+        teacher: "Иванова Ольга",
+        group: "Продолжающие",
+      },
+      {
+        title: "Танго",
+        description: "",
+        date: Date.now,
+        startTime: "10:00",
+        endTime: "11:30",
+        classroom: "205",
+        type: 'group',
+        teacher: "Иванова Ольга",
+        group: "Продолжающие",
+      },
+      {
+        title: "Танго",
+        description: "",
+        date: Date.now,
+        startTime: "10:00",
+        endTime: "11:30",
+        classroom: "205",
+        type: 'group',
+        teacher: "Иванова Ольга",
+        group: "Продолжающие",
+      },
+    ],
     selectedDate: new Date(),
     classCreationMode: false,
   },
@@ -18,11 +74,7 @@ const scheduleSlice = createSlice({
       state.selectedDate = action.payload;
     },
     updateSchedule: (state, action) => {
-      const { id, changes } = action.payload;
-      const index = state.schedule.findIndex((item) => item.id === id);
-      if (index !== -1) {
-        state.schedule[index] = { ...state.schedule[index], ...changes };
-      }
+      state.schedule.push(action.payload);
     },
     toggleClassCreationModal: (state, action) => {
       state.classCreationMode = action.payload;

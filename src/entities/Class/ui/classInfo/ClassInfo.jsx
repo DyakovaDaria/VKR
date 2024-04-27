@@ -44,10 +44,10 @@ const ClassInfo = () => {
           <label htmlFor="teacher">преподаватель</label>
         </div>
         <div className={classInfoStyles.classInfoWrap}>
-          {lesson.type === "group" && <p>Групповое занятие</p>}
-          {lesson.type === "individual" && <p>Индивидуальное занятие</p>}
-          {lesson.group && <p>{lesson.group}</p>}
-          {lesson.student && <p>{lesson.student}</p>}
+          {lesson?.type === "group" && <p>Групповое занятие</p>}
+          {lesson?.type === "individual" && <p>Индивидуальное занятие</p>}
+          {lesson?.group && <p>{lesson.group}</p>}
+          {lesson?.student && <p>{lesson.student}</p>}
         </div>
       </div>
     </div>
