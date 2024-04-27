@@ -37,7 +37,7 @@ const StudentNavbar = () => {
       </NavLink>
       
       <NavLink
-        to="/"
+        to="/student-profile"
         className={({ isActive }) =>
           isActive ? styles.selectedNavItem : styles.navItem
         }
