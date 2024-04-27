@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
 import Login from "../pages/LoginPage";
 import MainPage from "../pages/mainPage/MainPage";
-import ScheduleViewPage from "../pages/teacherPages/ScheduleViewPage";
-import ScheduleEditPage from "../pages/teacherPages/ScheduleEditPage";
+import TeacherScheduleEditPage from "../pages/teacherPages/TeacherScheduleEditPage";
 import TeacherProfilePage from "../pages/teacherPages/TeacherProfilePage";
+import ScheduleViewPage from "../pages/scheduleViewPage/ScheduleViewPage";
 import { ClassInfo } from "../entities/Class";
 import StudentProfilePage from "../pages/studentPages/StudentProfilePage";
 
@@ -14,9 +14,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/teacher-schedule" element={<ScheduleViewPage />} />
-        <Route path="/student-schedule" element={<ScheduleViewPage />} />
-        <Route path="/teacher-schedule-edit" element={<ScheduleEditPage />} />
+        <Route path="/schedule" element={<ScheduleViewPage />} />
+        <Route path="/teacher-schedule-edit" element={<TeacherScheduleEditPage />} />
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
         <Route path="/student-profile" element={<StudentProfilePage />} />
         <Route path="/class-info" element={<ClassInfo />} />

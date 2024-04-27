@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchScheduleForDate,
   updateScheduleForDate,
-} from "../../../entities/Schedule"; 
+} from "./ScheduleThunks"; 
 
-const teacherScheduleSlice = createSlice({
+const scheduleSlice = createSlice({
   name: "schedule",
   initialState: {
     loading: false,
@@ -109,5 +109,5 @@ const teacherScheduleSlice = createSlice({
   },
 });
 
-export const { setSelectedDate, updateSchedule, toggleClassCreationModal } = teacherScheduleSlice.actions;
-export default teacherScheduleSlice.reducer;
+export const { setSelectedDate, updateSchedule, toggleClassCreationModal } = scheduleSlice.actions;
+export default scheduleSlice.reducer;

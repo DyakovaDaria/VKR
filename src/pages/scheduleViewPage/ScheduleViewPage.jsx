@@ -1,10 +1,10 @@
+import { ScheduleView } from "../../entities/Schedule";
 import TeacherNavbar from "../../widgets/teacherNavbar/TeacherNavbar";
 import StudentNavbar from "../../widgets/studentNavbar/StudentNavbar";
 import AdminNavbar from '../../widgets/adminNavbar/AdminNavbar';
-import { useSelector, useDispatch } from "react-redux";
-import { EventsList } from "../../widgets/eventsList";
+import { useSelector } from "react-redux";
 
-const MainPage = () => {
+const ScheduleViewPage = () => {
   const { role } = useSelector((state) => state.login);
   const chooseMenu = () => {
     if (role === 'teacher') {
@@ -15,13 +15,12 @@ const MainPage = () => {
       return <AdminNavbar></AdminNavbar>
     }
   };
-
   return (
     <div>
       {chooseMenu()}
-      <EventsList></EventsList>
+      <ScheduleView></ScheduleView>
     </div>
   );
 };
 
-export default MainPage;
+export default ScheduleViewPage;

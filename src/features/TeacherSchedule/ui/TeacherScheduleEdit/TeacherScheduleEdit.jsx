@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateSchedule, toggleClassCreationModal } from "../../model/TeacherScheduleSlice";
-import { fetchScheduleForDate } from "../../model/TeacherScheduleThunks";
+import { fetchScheduleForDate } from "../../../../entities/Schedule";
 import {selectClassroom, setClassrooms} from '../../../../entities/Classroom';
 import { ClassPreview } from "../../../../entities/Class";
 import teacherSchedEditStyles from "./TeacherScheduleEdit.module.css";

@@ -22,7 +22,7 @@ const StudentNavbar = () => {
         </svg>
       </NavLink>
       <NavLink
-        to="/teacher-schedule"
+        to="/schedule"
         className={({ isActive }) =>
           isActive ? styles.selectedNavItem : styles.navItem
         }
