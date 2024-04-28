@@ -1,13 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { loginReducer } from '../features/Login';
-import { userReducer } from '../entities/User';
-import { classReducer } from '../entities/Class';
-import {teacherScheduleReducer} from '../features/TeacherSchedule';
-import {weekCalendarReducer} from '../widgets/weekCalendar';
-import { eventsListReducer } from '../widgets/eventsList';
-import {classroomReducer} from '../entities/Classroom';
-import { scheduleSlice } from '../entities/Schedule';
-
+import { configureStore } from "@reduxjs/toolkit";
+import { loginReducer } from "../features/Login";
+import { userReducer } from "../entities/User";
+import { classReducer } from "../entities/Class";
+import { teacherScheduleReducer } from "../features/TeacherSchedule";
+import { weekCalendarReducer } from "../widgets/weekCalendar";
+import { eventsListReducer } from "../widgets/eventsList";
+import { classroomReducer } from "../entities/Classroom";
+import { scheduleSlice } from "../entities/Schedule";
+import { usersSettingsReducer } from "../features/UsersSettings";
 
 export const store = configureStore({
   reducer: {
@@ -19,5 +19,6 @@ export const store = configureStore({
     weekCalendar: weekCalendarReducer,
     eventsList: eventsListReducer,
     classroom: classroomReducer,
+    usersSettings: usersSettingsReducer,
   },
 });

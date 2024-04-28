@@ -7,6 +7,7 @@ import TeacherProfilePage from "../pages/teacherPages/TeacherProfilePage";
 import ScheduleViewPage from "../pages/scheduleViewPage/ScheduleViewPage";
 import { ClassInfo } from "../entities/Class";
 import StudentProfilePage from "../pages/studentPages/StudentProfilePage";
+import StudentsListPage from '../pages/adminPages/StudentsListPage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/teacher-schedule-edit" element={<TeacherScheduleEditPage />} />
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
         <Route path="/student-profile" element={<StudentProfilePage />} />
+        <Route path="/users-list" element={<StudentsListPage/>} />
         <Route path="/class-info" element={<ClassInfo />} />
         <Route path="/main-page" element={<MainPage />} />
       </Routes>

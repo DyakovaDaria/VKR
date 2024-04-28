@@ -21,7 +21,10 @@ function UserProfile({ userId }) {
   return (
     <div className={userProfileStyles.userProfileCont}>
       <div className={userProfileStyles.userInfoCont}>
-        <img src={userDetails.pic ? userDetails.pic : userProfilePic} className={userProfileStyles.profilePic}/>
+        <img
+          src={userDetails.pic ? userDetails.pic : userProfilePic}
+          className={userProfileStyles.profilePic}
+        />
         <h3>
           {userDetails.lastName} {userDetails.name} {userDetails.secondName}
         </h3>

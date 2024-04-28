@@ -1,0 +1,49 @@
+.userField {
+  background-color: #ededee;
+  border-radius: 15px;
+  width: 100%;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.userField > button {
+  margin-left: auto;
+  margin-right: 5px;
+  background-color: #e02b8b;
+  border: none;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 50px 0 auto;
+}
+
+.editPic {
+  height: 70%;
+  width: 70%;
+  margin: 0 0 0 0;
+}
+
+.userField > h3 {
+  font-weight: 500;
+  font-size: 17px;
+  margin-left: 15px;
+}
+
+.userRole {
+  background-color: rgb(224, 43, 139, 0.15);
+  color: #e02b8b;
+  border-radius: 7px;
+  height: fit-content;
+  width: fit-content;
+  padding: 0px 5px 1px 5px;
+  margin-left: 10px;
+  font-size: small;
+}
