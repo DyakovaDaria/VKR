@@ -8,13 +8,11 @@ const WeekCalendar = () => {
   const selectedDate = useSelector(
     (state) => state.teacherSchedule.selectedDate
   );
-  // Состояние для текущей недели
+
   const [currentWeek, setCurrentWeek] = useState([]);
 
-  // Массив с названиями дней недели
   const daysOfWeek = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
 
-  // Массив с названиями месяцов
   const months = [
     "Январь",
     "Февраль",
@@ -30,10 +28,9 @@ const WeekCalendar = () => {
     "Декабрь",
   ];
 
-  // Функция для получения начала недели
   const getWeekStart = (date) => {
     const weekStart = new Date(date);
-    weekStart.setDate(weekStart.getDate() - weekStart.getDay() + 1);
+    weekStart.setDate(weekStart.getDate() - weekStart.getDay());
     return weekStart;
   };
 
@@ -41,7 +38,6 @@ const WeekCalendar = () => {
     dispatch(setSelectedDate(date));
   };
 
-  // Функция для изменения недели
   const changeWeek = (direction) => {
     const newSelectedDay = new Date(selectedDate);
     newSelectedDay.setDate(
@@ -50,7 +46,6 @@ const WeekCalendar = () => {
     handleDateSelect(newSelectedDay);
   };
 
-  // Инициализация недели при монтировании компонента и при изменении selectedDay
   useEffect(() => {
     const weekStart = getWeekStart(selectedDate);
     const newWeek = Array.from({ length: 7 }).map((_, index) => {
