@@ -8,7 +8,7 @@ import ScheduleViewPage from "../pages/scheduleViewPage/ScheduleViewPage";
 import { ClassInfo } from "../entities/Class";
 import StudentProfilePage from "../pages/studentPages/StudentProfilePage";
 import StudentsListPage from '../pages/adminPages/StudentsListPage';
-
+import SubscriptionsPage from '../pages/studentPages/SubscriptionsPage';
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
         <Route path="/student-profile" element={<StudentProfilePage />} />
         <Route path="/users-list" element={<StudentsListPage/>} />
+        <Route path="/user-subscriptions" element={<SubscriptionsPage/>} />
         <Route path="/class-info" element={<ClassInfo />} />
         <Route path="/main-page" element={<MainPage />} />
       </Routes>

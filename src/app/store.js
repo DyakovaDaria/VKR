@@ -8,6 +8,7 @@ import { eventsListReducer } from "../widgets/eventsList";
 import { classroomReducer } from "../entities/Classroom";
 import { scheduleSlice } from "../entities/Schedule";
 import { usersSettingsReducer } from "../features/UsersSettings";
+import { subscriptionsReducer } from "../features/Subscriptions";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     eventsList: eventsListReducer,
     classroom: classroomReducer,
     usersSettings: usersSettingsReducer,
+    subscriptions: subscriptionsReducer,
   },
 });
