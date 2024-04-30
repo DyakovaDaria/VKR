@@ -9,6 +9,7 @@ import { ClassInfo } from "../entities/Class";
 import StudentProfilePage from "../pages/studentPages/StudentProfilePage";
 import StudentsListPage from '../pages/adminPages/StudentsListPage';
 import SubscriptionsPage from '../pages/studentPages/SubscriptionsPage';
+import CreateUserPage from "../pages/adminPages/CreateUserPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/teacher-schedule-edit" element={<TeacherScheduleEditPage />} />
         <Route path="/teacher-profile" element={<TeacherProfilePage />} />
         <Route path="/student-profile" element={<StudentProfilePage />} />
+        <Route path="/create-user" element={<CreateUserPage/>} />
         <Route path="/users-list" element={<StudentsListPage/>} />
         <Route path="/user-subscriptions" element={<SubscriptionsPage/>} />
         <Route path="/class-info" element={<ClassInfo />} />

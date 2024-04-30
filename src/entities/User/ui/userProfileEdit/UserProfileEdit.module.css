@@ -1,0 +1,141 @@
+.userInfoContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  height: 100%;
+  background-color: #ededee;
+  border-radius: 15px;
+}
+
+.userInfoContainer > h2 {
+  color: #dc0d7a;
+  margin: 10px auto auto auto;
+}
+
+.enterForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: start;
+  height: 80%;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.enterField {
+  width: 85%;
+}
+
+.enterField > input {
+  border: none;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  width: 100%;
+  height: 15px;
+  color: black;
+  padding: 9px 9px 9px 9px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.enterField > input::placeholder {
+  color: #787878;
+  font-size: 1rem;
+}
+
+.enterField > input:focus {
+  border: 1px solid #787878;
+  border-radius: 5px;
+  outline: 0;
+}
+
+.enterField > label {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: auto;
+  width: 100%;
+  height: 10px;
+}
+
+.profilePicCont {
+  width: 80%;
+  height: fit-content;
+  padding: 10px 0 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.profilePicCont > button {
+  border: solid #e02b8b 2px;
+  border-radius: 15px;
+  color: #e02b8b;
+  background-color: white;
+  width: 40%;
+  height: 35px;
+  padding: 10px 10px 10px 10px;
+  font-size: medium;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profilePicCont > img {
+  height: 150px;
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.wrapContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 95vh;
+  margin-top: 20px;
+}
+
+.btnsCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.saveUserProfileButton {
+  background-color: #e02b8b;
+  color: white;
+  border-radius: 7px;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 35px 5px 35px;
+  border: none;
+  font-weight: 700;
+  font-size: larger;
+  margin-top: 5%;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.settingButton {
+  background-color: #787878;
+  color: white;
+  border-radius: 7px;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 15px 5px 15px;
+  border: none;
+  font-weight: 700;
+  font-size: larger;
+  margin-top: 5%;
+  margin-bottom: 30px;
+  cursor: pointer;
+}

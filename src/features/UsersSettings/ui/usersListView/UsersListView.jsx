@@ -39,7 +39,7 @@ const UsersListView = () => {
 
   const addNewUser = () => {
     // dispatch(setCurrentUser("new"));
-    navigate("/admin/user-edit");
+    navigate("/create-user");
   };
 
   return (
