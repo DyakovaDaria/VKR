@@ -32,7 +32,7 @@ export const fetchSubscriptionsForStudent = createAsyncThunk(
             price: 1600.00, 
             description : '', 
             duration: 1,
-            isActive: true,
+            isActive: false,
         },
     ];
     } catch (error) {

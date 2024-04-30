@@ -1,0 +1,42 @@
+.subscriptionsListCont {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.subscriptionCont {
+    width: 20%;
+    height: 30%;
+    background-color: #EDEDEE;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.activeStatus {
+    background-color: #B2D1CB;
+    font-size: small;
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 1px 5px 3px 5px;
+    color: #105F64;
+    margin: auto auto 20px auto;
+}
+
+.inactiveStatus {
+    background-color: rgb(224, 43, 139, .15);
+    font-size: small;
+    font-weight: 700;
+    border-radius: 5px;
+    padding: 1px 5px 3px 5px;
+    color: #743B6B;
+    margin: auto auto 20px auto;
+}
+
+.classesLeftInfo {
+    margin: 5px auto auto auto;
+}
