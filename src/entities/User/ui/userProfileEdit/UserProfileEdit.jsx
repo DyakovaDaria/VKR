@@ -21,8 +21,8 @@ const UserProfileEdit = () => {
       setUserDetails({
         id: currentUser.id,
         name: currentUser.name,
-        surname: currentUser.surname,
-        midname: currentUser.midname,
+        surname: currentUser.lastName,
+        midname: currentUser.secondName,
         email: currentUser.email,
         password: currentUser.password,
       });
@@ -41,6 +41,10 @@ const UserProfileEdit = () => {
 
   const handleDelete = () => {
     // dispatch(deleteUser(currentUser.id));
+    navigate("/users-list");
+  };
+
+  const handleCancel = () => {
     navigate("/users-list");
   };
 
@@ -113,21 +117,29 @@ const UserProfileEdit = () => {
         </div>
       </div>
 
-      <div class={userEditStyles.achievementsCont}></div>
+      <div class={userEditStyles.additionalInfoCont}>
+        <div class={userEditStyles.descrCont}>
+          <h2>Описание</h2>
+          <textarea className={userEditStyles.userDescr}></textarea>
+        </div>
 
-      <div className={userEditStyles.btnsCont}>
-        <button className={userEditStyles.settingsBtn}>
-          Назначить достижение
-        </button>
-        <button
-          className={userEditStyles.saveUserProfileButton}
-          onClick={handleSave}
-        >
-          Сохранить
-        </button>
-        <button className={userEditStyles.settingButton} onClick={handleDelete}>
+        <div className={userEditStyles.btnsCont}>
+          <button
+            className={userEditStyles.saveUserProfileButton}
+            onClick={handleSave}
+          >
+            Сохранить
+          </button>
+          {/* <button className={userEditStyles.deleteBtn} onClick={handleDelete}>
           Удалить профиль
-        </button>
+        </button> */}
+          <button className={userEditStyles.deleteBtn} onClick={handleCancel}>
+            Отменить
+          </button>
+          <button className={userEditStyles.settingsBtn}>
+            Изменить расписание
+          </button>
+        </div>
       </div>
     </div>
   );

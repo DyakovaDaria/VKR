@@ -10,6 +10,8 @@ import StudentProfilePage from "../pages/studentPages/StudentProfilePage";
 import StudentsListPage from '../pages/adminPages/StudentsListPage';
 import SubscriptionsPage from '../pages/studentPages/SubscriptionsPage';
 import CreateUserPage from "../pages/adminPages/CreateUserPage";
+import CreateEventsPage from "../pages/adminPages/CreateEventsPage";
+import ChangeClassroomsPage from "../pages/adminPages/ChangeClassroomsPage";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/create-user" element={<CreateUserPage/>} />
         <Route path="/users-list" element={<StudentsListPage/>} />
         <Route path="/user-subscriptions" element={<SubscriptionsPage/>} />
+        <Route path="/create-event" element={<CreateEventsPage/>} />
+        <Route path="/change-classrooms" element={<ChangeClassroomsPage/>} />
         <Route path="/class-info" element={<ClassInfo />} />
         <Route path="/main-page" element={<MainPage />} />
       </Routes>
