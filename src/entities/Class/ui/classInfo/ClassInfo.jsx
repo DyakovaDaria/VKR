@@ -18,7 +18,7 @@ const ClassInfo = () => {
     navigate("/main-page");
   };
   const handleEditClick = () => {
-    // navigate("/teacher-schedule-edit", { state: { teacherId: teacherId } });
+    navigate("/edit-class");
   };
   const handleDeleteClick = () => {
     // navigate("/teacher-schedule-edit", { state: { teacherId: teacherId } });

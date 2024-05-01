@@ -13,6 +13,7 @@ import CreateUserPage from "../pages/adminPages/CreateUserPage";
 import CreateEventsPage from "../pages/adminPages/CreateEventsPage";
 import ChangeClassroomsPage from "../pages/adminPages/ChangeClassroomsPage";
 import AdminProfilePage from '../pages/adminPages/AdminProfilePage';
+import EditClassPage from '../pages/adminPages/EditClassPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/admin-profile" element={<AdminProfilePage />} />
         <Route path="/create-user" element={<CreateUserPage/>} />
         <Route path="/users-list" element={<StudentsListPage/>} />
+        <Route path="/edit-class" element={<EditClassPage/>} />
         <Route path="/user-subscriptions" element={<SubscriptionsPage/>} />
         <Route path="/create-event" element={<CreateEventsPage/>} />
         <Route path="/change-classrooms" element={<ChangeClassroomsPage/>} />

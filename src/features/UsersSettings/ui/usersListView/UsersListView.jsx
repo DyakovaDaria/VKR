@@ -56,7 +56,7 @@ const UsersListView = () => {
           />
         </div>
         <div className={usersListStyles.userList}>
-          {users?.map((user) => (
+          {users && users.map((user) => (
             <UserPreview user={user}></UserPreview>
           ))}
         </div>
