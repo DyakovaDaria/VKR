@@ -1,8 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchUserDetails, updateUserDetails } from './UserThunks';
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchUserDetails, updateUserDetails } from "./UserThunks";
 
 const initialState = {
-  userDetails: {},
+  userDetails: {
+    id: "",
+    name: "",
+    lastName: "",
+    secondName: "",
+    description: "",
+    email: "",
+    phone: "",
+    groups: [],
+    schedule: [],
+    pic: null,
+  },
   currentUserForChange: null,
   newUserCreation: false,
   loading: false,
@@ -10,11 +21,22 @@ const initialState = {
 };
 
 const UserSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     clearUserDetails(state) {
-      state.userDetails = {};
+      state.userDetails = {
+        id: "",
+        name: "",
+        lastName: "",
+        secondName: "",
+        description: "",
+        email: "",
+        phone: "",
+        groups: [],
+        schedule: [],
+        pic: null,
+      };
       state.currentUserForChange = null;
       state.newUserCreation = false;
       state.error = null;
@@ -47,9 +69,10 @@ const UserSlice = createSlice({
       .addCase(updateUserDetails.rejected, (state, action) => {
         state.error = action.error.message;
         state.loading = false;
-      }); 
-  }
+      });
+  },
 });
 
-export const { clearUserDetails, addCurrentUser, setNewUserCreation } = UserSlice.actions;
+export const { clearUserDetails, addCurrentUser, setNewUserCreation } =
+  UserSlice.actions;
 export default UserSlice.reducer;
