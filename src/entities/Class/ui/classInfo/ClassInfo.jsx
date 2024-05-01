@@ -12,9 +12,16 @@ import classInfoStyles from "./ClassInfo.module.css";
 const ClassInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { role } = useSelector((state) => state.login);
   const lesson = useSelector((state) => state.class.lesson);
   const goBack = () => {
     navigate("/main-page");
+  };
+  const handleEditClick = () => {
+    // navigate("/teacher-schedule-edit", { state: { teacherId: teacherId } });
+  };
+  const handleDeleteClick = () => {
+    // navigate("/teacher-schedule-edit", { state: { teacherId: teacherId } });
   };
   return (
     <div className={classInfoStyles.classInfoCont}>
@@ -50,6 +57,22 @@ const ClassInfo = () => {
           {lesson?.student && <p>{lesson.student}</p>}
         </div>
       </div>
+      {role === "admin" && (
+        <div className={classInfoStyles.adminEditBtns}>
+          <button
+            className={classInfoStyles.editScheduleBtn}
+            onClick={handleEditClick}
+          >
+            Изменить информацию
+          </button>
+          <button
+            className={classInfoStyles.deleteClassBtn}
+            onClick={handleDeleteClick}
+          >
+            Удалить занятие
+          </button>
+        </div>
+      )}
     </div>
   );
 };

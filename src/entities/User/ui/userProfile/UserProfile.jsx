@@ -5,14 +5,14 @@ import { fetchUserDetails } from "../../model/UserThunks";
 import GroupPreview from "../../../Group/ui/groupPreview/GroupPreview";
 import userProfilePic from "../../../../shared/assets/userPic.png";
 
-function UserProfile({ userId }) {
+function UserProfile() {
   const dispatch = useDispatch();
-  const { role } = useSelector((state) => state.login);
+  const { role, user } = useSelector((state) => state.login);
   const { userDetails, loading, error } = useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(fetchUserDetails(userId));
-  }, [dispatch, userId]);
+    dispatch(fetchUserDetails(user));
+  }, [dispatch, user]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;

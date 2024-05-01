@@ -65,7 +65,7 @@ const AdminNavbar = () => {
         </svg>
       </NavLink>
       <NavLink
-        to="/"
+        to="/admin-profile"
         className={({ isActive }) =>
           isActive ? styles.selectedNavItem : styles.navItem
         }

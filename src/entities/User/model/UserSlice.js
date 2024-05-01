@@ -3,6 +3,7 @@ import { fetchUserDetails, updateUserDetails } from './UserThunks';
 
 const initialState = {
   userDetails: null,
+  currentUserForChange: null,
   loading: false,
   error: null,
 };
@@ -13,8 +14,12 @@ const UserSlice = createSlice({
   reducers: {
     clearUserDetails(state) {
       state.userDetails = null;
+      state.currentUserForChange = null;
       state.error = null;
       state.loading = false;
+    },
+    addCurrentUser(state, action) {
+      state.currentUserForChange = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -41,5 +46,5 @@ const UserSlice = createSlice({
   }
 });
 
-export const { clearUserDetails } = UserSlice.actions;
+export const { clearUserDetails, addCurrentUser } = UserSlice.actions;
 export default UserSlice.reducer;

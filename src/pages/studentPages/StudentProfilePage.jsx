@@ -5,7 +5,7 @@ const StudentProfilePage = () => {
   return (
     <div>
       <StudentNavbar></StudentNavbar>
-      <UserProfile userId={1}></UserProfile>
+      <UserProfile></UserProfile>
     </div>
   );
 };

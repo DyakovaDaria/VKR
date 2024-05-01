@@ -5,7 +5,7 @@ const TeacherProfilePage = () => {
   return (
     <div>
       <TeacherNavbar></TeacherNavbar>
-      <UserProfile userId={1}></UserProfile>
+      <UserProfile></UserProfile>
     </div>
   );
 };

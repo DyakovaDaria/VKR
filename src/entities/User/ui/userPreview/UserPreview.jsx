@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import userPreviewStyles from "./UserPreview.module.css";
+import { addCurrentUser } from "../../model/UserSlice";
 import { useNavigate } from "react-router-dom";
 
 const UserPreview = ({ user }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleEditClick = (userId) => {
-    // dispatch(setCurrentUser(userId));
-    navigate("/admin/user-edit");
+    dispatch(addCurrentUser(userId));
+    navigate("/create-user");
   };
   return (
     <div className={userPreviewStyles.userField} key={user.id}>
