@@ -12,7 +12,7 @@ function UserProfile() {
 
   useEffect(() => {
     dispatch(fetchUserDetails(user));
-  }, [dispatch, user]);
+  }, [dispatch, userDetails]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -34,7 +34,7 @@ function UserProfile() {
           <strong> {userDetails.email}</strong>
         </p>
         <p>
-          <strong>{userDetails.phone}</strong>{" "}
+          <strong>{userDetails.phone}</strong>
         </p>
       </div>
       <div className={userProfileStyles.userAdditionalInfoCont}>
@@ -47,9 +47,10 @@ function UserProfile() {
         <div className={userProfileStyles.userGroupsCont}>
           <h3>Группы</h3>
           <div className={userProfileStyles.userGroupsListCont}>
-            {userDetails.groups.map((group) => (
-              <GroupPreview groupInfo={group}></GroupPreview>
-            ))}
+            {userDetails.groups &&
+              userDetails.groups.map((group) => (
+                <GroupPreview groupInfo={group}></GroupPreview>
+              ))}
           </div>
         </div>
       </div>
