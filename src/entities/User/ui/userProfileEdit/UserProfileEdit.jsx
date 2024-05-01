@@ -9,7 +9,7 @@ const UserProfileEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { currentUserForChange, userDetails, loading, error } = useSelector(
-    (state) => state.user.currentUserForChange
+    (state) => state.user
   );
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const UserProfileEdit = () => {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
+  if (!userDetails) return <div>No User Details Found</div>;
 
   return (
     <div className={userEditStyles.wrapContent}>
