@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchUserDetails } from "../../model/UserThunks";
+import { clearUserDetails } from "../../model/UserSlice";
 import userEditStyles from "./UserProfileEdit.module.css";
 import userProfilePic from "../../../../shared/assets/userPic.png";
 
@@ -23,15 +24,18 @@ const UserProfileEdit = () => {
 
   const handleSave = () => {
     // dispatch(updateUser(userDetails));
+    dispatch(clearUserDetails());
     navigate("/users-list");
   };
 
   const handleDelete = () => {
     // dispatch(deleteUser(currentUser.id));
+    dispatch(clearUserDetails());
     navigate("/users-list");
   };
 
   const handleCancel = () => {
+    dispatch(clearUserDetails());
     navigate("/users-list");
   };
 
@@ -60,7 +64,7 @@ const UserProfileEdit = () => {
               id="name"
               name="name"
               placeholder="Введите имя"
-              value={userDetails.name}
+              value={userDetails?.name}
               onChange={handleChange}
             />
           </div>
@@ -71,7 +75,7 @@ const UserProfileEdit = () => {
               id="surname"
               name="surname"
               placeholder="Введите фамилию"
-              value={userDetails.lastName}
+              value={userDetails?.lastName}
               onChange={handleChange}
             />
           </div>
@@ -82,7 +86,7 @@ const UserProfileEdit = () => {
               id="midname"
               name="midname"
               placeholder="Введите отчество (опционально)"
-              value={userDetails.secondName}
+              value={userDetails?.secondName}
               onChange={handleChange}
             />
           </div>
@@ -93,7 +97,7 @@ const UserProfileEdit = () => {
               id="email"
               name="email"
               placeholder="Введите почту"
-              value={userDetails.email}
+              value={userDetails?.email}
               onChange={handleChange}
             />
           </div>
@@ -104,7 +108,7 @@ const UserProfileEdit = () => {
               id="password"
               name="password"
               placeholder="Введите пароль"
-              value={userDetails.password}
+              value={userDetails?.password}
               onChange={handleChange}
             />
           </div>

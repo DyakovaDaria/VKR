@@ -32,6 +32,19 @@ export const fetchUserDetails = createAsyncThunk(
     try {
       // const response = await axios.get(`/api/users/${userId}`);
       // return response.data;
+      if (userId === null) {
+        return {
+          id: "",
+          name: "",
+          lastName: "",
+          secondName: "",
+          description: '',
+          email: "",
+          phone: "",
+          groups: [],
+          pic: null,
+        };
+      }
       return await new Promise((resolve) =>
         setTimeout(() => resolve(mockUserData), 500)
       );
