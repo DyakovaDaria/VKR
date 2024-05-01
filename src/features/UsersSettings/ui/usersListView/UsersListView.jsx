@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import usersListStyles from "./UsersListView.module.css";
 import { fetchUsers } from "../../model/UsersSettingsThunks";
+import { setNewUserCreation } from "../../../../entities/User";
 import { UserPreview } from "../../../../entities/User";
 
 const UsersListView = () => {
@@ -39,6 +40,7 @@ const UsersListView = () => {
 
   const addNewUser = () => {
     // dispatch(setCurrentUser("new"));
+    dispatch(setNewUserCreation(true));
     navigate("/create-user");
   };
 

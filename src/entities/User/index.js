@@ -5,5 +5,5 @@ import UserProfileEdit from "./ui/userProfileEdit/UserProfileEdit";
 
 export { reducer as userReducer, UserPreview, UserProfile, UserProfileEdit };
 
-export { clearUserDetails } from "./model/UserSlice";
+export { clearUserDetails, setNewUserCreation } from "./model/UserSlice";
 export { fetchUserDetails, updateUserDetails } from "./model/UserThunks";

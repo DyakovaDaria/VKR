@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchUserDetails, updateUserDetails } from './UserThunks';
 
 const initialState = {
-  userDetails: null,
+  userDetails: {},
   currentUserForChange: null,
+  newUserCreation: false,
   loading: false,
   error: null,
 };
@@ -13,13 +14,17 @@ const UserSlice = createSlice({
   initialState,
   reducers: {
     clearUserDetails(state) {
-      state.userDetails = null;
+      state.userDetails = {};
       state.currentUserForChange = null;
+      state.newUserCreation = false;
       state.error = null;
       state.loading = false;
     },
     addCurrentUser(state, action) {
       state.currentUserForChange = action.payload;
+    },
+    setNewUserCreation(state, action) {
+      state.newUserCreation = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -46,5 +51,5 @@ const UserSlice = createSlice({
   }
 });
 
-export const { clearUserDetails, addCurrentUser } = UserSlice.actions;
+export const { clearUserDetails, addCurrentUser, setNewUserCreation } = UserSlice.actions;
 export default UserSlice.reducer;

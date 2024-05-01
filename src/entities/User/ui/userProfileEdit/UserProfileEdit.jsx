@@ -2,24 +2,49 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchUserDetails } from "../../model/UserThunks";
-import { clearUserDetails } from "../../model/UserSlice";
+import { clearUserDetails, setNewUserCreation } from "../../model/UserSlice";
 import userEditStyles from "./UserProfileEdit.module.css";
 import userProfilePic from "../../../../shared/assets/userPic.png";
 
 const UserProfileEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { currentUserForChange, userDetails, loading, error } = useSelector(
-    (state) => state.user
-  );
+  const [currUserDetails, setCurrUserDetails] = useState({});
+  const { currentUserForChange, userDetails, loading, error, newUserCreation } =
+    useSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(fetchUserDetails(currentUserForChange));
-  }, [dispatch, currentUserForChange]);
+    if (newUserCreation) {
+      setCurrUserDetails({
+        id: "",
+        name: "",
+        lastName: "",
+        secondName: "",
+        description: "",
+        email: "",
+        phone: "",
+        groups: [],
+        pic: null,
+      });
+    } else {
+      dispatch(fetchUserDetails(currentUserForChange));
+      setCurrUserDetails({
+        id: userDetails?.id,
+        name: userDetails?.name,
+        lastName: userDetails?.lastName,
+        secondName: userDetails?.secondName,
+        description: userDetails?.description,
+        email: userDetails?.email,
+        phone: userDetails?.phone,
+        groups: userDetails?.groups,
+        pic: userDetails?.pic,
+      });
+    }
+  }, [dispatch, userDetails]);
 
   const handleChange = (e) => {
-    // const { name, value } = e.target;
-    // setUserDetails((prev) => ({ ...prev, [name]: value }));
+    const { name, value } = e.target;
+    setCurrUserDetails((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSave = () => {
@@ -41,7 +66,6 @@ const UserProfileEdit = () => {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (!userDetails) return <div>No User Details Found</div>;
 
   return (
     <div className={userEditStyles.wrapContent}>
@@ -49,7 +73,7 @@ const UserProfileEdit = () => {
         <h2>Основная информация</h2>
         <div class={userEditStyles.profilePicCont}>
           <img
-            // src={userDetails.pic === null ? userProfilePic : userDetails.pic}
+            // src={currUserDetails.pic === null ? userProfilePic : currUserDetails.pic}
             src={userProfilePic}
           />
           <button class={userEditStyles.wrapCentredContent}>
@@ -64,29 +88,29 @@ const UserProfileEdit = () => {
               id="name"
               name="name"
               placeholder="Введите имя"
-              value={userDetails?.name}
+              value={currUserDetails.name}
               onChange={handleChange}
             />
           </div>
           <div className={userEditStyles.enterField}>
-            <label htmlFor="surname">Фамилия</label>
+            <label htmlFor="lastName">Фамилия</label>
             <input
               type="text"
-              id="surname"
-              name="surname"
+              id="lastName"
+              name="lastName"
               placeholder="Введите фамилию"
-              value={userDetails?.lastName}
+              value={currUserDetails.lastName}
               onChange={handleChange}
             />
           </div>
           <div className={userEditStyles.enterField}>
-            <label htmlFor="midname">Отчество</label>
+            <label htmlFor="secondName">Отчество</label>
             <input
               type="text"
-              id="midname"
-              name="midname"
+              id="secondName"
+              name="secondName"
               placeholder="Введите отчество (опционально)"
-              value={userDetails?.secondName}
+              value={currUserDetails.secondName}
               onChange={handleChange}
             />
           </div>
@@ -97,7 +121,7 @@ const UserProfileEdit = () => {
               id="email"
               name="email"
               placeholder="Введите почту"
-              value={userDetails?.email}
+              value={currUserDetails.email}
               onChange={handleChange}
             />
           </div>
@@ -108,7 +132,7 @@ const UserProfileEdit = () => {
               id="password"
               name="password"
               placeholder="Введите пароль"
-              value={userDetails?.password}
+              value={currUserDetails.password}
               onChange={handleChange}
             />
           </div>
@@ -118,7 +142,12 @@ const UserProfileEdit = () => {
       <div class={userEditStyles.additionalInfoCont}>
         <div class={userEditStyles.descrCont}>
           <h2>Описание</h2>
-          <textarea className={userEditStyles.userDescr}></textarea>
+          <textarea
+            className={userEditStyles.userDescr}
+            value={currUserDetails.description}
+            name="description"
+            onChange={handleChange}
+          ></textarea>
         </div>
 
         <div className={userEditStyles.btnsCont}>
