@@ -1,7 +1,11 @@
-import reducer from "./model/ClassroomSlice";
-
-export { reducer as classroomReducer };
-
-export { selectClassroom, setClassrooms } from "./model/ClassroomSlice";
-
-export { loadClassrooms } from "./model/ClassroomThunks";
+export {
+  selectClassroom,
+  setClassrooms,
+  toggleClassroomCreationModal,
+} from "./model/ClassroomSlice";
+export {
+  deleteClassroom,
+  loadClassrooms,
+  addClassroom,
+  updateClassroomStatus,
+} from "./model/ClassroomThunks";

@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateSchedule, toggleClassCreationModal } from "../../model/TeacherScheduleSlice";
+import {
+  updateSchedule,
+  toggleClassCreationModal,
+} from "../../model/TeacherScheduleSlice";
 import { fetchScheduleForDate } from "../../../../entities/Schedule";
-import {selectClassroom, setClassrooms} from '../../../../entities/Classroom';
+import {
+  selectClassroom,
+  setClassrooms,
+} from "../../../../features/ClassroomsSettings";
 import { ClassPreview } from "../../../../entities/Class";
 import teacherSchedEditStyles from "./TeacherScheduleEdit.module.css";
 import AddClassForm from "./addClassForm/AddClassForm";
+import { useNavigate } from "react-router-dom";
 
 const TeacherScheduleEdit = ({ teacherId }) => {
   const dispatch = useDispatch();
-  const { schedule, loading, error, selectedDate, classCreationMode } = useSelector(
+  const navigate = useNavigate();
+
+  const { schedule, loading, error, classCreationMode } = useSelector(
     (state) => state.teacherSchedule
   );
 
+  const { selectedDate } = useSelector((state) => state.weekCalendar);
+
   useEffect(() => {
-    dispatch(fetchScheduleForDate({ teacherId, date: selectedDate.toISOString().split("T")[0] }));
-  }, [dispatch, teacherId, selectedDate]);
+    dispatch(
+      fetchScheduleForDate({
+        teacherId,
+        date: selectedDate.toISOString().split("T")[0],
+      })
+    );
+  }, [dispatch, selectedDate]);
 
   const months = [
     "Января",
@@ -42,8 +58,8 @@ const TeacherScheduleEdit = ({ teacherId }) => {
   };
 
   const handleAddNewClass = () => {
-    dispatch(toggleClassCreationModal(true))
-  }
+    dispatch(toggleClassCreationModal(true));
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading schedule: {error}</p>;
@@ -63,7 +79,10 @@ const TeacherScheduleEdit = ({ teacherId }) => {
             ></ClassPreview>
           ))}
         </div>
-        <button className={teacherSchedEditStyles.addNewClassBtn} onClick={handleAddNewClass}>
+        <button
+          className={teacherSchedEditStyles.addNewClassBtn}
+          onClick={handleAddNewClass}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
               fill="#ffffff"
@@ -72,9 +91,12 @@ const TeacherScheduleEdit = ({ teacherId }) => {
           </svg>
         </button>
       </div>
-      <button className={teacherSchedEditStyles.saveButton}>Сохранить</button>
+      <div>
+        <button className={teacherSchedEditStyles.saveButton}>Сохранить</button>
+        <button className={teacherSchedEditStyles.cancelButton} onClick={() => navigate('/schedule')}>Отменить</button>
+      </div>
       {classCreationMode && (
-        <div className={teacherSchedEditStyles.popupOverlay} >
+        <div className={teacherSchedEditStyles.popupOverlay}>
           {<AddClassForm></AddClassForm>}
         </div>
       )}

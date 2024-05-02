@@ -5,7 +5,7 @@ import { classReducer } from "../entities/Class";
 import { teacherScheduleReducer } from "../features/TeacherSchedule";
 import { weekCalendarReducer } from "../widgets/weekCalendar";
 import { eventsListReducer } from "../widgets/eventsList";
-import { classroomReducer } from "../entities/Classroom";
+import { classroomReducer } from "../features/ClassroomsSettings";
 import { scheduleSlice } from "../entities/Schedule";
 import { usersSettingsReducer } from "../features/UsersSettings";
 import { subscriptionsReducer } from "../features/Subscriptions";

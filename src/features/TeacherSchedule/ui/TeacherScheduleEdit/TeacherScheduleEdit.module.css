@@ -73,9 +73,9 @@
 }
 
 .addNewClassBtn > svg {
-    margin: 0 0 0 0;
-    height: 30px;
-    width: 30px;
+  margin: 0 0 0 0;
+  height: 30px;
+  width: 30px;
 }
 
 .popupOverlay {
@@ -86,4 +86,20 @@
   height: 100%;
   background: #1e1e1eb6;
   z-index: 99;
+}
+
+.cancelButton {
+  background-color: #787878;
+  color: white;
+  border-radius: 7px;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 35px 5px 35px;
+  border: none;
+  font-weight: 700;
+  font-size: larger;
+  margin-top: 5%;
+  margin-bottom: 30px;
+  cursor: pointer;
+  margin-left: 10px;
 }

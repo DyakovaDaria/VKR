@@ -7,7 +7,7 @@ const WeekCalendarSlice = createSlice({
   },
   reducers: {
     setSelectedDate: (state, action) => {
-      state.selectedDate = action.payload;
+      state.selectedDate = new Date(action.payload);
     },
   },
 });

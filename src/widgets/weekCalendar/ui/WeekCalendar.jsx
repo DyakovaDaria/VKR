@@ -5,9 +5,7 @@ import { setSelectedDate } from "../model/WeekCalendarSlice";
 
 const WeekCalendar = () => {
   const dispatch = useDispatch();
-  const selectedDate = useSelector(
-    (state) => state.teacherSchedule.selectedDate
-  );
+  const {selectedDate} = useSelector((state) => state.weekCalendar);
 
   const [currentWeek, setCurrentWeek] = useState([]);
 
@@ -85,6 +83,7 @@ const WeekCalendar = () => {
                   : styles.dateButton
               }
               onClick={() => {
+                console.log(day);
                 handleDateSelect(day);
               }}
             >

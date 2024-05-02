@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateSchedule,
@@ -7,8 +7,9 @@ import {
 import {
   selectClassroom,
   loadClassrooms,
-} from "../../../../../entities/Classroom";
+} from "../../../../../features/ClassroomsSettings";
 import addClassFormStyles from "./AddClassForm.module.css";
+import moment from "moment";
 import { validation } from "../../../lib/validation";
 
 const AddClassForm = () => {
@@ -28,10 +29,43 @@ const AddClassForm = () => {
     student: null,
   });
   const classrooms = useSelector((state) => state.classroom.list);
+  const [startTimeMoment, setStartTime] = useState(moment().format("HH:mm"));
+  const [finishTimeMoment, setFinishTime] = useState(
+    moment().add(1, "hours").format("HH:mm")
+  );
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewClass((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleEditStartTime = (e) => {
+    const { name, value } = e.target;
+    setNewClass((prev) => ({ ...prev, [name]: value }));
+    setStartTime(value);
+  };
+
+  const handleEditFinishTime = (e) => {
+    const { name, value } = e.target;
+    setNewClass((prev) => ({ ...prev, [name]: value }));
+    setFinishTime(value);
+  };
+
+  const getStatusClassroom = (id) => {
+    const classroom = classrooms?.find((classroom) => classroom.id === id);
+    if (classroom && classroom.timeSlots) {
+      const slotIndex = classroom.timeSlots?.findIndex(
+        (slot) =>
+          slot.startTime === startTimeMoment &&
+          slot.endTime === finishTimeMoment
+      );
+      if (slotIndex !== -1) {
+        return classroom.timeSlots[slotIndex]?.status;
+      } else {
+        return "free";
+      }
+    }
+    return "free";
   };
 
   const handleSave = (event) => {
@@ -57,14 +91,14 @@ const AddClassForm = () => {
     dispatch(toggleClassCreationModal(false));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(loadClassrooms());
   }, [dispatch]);
 
   const chooseClassStyle = (classStatus) => {
     if (classStatus === "free") {
       return addClassFormStyles.freeRadioLabel;
-    } else if (classStatus === "partial") {
+    } else if (classStatus === "partly") {
       return addClassFormStyles.partialRadioLabel;
     }
     return addClassFormStyles.occupiedRadioLabel;
@@ -82,19 +116,21 @@ const AddClassForm = () => {
           <div className={addClassFormStyles.startTimeContainer}>
             <label htmlFor="startTime">с</label>
             <input
-              onChange={handleInputChange}
+              onChange={handleEditStartTime}
               name="startTime"
               className={addClassFormStyles.timePick}
               type="time"
+              value={startTimeMoment}
             />
           </div>
           <div className={addClassFormStyles.endTimeContainer}>
             <label htmlFor="endTime">до</label>
             <input
-              onChange={handleInputChange}
+              onChange={handleEditFinishTime}
               name="endTime"
               className={addClassFormStyles.timePick}
               type="time"
+              value={finishTimeMoment}
             />
           </div>
         </div>
@@ -109,14 +145,14 @@ const AddClassForm = () => {
                 value={classroom.id}
                 onChange={handleInputChange}
                 class={addClassFormStyles.radioButton}
-                disabled={classroom.status === "occupied"}
+                disabled={() => getStatusClassroom(classroom.id) === "occupied"}
               />
               <label
                 htmlFor={classroom.id}
                 class={
                   addClassFormStyles.radioLabel +
                   " " +
-                  chooseClassStyle(classroom.status)
+                  chooseClassStyle(getStatusClassroom(classroom.id))
                 }
               >
                 {classroom.name}
@@ -132,10 +168,7 @@ const AddClassForm = () => {
           onChange={handleInputChange}
           placeholder="Введите ФИО Ученика"
         />
-        <button
-          type="submit"
-          class={addClassFormStyles.acceptBtn}
-        >
+        <button type="submit" class={addClassFormStyles.acceptBtn}>
           Сохранить
         </button>
         <button class={addClassFormStyles.cancelBtn} onClick={handleClose}>

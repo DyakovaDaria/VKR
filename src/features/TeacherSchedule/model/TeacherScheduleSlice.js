@@ -66,13 +66,9 @@ const teacherScheduleSlice = createSlice({
         group: "Продолжающие",
       },
     ],
-    selectedDate: new Date(),
     classCreationMode: false,
   },
   reducers: {
-    setSelectedDate: (state, action) => {
-      state.selectedDate = action.payload;
-    },
     updateSchedule: (state, action) => {
       state.schedule.push(action.payload);
     },
