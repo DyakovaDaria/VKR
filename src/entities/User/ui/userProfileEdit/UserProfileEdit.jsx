@@ -157,14 +157,11 @@ const UserProfileEdit = () => {
           >
             Сохранить
           </button>
-          {/* <button className={userEditStyles.deleteBtn} onClick={handleDelete}>
-          Удалить профиль
-        </button> */}
+          <button className={userEditStyles.deleteBtn} onClick={handleDelete}>
+            Удалить профиль
+          </button>
           <button className={userEditStyles.deleteBtn} onClick={handleCancel}>
             Отменить
-          </button>
-          <button className={userEditStyles.settingsBtn}>
-            Изменить расписание
           </button>
         </div>
       </div>
