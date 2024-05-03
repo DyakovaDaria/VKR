@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import eventPrevStyles from "./EventPreview.module.css";
-import eventPic1 from "../../../shared/assets/eventPic1.png";
-import eventPic2 from "../../../shared/assets/eventPic2.png";
-import eventPic3 from "../../../shared/assets/eventPic2.png";
+import eventPic1 from "../../../../shared/assets/eventPic1.png";
+import eventPic2 from "../../../../shared/assets/eventPic2.png";
+import eventPic3 from "../../../../shared/assets/eventPic2.png";
+import { deleteEvent } from "../../model/EventsThunks";
 
 const EventPreview = ({ eventInfo }) => {
   const dispatch = useDispatch();
   const { role } = useSelector((state) => state.login);
   const pics = [eventPic1, eventPic2, eventPic3];
+
+  const onDeleteEventClick = (id) => {
+    dispatch(deleteEvent(id));
+  };
+
   return (
     <div className={eventPrevStyles.eventPreviewCont}>
       <div className={eventPrevStyles.eventImgContainer}>
@@ -25,7 +31,10 @@ const EventPreview = ({ eventInfo }) => {
         <p>{eventInfo.date}</p>
       </div>
       {role === "admin" && (
-        <button>
+        <button
+          className={eventPrevStyles.deleteEventBtn}
+          onClick={() => onDeleteEventClick(eventInfo.id)}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path
               fill="#787878"

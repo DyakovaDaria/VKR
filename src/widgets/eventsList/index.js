@@ -1,7 +1,6 @@
-import reducer from './model/EventsListSlice';
-import EventsList from './ui/EventsList';
+import EventsList from "./ui/EventsList";
+import reducer, { toggleNewEventCreationMode } from "./model/EventsListSlice";
 
-export {
-  reducer as eventsListReducer,
-  EventsList,
-};
+export { EventsList, reducer as eventsListReducer };
+
+export {toggleNewEventCreationMode} from './model/EventsListSlice'; 

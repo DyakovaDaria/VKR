@@ -4,11 +4,12 @@ import { userReducer } from "../entities/User";
 import { classReducer } from "../entities/Class";
 import { teacherScheduleReducer } from "../features/TeacherSchedule";
 import { weekCalendarReducer } from "../widgets/weekCalendar";
-import { eventsListReducer } from "../widgets/eventsList";
+import { eventsReducer } from "../entities/Event";
 import { classroomReducer } from "../features/ClassroomsSettings";
 import { scheduleSlice } from "../entities/Schedule";
 import { usersSettingsReducer } from "../features/UsersSettings";
 import { subscriptionsReducer } from "../features/Subscriptions";
+import { eventsListReducer } from "../widgets/eventsList";
 
 export const store = configureStore({
   reducer: {
@@ -18,9 +19,10 @@ export const store = configureStore({
     teacherSchedule: teacherScheduleReducer,
     schedule: scheduleSlice,
     weekCalendar: weekCalendarReducer,
-    eventsList: eventsListReducer,
+    events: eventsReducer,
     classroom: classroomReducer,
     usersSettings: usersSettingsReducer,
     subscriptions: subscriptionsReducer,
+    eventsList: eventsListReducer,
   },
 });

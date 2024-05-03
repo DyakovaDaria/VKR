@@ -1,28 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchEvents } from './EventsListThunks';
+import { createSlice } from "@reduxjs/toolkit";
 
 const EventsListSlice = createSlice({
-  name: 'events',
+  name: "eventsList",
   initialState: {
-    events: [],
-    status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
-    error: null,
+    newEventCreationMode: false,
   },
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchEvents.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchEvents.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.events = action.payload;
-      })
-      .addCase(fetchEvents.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      });
-  }
+  reducers: {
+    toggleNewEventCreationMode: (state, action) => {
+      state.newEventCreationMode = action.payload;
+    },
+  },
 });
 
+export const { toggleNewEventCreationMode } = EventsListSlice.actions;
 export default EventsListSlice.reducer;

@@ -17,7 +17,7 @@ const AddClassForm = () => {
   const { selectedDate } = useSelector((state) => state.teacherSchedule);
   const [newClass, setNewClass] = useState({
     type: "individual",
-    id: Date.now,
+    id: Date.now(),
     title: "",
     description: "",
     date: selectedDate,
