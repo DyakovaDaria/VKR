@@ -16,6 +16,7 @@ const EditClass = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { lesson, newLessonCreation } = useSelector((state) => state.class);
+  const { selectedDate } = useSelector((state) => state.weekCalendar);
   const [currLesson, setCurrLesson] = useState({});
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const EditClass = () => {
         id: Date.now(),
         title: "",
         description: "",
+        date: selectedDate.toISOString().split("T")[0],
         startTime: "",
         endTime: "",
         classroom: "",
@@ -40,6 +42,7 @@ const EditClass = () => {
         id: lesson?.id,
         title: lesson?.title,
         description: lesson?.description,
+        date: lesson?.date,
         startTime: lesson?.startTime,
         endTime: lesson?.endTime,
         classroom: lesson?.classroom,

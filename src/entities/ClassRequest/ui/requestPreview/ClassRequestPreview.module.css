@@ -1,0 +1,69 @@
+.classRequestPreviewCont {
+  background-color: #ededee;
+  width: 90%;
+  border-radius: 15px;
+  height: fit-content;
+  padding: 10px 10px 10px 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.requestCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 10px 20px 10px;
+}
+
+.requestCont > p {
+  margin-left: 25px;
+  color: #787878;
+  font-size: medium;
+  font-weight: 450;
+}
+
+.btnsCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto 25px auto auto;
+}
+
+.acceptRequestBtn {
+  background-color: #e02b8b;
+  border-radius: 50%;
+  border: none;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.acceptRequestBtn > svg {
+  margin: 0 0 0 0;
+  height: 30px;
+  width: 30px;
+}
+
+.cancelRequestBtn {
+  background-color: #787878;
+  border-radius: 50%;
+  border: none;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cancelRequestBtn > svg {
+  margin: 0 0 0 0;
+  height: 30px;
+  width: 30px;
+}

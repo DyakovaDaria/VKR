@@ -13,7 +13,7 @@ const teacherScheduleSlice = createSlice({
       {
         title: "Танго",
         description: "",
-        date: Date.now,
+        date: Date.now(),
         startTime: "10:00",
         endTime: "11:30",
         classroom: "205",
@@ -24,7 +24,7 @@ const teacherScheduleSlice = createSlice({
       {
         title: "Танго",
         description: "",
-        date: Date.now,
+        date: Date.now(),
         startTime: "10:00",
         endTime: "11:30",
         classroom: "205",
@@ -35,7 +35,7 @@ const teacherScheduleSlice = createSlice({
       {
         title: "Танго",
         description: "",
-        date: Date.now,
+        date: Date.now(),
         startTime: "10:00",
         endTime: "11:30",
         classroom: "205",
@@ -46,7 +46,7 @@ const teacherScheduleSlice = createSlice({
       {
         title: "Танго",
         description: "",
-        date: Date.now,
+        date: Date.now(),
         startTime: "10:00",
         endTime: "11:30",
         classroom: "205",
@@ -57,7 +57,7 @@ const teacherScheduleSlice = createSlice({
       {
         title: "Танго",
         description: "",
-        date: Date.now,
+        date: Date.now(),
         startTime: "10:00",
         endTime: "11:30",
         classroom: "205",

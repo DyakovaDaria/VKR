@@ -22,7 +22,7 @@
   width: 90%;
   height: 600px;
   flex-wrap: wrap;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .scrollEventsContainer::-webkit-scrollbar {

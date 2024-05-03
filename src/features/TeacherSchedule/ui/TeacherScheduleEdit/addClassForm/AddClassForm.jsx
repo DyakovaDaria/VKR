@@ -14,13 +14,13 @@ import { validation } from "../../../lib/validation";
 
 const AddClassForm = () => {
   const dispatch = useDispatch();
-  const { selectedDate } = useSelector((state) => state.teacherSchedule);
+  const { selectedDate } = useSelector((state) => state.weekCalendar);
   const [newClass, setNewClass] = useState({
     type: "individual",
     id: Date.now(),
     title: "",
     description: "",
-    date: selectedDate,
+    date: selectedDate.toISOString().split("T")[0],
     startTime: "",
     endTime: "",
     classroom: "",

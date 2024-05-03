@@ -1,0 +1,196 @@
+.addClassForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.addClassForm > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 15px;
+  width: 450px;
+  height: 600px;
+}
+
+.addClassForm > form > h3 {
+  color: #787878;
+}
+
+.timePick {
+  width: 70%;
+  height: fit-content;
+}
+
+.radioButton {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.radioLabel {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  width: 100%;
+  height: 15px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.occupiedRadioLabel {
+  background-color: #bf8bb9;
+}
+
+.freeRadioLabel {
+  background: #c1dbdc;
+}
+
+.partialRadioLabel {
+  background: #d9d9d9;
+}
+
+.radioButton:checked + .radioLabel {
+  border-color: #dc0d7a;
+}
+
+.classroomsContainer {
+  background-color: #ededee;
+  border-radius: 15px;
+  width: 85%;
+  height: 20%;
+  max-height: 150px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 10px 10px 10px 10px;
+}
+
+.classroomContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.classroomsContainer::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.classroomsContainer::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.classroomsContainer::-webkit-scrollbar-thumb {
+  background-color: #d9d9d9;
+  border-radius: 5px;
+}
+
+.timeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.startTimeContainer {
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  width: 40%;
+  margin-left: 10%;
+  margin-right: auto;
+}
+
+.startTimeContainer > label,
+.endTimeContainer > label {
+  margin: auto 10px 0 auto;
+  color: #787878;
+  font-weight: 500;
+  font-size: large;
+}
+
+.startTimeContainer > input,
+.endTimeContainer > input {
+  background-color: #ededee;
+  border: none;
+  outline: none;
+  color: black;
+  font-weight: 500;
+  font-size: large;
+}
+
+.endTimeContainer {
+  display: flex;
+  align-items: end;
+  justify-content: start;
+  width: 40%;
+  margin-left: auto;
+  margin-right: 10%;
+}
+
+.studentNameInp {
+  background-color: #ededee;
+  border: none;
+  outline: none;
+  color: black;
+  font-weight: 500;
+  font-size: large;
+  width: 80%;
+}
+
+.acceptBtn,
+.cancelBtn {
+  border: none;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  width: 50%;
+  height: fit-content;
+  padding: 10px 50px 10px 50px;
+  cursor: pointer;
+}
+
+.acceptBtn {
+  background-color: #e02b8b;
+  margin-top: 25px;
+}
+
+.cancelBtn {
+  background-color: #787878;
+  margin-top: 15px;
+}
+
+.datePick {
+  background-color: #ededee;
+  border: none;
+  outline: none;
+  color: black;
+  font-weight: 500;
+  font-size: large;
+}
+
+.datePick:focus {
+  outline: none;
+  border: #e02b8b 1px solid;
+}

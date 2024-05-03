@@ -10,6 +10,7 @@ import { scheduleSlice } from "../entities/Schedule";
 import { usersSettingsReducer } from "../features/UsersSettings";
 import { subscriptionsReducer } from "../features/Subscriptions";
 import { eventsListReducer } from "../widgets/eventsList";
+import { requestsListReducer } from "../features/ClassRequestsView";
 
 export const store = configureStore({
   reducer: {
@@ -24,5 +25,6 @@ export const store = configureStore({
     usersSettings: usersSettingsReducer,
     subscriptions: subscriptionsReducer,
     eventsList: eventsListReducer,
+    requestsList: requestsListReducer,
   },
 });

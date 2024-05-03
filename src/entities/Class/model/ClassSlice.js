@@ -6,6 +6,7 @@ const initialState = {
     id: 123,
     title: "",
     description: "",
+    date: Date.now(),
     startTime: "",
     endTime: "",
     classroom: "",
