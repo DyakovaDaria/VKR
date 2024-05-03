@@ -69,7 +69,11 @@ const EditClass = () => {
   };
 
   const handleCancelClick = () => {
-    navigate("/class-info");
+    if (newLessonCreation) {
+      navigate("/schedule");
+    } else {
+      navigate("/class-info");
+    }
   };
 
   const handleChange = (e) => {
