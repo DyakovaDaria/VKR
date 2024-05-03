@@ -1,32 +1,83 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { assignSubscriptionToStudent } from '../../model/SubscriptionsThunks';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import subscriptionsManagementStyles from "./AdminSubscriptionManagement.module.css";
+import { validation } from "../../lib/validation";
 
 const AdminSubscriptionManagement = () => {
   const dispatch = useDispatch();
-  const { subscriptions } = useSelector((state) => state.subscriptions);
-  const [studentId, setStudentId] = useState('');
-  const [subscriptionId, setSubscriptionId] = useState('');
+  const [newSubscription, setNewSubscription] = useState({
+    id: Date.now(),
+    name: "",
+    price: 0.0,
+    description: "",
+    startDate: new Date(),
+    endDate: new Date(),
+    student: "",
+    isActive: false,
+  });
 
-  const handleAssign = () => {
-    dispatch(assignSubscriptionToStudent({ studentId, subscriptionId }));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewSubscription((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+    const validationErrors = validation(newSubscription);
+    if (Object.keys(validationErrors).length === 0) {
+      //   dispatch(updateSchedule(newClass));
+      //   dispatch(toggleClassCreationModal(false));
+    } else {
+      // setErrors(validationErrors);
+      alert("All fields must be filled out.");
+    }
   };
 
   return (
-    <div>
-      <h1>Assign Subscriptions</h1>
+    <div className={subscriptionsManagementStyles.newSubscriptionForm}>
+      <h3>Название</h3>
       <input
         type="text"
-        value={studentId}
-        onChange={(e) => setStudentId(e.target.value)}
-        placeholder="Student ID"
+        name="name"
+        onChange={handleInputChange}
+        value={newSubscription.name}
       />
-      <select value={subscriptionId} onChange={(e) => setSubscriptionId(e.target.value)}>
-        {subscriptions.map(sub => (
-          <option key={sub.id} value={sub.id}>{sub.name}</option>
-        ))}
-      </select>
-      <button onClick={handleAssign}>Assign Subscription</button>
+      <h3>Цена</h3>
+      <input
+        type="number"
+        name="price"
+        onChange={handleInputChange}
+        value={newSubscription.price}
+      />
+      <h3>Продолжительность</h3>
+      <div>
+        <div className={subscriptionsManagementStyles.dateContainer}>
+          <label htmlFor="startDate">с</label>
+          <input
+            onChange={handleInputChange}
+            name="startDate"
+            type="date"
+            value={newSubscription.startDate}
+          />
+        </div>
+        <div className={subscriptionsManagementStyles.dateContainer}>
+          <label htmlFor="endDate">до</label>
+          <input
+            onChange={handleInputChange}
+            name="endDate"
+            type="date"
+            value={newSubscription.endDate}
+          />
+        </div>
+      </div>
+      <h3>Пользователь</h3>
+      <input
+        type="text"
+        name="student"
+        onChange={handleInputChange}
+        value={newSubscription.student}
+      />
+      <button>Добавить</button>
     </div>
   );
 };
