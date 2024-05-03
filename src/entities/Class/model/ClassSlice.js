@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   lesson: {
     type: null,
-    id: Date.now(),
+    id: 123,
     title: "",
     description: "",
     startTime: "",

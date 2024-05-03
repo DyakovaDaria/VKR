@@ -5,6 +5,7 @@
   height: fit-content;
   border-left: #add6ea solid 9px;
   margin-top: 15px;
+  display: flex;
 }
 
 .indClassPreviewCont {
@@ -14,6 +15,7 @@
   height: fit-content;
   border-left: #ddbfd9 solid 9px;
   margin-top: 15px;
+  display: flex;
 }
 
 .classPrevCont {
@@ -33,4 +35,21 @@
 .classInfoCont > p,
 .classInfoCont > h3 {
   margin: 0 0 5px 0;
+}
+
+.studentClassStatus {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 30px auto auto;
+}
+
+.studentClassStatus > p {
+  color: #DC0D7A;
+  font-size: small;
+  height: fit-content;
+  border-radius: 3px;
+  background-color: rgb(224, 43, 139, .15);
+  padding: 1px 5px 1px 5px;
 }

@@ -8,21 +8,48 @@ import {
   setStudent,
 } from "../../model/ClassSlice";
 import classInfoStyles from "./ClassInfo.module.css";
+import { fetchUserDetails, updateUserDetails } from "../../../User";
 
 const ClassInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { role } = useSelector((state) => state.login);
+  const { role, user } = useSelector((state) => state.login);
   const lesson = useSelector((state) => state.class.lesson);
+  const { userDetails } = useSelector((state) => state.user);
+  const [currSchedule, setCurrSchedule] = useState([]);
+
   const goBack = () => {
     navigate("/main-page");
   };
+
   const handleEditClick = () => {
     navigate("/edit-class");
   };
+
   const handleDeleteClick = () => {
     // navigate("/teacher-schedule-edit", { state: { teacherId: teacherId } });
   };
+
+  const handleCancelClassClick = () => {
+    setCurrSchedule(
+      currSchedule.filter((curClass) => curClass.id !== lesson.id)
+    );
+    dispatch(updateUserDetails({ user, currSchedule }));
+  };
+
+  const checkSchedule = (id) => {
+    const classExists = currSchedule.some((slot) => slot.id === id);
+    return classExists;
+  };
+
+  useEffect(() => {
+    dispatch(fetchUserDetails(user));
+    const schedule = userDetails.schedule;
+    if (schedule) {
+      setCurrSchedule(schedule);
+    }
+  }, [dispatch, userDetails]);
+
   return (
     <div className={classInfoStyles.classInfoCont}>
       <button className={classInfoStyles.goBackBtn} onClick={goBack}>
@@ -55,6 +82,11 @@ const ClassInfo = () => {
           {lesson?.type === "individual" && <p>Индивидуальное занятие</p>}
           {lesson?.group && <p>{lesson.group}</p>}
           {lesson?.student && <p>{lesson.student}</p>}
+          {role === "student" && checkSchedule(lesson.id) && (
+            <div className={classInfoStyles.studentClassStatus}>
+              <p>Вы записаны</p>
+            </div>
+          )}
         </div>
       </div>
       {role === "admin" && (
@@ -70,6 +102,16 @@ const ClassInfo = () => {
             onClick={handleDeleteClick}
           >
             Удалить занятие
+          </button>
+        </div>
+      )}
+      {role === "student" && checkSchedule(lesson.id) && (
+        <div className={classInfoStyles.adminEditBtns}>
+          <button
+            className={classInfoStyles.cancelClassBtn}
+            onClick={handleCancelClassClick}
+          >
+            Отменить запись
           </button>
         </div>
       )}

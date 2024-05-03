@@ -54,7 +54,7 @@
   flex-direction: column;
 }
 
-.editScheduleBtn {
+.editScheduleBtn, .cancelClassBtn {
   background-color: #e02b8b;
   color: white;
   border-radius: 7px;
@@ -71,6 +71,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
 }
 
 .deleteClassBtn {
@@ -90,4 +91,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.studentClassStatus {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 30px auto auto;
+}
+
+.studentClassStatus > p {
+  color: #dc0d7a;
+  font-size: small;
+  height: fit-content;
+  border-radius: 3px;
+  background-color: rgb(224, 43, 139, 0.15);
+  padding: 1px 5px 1px 5px;
 }

@@ -10,6 +10,7 @@ export const fetchScheduleForDate = createAsyncThunk(
       if (date === new Date().toISOString().split("T")[0]) {
         return [
           {
+            id: 123,
             title: "Танго",
             description: "",
             startTime: "10:00",
@@ -20,6 +21,7 @@ export const fetchScheduleForDate = createAsyncThunk(
             group: "Продолжающие",
           },
           {
+            id: 133,
             title: "Танго",
             description: "",
             startTime: "10:00",
@@ -30,6 +32,7 @@ export const fetchScheduleForDate = createAsyncThunk(
             group: "Продолжающие",
           },
           {
+            id: 345,
             title: "Танго",
             description: "",
             startTime: "10:00",
@@ -40,6 +43,7 @@ export const fetchScheduleForDate = createAsyncThunk(
             group: "Продолжающие",
           },
           {
+            id: Date.now(),
             title: "Танго",
             description: "",
             startTime: "10:00",
@@ -50,6 +54,7 @@ export const fetchScheduleForDate = createAsyncThunk(
             group: "Продолжающие",
           },
           {
+            id: Date.now(),
             title: "Танго",
             description: "",
             startTime: "10:00",
@@ -71,7 +76,7 @@ export const fetchScheduleForDate = createAsyncThunk(
 
 export const updateScheduleForDate = createAsyncThunk(
   "schedule/updateScheduleForDate",
-  async (updatedSchedule, { rejectWithValue }) => {
+  async ({updatedSchedule, date}, { rejectWithValue }) => {
     try {
       return updatedSchedule;
     } catch (error) {

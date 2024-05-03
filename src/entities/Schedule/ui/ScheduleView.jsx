@@ -11,7 +11,7 @@ const ScheduleView = ({ teacherId }) => {
   const navigate = useNavigate();
   const { role } = useSelector((state) => state.login);
   const { schedule, loading, error } = useSelector(
-    (state) => state.teacherSchedule
+    (state) => state.schedule
   );
 
   const { selectedDate } = useSelector((state) => state.weekCalendar);

@@ -22,6 +22,32 @@ const mockUserData = {
       ],
     },
   ],
+  schedule: [
+    {
+      id: 123,
+      title: "Танго",
+      description: "",
+      date: Date.now(),
+      startTime: "10:00",
+      endTime: "11:30",
+      classroom: "205",
+      type: "group",
+      teacher: "Иванова Ольга",
+      group: "Продолжающие",
+    },
+    {
+      id: 133,
+      title: "Танго",
+      description: "",
+      date: Date.now(),
+      startTime: "10:00",
+      endTime: "11:30",
+      classroom: "205",
+      type: "group",
+      teacher: "Иванова Ольга",
+      group: "Продолжающие",
+    },
+  ],
   pic: null,
 };
 
