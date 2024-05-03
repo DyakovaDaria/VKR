@@ -54,7 +54,7 @@
   flex-direction: column;
 }
 
-.editScheduleBtn, .cancelClassBtn {
+.editScheduleBtn, .setClassBtn {
   background-color: #e02b8b;
   color: white;
   border-radius: 7px;

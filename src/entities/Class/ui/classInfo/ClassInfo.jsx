@@ -31,10 +31,16 @@ const ClassInfo = () => {
   };
 
   const handleCancelClassClick = () => {
-    setCurrSchedule(
-      currSchedule.filter((curClass) => curClass.id !== lesson.id)
-    );
-    dispatch(updateUserDetails({ user, currSchedule }));
+    const newSchedule = [...currSchedule, { ...lesson }];
+    setCurrSchedule(newSchedule);
+    const newUserDetails = { ...userDetails, schedule: currSchedule };
+    dispatch(updateUserDetails({ user, newUserDetails }));
+  };
+
+  const handleAddClassClick = () => {
+    setCurrSchedule([...currSchedule, lesson]);
+    const newUserDetails = { ...userDetails, schedule: currSchedule };
+    dispatch(updateUserDetails({ user, newUserDetails }));
   };
 
   const checkSchedule = (id) => {
@@ -108,10 +114,20 @@ const ClassInfo = () => {
       {role === "student" && checkSchedule(lesson.id) && (
         <div className={classInfoStyles.adminEditBtns}>
           <button
-            className={classInfoStyles.cancelClassBtn}
+            className={classInfoStyles.setClassBtn}
             onClick={handleCancelClassClick}
           >
             Отменить запись
+          </button>
+        </div>
+      )}
+      {role === "student" && !checkSchedule(lesson.id) && (
+        <div className={classInfoStyles.adminEditBtns}>
+          <button
+            className={classInfoStyles.setClassBtn}
+            onClick={handleAddClassClick}
+          >
+            Записаться
           </button>
         </div>
       )}
