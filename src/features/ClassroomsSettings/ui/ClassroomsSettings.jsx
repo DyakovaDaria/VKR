@@ -54,6 +54,8 @@ const ClassroomsSettings = () => {
   };
 
   const onStatusChange = (id, status) => {
+    const classroom = (list.filter((classroom) => classroom.id === id));
+    console.log(classroom.timeSlots);
     const formattedDate = selectedDate.toISOString().split("T")[0];
     dispatch(
       updateClassroomStatus({
@@ -64,6 +66,7 @@ const ClassroomsSettings = () => {
         finishTimeMoment,
       })
     );
+    console.log(list.filter((classroom) => classroom.id === id).timeSlots);
   };
 
   const getStatusClassroom = (id) => {

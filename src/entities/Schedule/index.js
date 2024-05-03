@@ -1,7 +1,11 @@
 import ScheduleView from "./ui/ScheduleView";
-import reducer from './model/ScheduleSlice';
+import reducer from "./model/ScheduleSlice";
 
-export {ScheduleView, reducer as scheduleSlice};
+export { ScheduleView, reducer as scheduleSlice };
 
-export {fetchScheduleForDate,
-    updateScheduleForDate,} from './model/ScheduleThunks';
+export {
+  fetchScheduleForDate,
+  updateScheduleForDate,
+} from "./model/ScheduleThunks";
+
+export { updateSchedule } from "./model/ScheduleSlice";

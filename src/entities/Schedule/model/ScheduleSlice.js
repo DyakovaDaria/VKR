@@ -3,6 +3,7 @@ import {
   fetchScheduleForDate,
   updateScheduleForDate,
 } from "./ScheduleThunks"; 
+import { act } from "react-dom/test-utils";
 
 const scheduleSlice = createSlice({
   name: "schedule",
@@ -74,7 +75,7 @@ const scheduleSlice = createSlice({
       state.selectedDate = action.payload;
     },
     updateSchedule: (state, action) => {
-      state.schedule.push(action.payload);
+      state.schedule = [...state.schedule, action.payload];
     },
     toggleClassCreationModal: (state, action) => {
       state.classCreationMode = action.payload;

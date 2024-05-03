@@ -1,0 +1,122 @@
+.classInfoCont {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.classInfoWrapCont {
+  width: 80%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.classInfoWrap {
+  width: 50%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.classInfoWrap > label,
+.timeInpWrap > label {
+  color: #787878;
+  font-size: larger;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.classInfoWrap > input {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  border: #bebebe solid 1px;
+}
+
+.classInfoWrap > select {
+  width: 100%;
+  height: 35px;
+  border-radius: 7px;
+  border: #bebebe solid 1px;
+}
+
+.classInfoWrap > input:focus {
+  outline: none;
+  border: #dc0d7a solid 1px;
+  border-radius: 10px;
+}
+
+.classInfoWrap > select:focus {
+  outline: none;
+  border: #dc0d7a solid 1px;
+  border-radius: 5px;
+}
+
+.classTimeWrap {
+  width: 50%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.timeInpWrap {
+  width: 50%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+.timeInpWrap > input {
+  width: 35%;
+  margin: auto auto auto 5px;
+}
+
+.adminEditBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.editScheduleBtn {
+  background-color: #e02b8b;
+  color: white;
+  border-radius: 7px;
+  width: 200px;
+  height: fit-content;
+  padding: 3px 35px 5px 35px;
+  border: none;
+  font-weight: 700;
+  font-size: larger;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.deleteClassBtn {
+  background-color: #787878;
+  color: white;
+  border-radius: 7px;
+  width: 200px;
+  height: fit-content;
+  padding: 3px 35px 5px 35px;
+  border: none;
+  font-weight: 700;
+  font-size: larger;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}

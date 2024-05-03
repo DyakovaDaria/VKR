@@ -75,7 +75,7 @@ export const updateClassroomStatus = createAsyncThunk(
               status: status,
             });
           }
-          return { ...classroom, timeSlots: newTimeSlots };
+          return { ...classroom, timeSlots: newTimeSlots }; 
         }
         return classroom;
       });

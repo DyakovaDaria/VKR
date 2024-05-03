@@ -10,4 +10,5 @@ export {
   setLessonDetails,
   setGroup,
   setStudent,
+  toggleNewLessonCreation,
 } from "./model/ClassSlice";
