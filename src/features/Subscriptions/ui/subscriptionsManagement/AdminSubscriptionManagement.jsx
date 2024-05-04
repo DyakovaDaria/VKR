@@ -50,7 +50,7 @@ const AdminSubscriptionManagement = () => {
         value={newSubscription.price}
       />
       <h3>Продолжительность</h3>
-      <div>
+      <div className={subscriptionsManagementStyles.durationCont}>
         <div className={subscriptionsManagementStyles.dateContainer}>
           <label htmlFor="startDate">с</label>
           <input
@@ -77,7 +77,7 @@ const AdminSubscriptionManagement = () => {
         onChange={handleInputChange}
         value={newSubscription.student}
       />
-      <button>Добавить</button>
+      <button className={subscriptionsManagementStyles.addSubscriptionBtn}>Добавить</button>
     </div>
   );
 };
