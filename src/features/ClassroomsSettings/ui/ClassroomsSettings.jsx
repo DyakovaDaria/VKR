@@ -21,11 +21,12 @@ const ClassroomsSettings = () => {
     (state) => state.classroom
   );
 
-  const [startTimeMoment, setStartTime] = useState(moment().format("HH:mm"));
-  const [finishTimeMoment, setFinishTime] = useState(
-    moment().add(1, "hours").format("HH:mm")
+  const [startTimeMoment, setStartTime] = useState(
+    new Date(Date.now()).toISOString().split("T")[0]
   );
-
+  const [finishTimeMoment, setFinishTime] = useState(
+    new Date(Date.now()).toISOString().split("T")[0]
+  );
   // useEffect(() => {
   //   dispatch(loadClassrooms());
   // }, [list]);
@@ -54,7 +55,7 @@ const ClassroomsSettings = () => {
   };
 
   const onStatusChange = (id, status) => {
-    const classroom = (list.filter((classroom) => classroom.id === id));
+    const classroom = list.filter((classroom) => classroom.id === id);
     console.log(classroom.timeSlots);
     const formattedDate = selectedDate.toISOString().split("T")[0];
     dispatch(
