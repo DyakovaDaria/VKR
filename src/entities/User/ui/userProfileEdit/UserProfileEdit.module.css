@@ -22,7 +22,7 @@
   justify-content: start;
   height: 80%;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .enterField {
@@ -70,7 +70,7 @@
   align-items: center;
   justify-content: start;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .profilePicCont > button {
@@ -204,4 +204,21 @@
   height: 70%;
   background-color: #ededee;
   border-radius: 15px;
+}
+
+.roleSelect {
+  border: none;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  width: 50%;
+  height: 35px;
+  color: black;
+  padding: 9px 9px 9px 9px;
+  font-size: medium;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+.roleSelect:focus {
+  outline: none;
 }

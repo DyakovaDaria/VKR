@@ -18,6 +18,7 @@ const UserProfileEdit = () => {
       setCurrUserDetails({
         id: "",
         name: "",
+        role: "",
         lastName: "",
         secondName: "",
         description: "",
@@ -31,6 +32,7 @@ const UserProfileEdit = () => {
       setCurrUserDetails({
         id: userDetails?.id,
         name: userDetails?.name,
+        role: userDetails?.role,
         lastName: userDetails?.lastName,
         secondName: userDetails?.secondName,
         description: userDetails?.description,
@@ -135,6 +137,19 @@ const UserProfileEdit = () => {
               value={currUserDetails.password}
               onChange={handleChange}
             />
+          </div>
+          <div className={userEditStyles.enterField}>
+            <label htmlFor="role">Роль</label>
+            <select
+              name="role"
+              className={userEditStyles.roleSelect}
+              onChange={handleChange}
+              value={currUserDetails.role}
+            >
+              <option value="teacher">Преподаватель</option>
+              <option value="student">Ученик</option>
+              <option value="admin">Администратор</option>
+            </select>
           </div>
         </div>
       </div>

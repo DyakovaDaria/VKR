@@ -41,6 +41,11 @@ input {
   padding: 10px 0 10px 10px;
 }
 
+input:focus {
+  outline: none;
+  border: 1px #e02b8b solid;
+}
+
 h3 {
   font-weight: 500;
 }

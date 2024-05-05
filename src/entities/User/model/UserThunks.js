@@ -4,6 +4,7 @@ import axios from "axios";
 const mockUserData = {
   id: "123",
   name: "Ольга",
+  role: 'teacher',
   lastName: "Иванова",
   secondName: "Ивановна",
   description: 'Стаж работы 10 лет. Образование - "Педагог-хореограф".',
