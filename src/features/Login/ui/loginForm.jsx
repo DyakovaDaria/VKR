@@ -4,13 +4,15 @@ import loginStyles from "./LoginForm.module.css";
 import logo from "../../../shared/assets/elcentro-logo.png";
 import { validation } from "../lib/validation";
 import { loginUser } from "../model/LoginThunks";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const authState = useSelector((state) => state.login);
+  const navigate = useNavigate();
+  const { error, role, token } = useSelector((state) => state.login);
   const [errors, setErrors] = useState({});
   const [credentials, setCredentials] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
@@ -24,40 +26,41 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(credentials);
     const validationErrors = validation(
-      credentials.username,
+      credentials.email,
       credentials.password
     );
     if (Object.keys(validationErrors).length === 0) {
-      // dispatch(loginUser(credentials));
+      dispatch(loginUser(credentials));
       setErrors({});
-      console.log(credentials);
+      navigate("/main-page");
     } else {
       setErrors(validationErrors);
     }
   };
 
+  if (error) return <p>Error while login: {error}</p>;
+
   return (
     <div className={loginStyles.mainContainer}>
-      <img src={logo} className={loginStyles.logo}/>
+      <img src={logo} className={loginStyles.logo} />
       <form onSubmit={handleSubmit} className={loginStyles.loginForm}>
         <h3>Вход</h3>
         <div className={loginStyles.inputData}>
-          <label for="username">Логин</label>
+          <label htmlFor="email">Логин</label>
           <input
-            name="username"
+            name="email"
             type="text"
-            value={credentials.username}
+            value={credentials.email}
             onChange={handleChange}
-            placeholder="Введите логин"
+            placeholder="Введите email"
           />
           {errors.username && (
             <div className={loginStyles.error}>{errors.username}</div>
           )}
         </div>
         <div className={loginStyles.inputData}>
-          <label for="password">Пароль</label>
+          <label htmlFor="password">Пароль</label>
           <input
             name="password"
             type="password"
@@ -73,7 +76,7 @@ const LoginForm = () => {
           Войти
         </button>
       </form>
-      {authState.error && <p className="error">Error: {authState.error}</p>}
+      {/* {authState.error && <p className="error">Error: {authState.error}</p>} */}
     </div>
   );
 };
