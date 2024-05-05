@@ -4,7 +4,7 @@ import { loginUser, logoutUser, fetchUserInformation } from './LoginThunks';
 const initialState = {
   token: localStorage.getItem("token") || null,
   user: null,
-  role: "admin", // change later!
+  role: "", 
   isAuthenticated: false,
   error: null,
 };
