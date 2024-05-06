@@ -5,6 +5,7 @@ const initialState = {
   userDetails: {
     id: "",
     name: "",
+    role: '',
     lastName: "",
     secondName: "",
     description: "",

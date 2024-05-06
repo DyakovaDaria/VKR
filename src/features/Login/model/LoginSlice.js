@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, logoutUser, fetchUserInformation } from './LoginThunks';
 
 const initialState = {
-  token: localStorage.getItem("token") || null,
+  token: null,
   user: null,
   role: "", 
   isAuthenticated: false,
@@ -14,7 +14,6 @@ export const LoginSlice = createSlice({
   initialState,
   reducers: {
     clearAuthState(state) {
-      localStorage.removeItem("token");
       state.token = null;
       state.user = null;
       state.role = null;

@@ -42,7 +42,6 @@ export const loginUser = createAsyncThunk(
       const data = response.data;
       if (data.accessToken) {
         const decodedToken = jwtDecode(data.accessToken);
-        localStorage.setItem("token", data.token);
         return { token: data.accessToken, user: data.username, role: decodedToken.role };
       } else {
         throw new Error("No token received");
