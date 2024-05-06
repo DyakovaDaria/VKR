@@ -9,7 +9,7 @@ import schedStyles from "./ScheduleView.module.css";
 const ScheduleView = ({ teacherId }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { role } = useSelector((state) => state.login);
+  const { userDetails } = useSelector((state) => state.user);
   const { schedule, loading, error } = useSelector(
     (state) => state.schedule
   );
@@ -45,7 +45,7 @@ const ScheduleView = ({ teacherId }) => {
           <ClassPreview key={classInfo.id} classInfo={classInfo}></ClassPreview>
         ))}
       </div>
-      {role === "teacher" && (
+      {userDetails?.role === "Administrator" || userDetails?.roles[0] && (
         <button
           className={schedStyles.editScheduleBtn}
           onClick={handleEditClick}
@@ -62,7 +62,8 @@ const ScheduleView = ({ teacherId }) => {
           </svg>
         </button>
       )}
-      {role === "admin" && (
+      {/* TODO пофиксить могут сломаться роли */}
+      {userDetails?.role === "Administrator" || userDetails?.roles[0] && (
         <button
           className={schedStyles.addNewClassBtn}
           onClick={createNewLesson}

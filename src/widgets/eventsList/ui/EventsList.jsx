@@ -9,11 +9,13 @@ function EventsList() {
   const dispatch = useDispatch();
   const { events, loading, error } = useSelector((state) => state.events);
   const { newEventCreationMode } = useSelector((state) => state.eventsList);
-  const { role } = useSelector((state) => state.login);
+  const { userDetails } = useSelector((state) => state.user);
 
-  // useEffect(() => {
-  //   dispatch(fetchEvents());
-  // }, [dispatch]);
+  useEffect(() => {
+    // dispatch(fetchEvents());
+    
+    console.log(userDetails);
+  }, []);
 
   const createNewEvent = () => {
     dispatch(toggleNewEventCreationMode(true));
@@ -34,7 +36,8 @@ function EventsList() {
             ></EventPreview>
           ))}
         </div>
-        {role === "admin" && (
+        {/* TODO пофиксить роли, они могут сломаться */}
+        {userDetails?.role === "Administrator" || userDetails?.roles[0] && (
           <button
             className={eventsListStyles.addNewEventBtn}
             onClick={createNewEvent}

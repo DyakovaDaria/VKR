@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchUserDetails, registerTeacher } from "../../model/UserThunks";
+import {
+  fetchUserDetails,
+  registerAdmin,
+  registerStudent,
+  registerTeacher,
+} from "../../model/UserThunks";
 import { clearUserDetails, setNewUserCreation } from "../../model/UserSlice";
 import userEditStyles from "./UserProfileEdit.module.css";
 import userProfilePic from "../../../../shared/assets/userPic.png";
@@ -41,9 +46,7 @@ const UserProfileEdit = () => {
   };
 
   const handleSave = () => {
-    console.log(currUserDetails);
     if (newUserCreation && currUserDetails.role === "Teacher") {
-      console.log("registration");
       dispatch(
         registerTeacher({
           email: currUserDetails.email,
@@ -55,10 +58,35 @@ const UserProfileEdit = () => {
           description: currUserDetails.description,
         })
       );
+    } else if (newUserCreation && currUserDetails.role === "Student") {
+      dispatch(
+        registerStudent({
+          email: currUserDetails.email,
+          firstName: currUserDetails.firstName,
+          lastName: currUserDetails.lastName,
+          middleName: currUserDetails.middleName,
+          phoneNumber: currUserDetails.phoneNumber,
+          photo: currUserDetails.photo,
+          description: currUserDetails.description,
+        })
+      );
+    } else if (newUserCreation && currUserDetails.role === "Administrator") {
+      dispatch(
+        registerAdmin({
+          email: currUserDetails.email,
+          firstName: currUserDetails.firstName,
+          lastName: currUserDetails.lastName,
+          middleName: currUserDetails.middleName,
+          phoneNumber: currUserDetails.phoneNumber,
+          photo: currUserDetails.photo,
+          description: currUserDetails.description,
+        })
+      );
     }
-    console.log(error);
-    // dispatch(clearUserDetails());
-    // navigate("/users-list");
+    if (!error) {
+      dispatch(clearUserDetails());
+      navigate("/users-list");
+    }
   };
 
   const handleDelete = () => {

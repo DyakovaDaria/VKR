@@ -119,6 +119,48 @@ export const registerTeacher = createAsyncThunk(
   }
 );
 
+export const registerStudent = createAsyncThunk(
+  "user/registerStudent",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:7001/Admins/RegisterStudent`,
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.response.description);
+    }
+  }
+);
+
+export const registerAdmin = createAsyncThunk(
+  "user/registerAdmin",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:7001/Admins/RegisterAdministrator`,
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.response.description);
+    }
+  }
+);
+
 // Обновление данных пользователя
 export const updateUserDetails = createAsyncThunk(
   "user/updateUserDetails",
