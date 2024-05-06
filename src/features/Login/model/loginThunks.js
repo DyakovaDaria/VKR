@@ -34,22 +34,24 @@ export const loginUser = createAsyncThunk(
         { email: credentials.email, password: credentials.password },
         {
           headers: {
-            "Content-Type": "application/json", 
-            accept: "text/plain", 
+            "Content-Type": "application/json",
+            accept: "text/plain",
           },
         }
       );
       const data = response.data;
       if (data.accessToken) {
-        const decodedToken = jwtDecode(data.accessToken);
-        return { token: data.accessToken, user: data.username, role: decodedToken.role };
+        // const decodedToken = jwtDecode(data.accessToken);
+        localStorage.setItem("token", data.accessToken);
+        return {
+          isLogin: true
+        };
       } else {
         throw new Error("No token received");
       }
     } catch (error) {
-      // Ensure you handle HTTP errors and data parsing issues
       return rejectWithValue(
-        error.response?.description || "Error during login"
+        error.response?.statusText === 'Bad Request' ? 'Incorrect data' : "Error during login"
       );
     }
   }

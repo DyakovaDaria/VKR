@@ -2,10 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, logoutUser, fetchUserInformation } from './LoginThunks';
 
 const initialState = {
-  token: null,
-  user: null,
-  role: "", 
-  isAuthenticated: false,
+  isLogin: false,
   error: null,
 };
 
@@ -14,41 +11,19 @@ export const LoginSlice = createSlice({
   initialState,
   reducers: {
     clearAuthState(state) {
-      state.token = null;
-      state.user = null;
-      state.role = null;
-      state.isAuthenticated = false;
+      state.isLogin = false;
       state.error = null;
+      localStorage.removeItem("token");
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.token = action.payload.token;
-        state.user = action.payload.user;
-        state.role = action.payload.role;
-        state.isAuthenticated = true;
+        state.isLogin = action.payload;
         state.error = null;
-      })
-      .addCase(fetchUserInformation.fulfilled, (state, action) => {
-        state.user = {
-          id: action.payload.id,
-          firstName: action.payload.firstName,
-          lastName: action.payload.lastName,
-          patronymic: action.payload.patronymic,
-          email: action.payload.email,
-          photoUrl: action.payload.photoUrl,
-          roles: action.payload.roles,
-        };
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.error = action.payload;
-      })
-      .addCase(logoutUser.fulfilled, (state) => {
-        state.token = null;
-        state.user = null;
-        state.role = null;
-        state.isAuthenticated = false;
       });
   },
 });

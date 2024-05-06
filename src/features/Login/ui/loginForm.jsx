@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error, role, token } = useSelector((state) => state.login);
+  const { error, isLogin } = useSelector((state) => state.login);
   const [errors, setErrors] = useState({});
   const [credentials, setCredentials] = useState({
     email: "",
@@ -32,14 +32,14 @@ const LoginForm = () => {
     );
     if (Object.keys(validationErrors).length === 0) {
       dispatch(loginUser(credentials));
-      setErrors({});
-      navigate("/main-page");
+      if (isLogin) {
+        setErrors({});
+        navigate("/main-page");
+      }
     } else {
       setErrors(validationErrors);
     }
   };
-
-  if (error) return <p>Error while login: {error}</p>;
 
   return (
     <div className={loginStyles.mainContainer}>
@@ -76,7 +76,7 @@ const LoginForm = () => {
           Войти
         </button>
       </form>
-      {/* {authState.error && <p className="error">Error: {authState.error}</p>} */}
+      {error && <p className={loginStyles.error}>{error}</p>}
     </div>
   );
 };
