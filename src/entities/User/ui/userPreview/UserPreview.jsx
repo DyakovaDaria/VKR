@@ -7,17 +7,29 @@ import { useNavigate } from "react-router-dom";
 const UserPreview = ({ user }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const chooseRole = (role) => {
+    if (role === 'Administrator') {
+      return 'Администратор';
+    } else if (role === 'Student') {
+      return 'Ученик';
+    } else {
+      return 'Преподаватель';
+    }
+  }
+
   const handleEditClick = (userId) => {
     dispatch(addCurrentUser(userId));
     navigate("/create-user");
   };
+
   return (
     <div className={userPreviewStyles.userField} key={user.id}>
       <h3>
-        {user.name} {user.lastName} {user.secondName}
+        {user.firstName} {user.lastName} {user?.middleName}
       </h3>
       <p className={userPreviewStyles.userRole}>
-        {user.role === "teacher" ? "преподаватель" : "ученик"}
+        {user.role ? chooseRole(user.role) : ''}
       </p>
       <button onClick={() => handleEditClick(user.id)}>
         <svg

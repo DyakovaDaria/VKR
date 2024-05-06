@@ -4,7 +4,7 @@ import axios from "axios";
 const mockUserData = {
   id: "123",
   name: "Ольга",
-  role: 'teacher',
+  role: "teacher",
   lastName: "Иванова",
   secondName: "Ивановна",
   description: 'Стаж работы 10 лет. Образование - "Педагог-хореограф".',
@@ -81,12 +81,15 @@ export const fetchUserDetails = createAsyncThunk(
   "user/fetchUserDetails",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:7001/Identities/UserInformation`, {
-        headers: {
-          'accept': 'application/json', 
-          'Authorization': `Bearer ${localStorage.getItem("token")}` 
+      const response = await axios.get(
+        `http://localhost:7001/Identities/UserInformation`,
+        {
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
-      });
+      );
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -99,17 +102,19 @@ export const registerTeacher = createAsyncThunk(
   "user/registerTeacher",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`http://localhost:7001/Admins/RegisterTeacher`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem("token")}` 
-        },
-        parameters: {userData}
-      });
-      console.log(response);
+      const response = await axios.post(
+        `http://localhost:7001/Admins/RegisterTeacher`,
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       return response;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.description);
     }
   }
 );

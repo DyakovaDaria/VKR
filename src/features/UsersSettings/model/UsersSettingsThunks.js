@@ -106,7 +106,7 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   try {
     const response = await axios.get(`http://localhost:7001/Admins/AllUsers`, {
       params: {
-        page: 1,
+        page: 0,
         itemsPerPage: 9,
       },
       headers: {
@@ -114,6 +114,7 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
         'Authorization': `Bearer ${localStorage.getItem("token")}` 
       }
     });
+    console.log('users list: ' + response.data.users);
     return ( {users: response.data.users, totalCount: response.data.totalCount});
   } catch (error) {
     console.error("Failed to fetch users:", error);

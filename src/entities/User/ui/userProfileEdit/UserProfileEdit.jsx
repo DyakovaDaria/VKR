@@ -16,16 +16,15 @@ const UserProfileEdit = () => {
   useEffect(() => {
     if (newUserCreation) {
       setCurrUserDetails({
-        userId: Date.now(),
+        email: "",
         firstName: "",
-        role: "Teacher",
-        roles: ["Teacher"],
         lastName: "",
         middleName: "",
-        email: "",
         phoneNumber: "",
-        photo: null,
-        description: '',
+        role: "Teacher",
+        roles: ["Teacher"],
+        photo: "",
+        description: "",
       });
     } else {
       dispatch(fetchUserDetails(currentUserForChange));
@@ -35,16 +34,27 @@ const UserProfileEdit = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'role') {
+    if (name === "role") {
       setCurrUserDetails((prev) => ({ ...prev, roles: [value] }));
     }
     setCurrUserDetails((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSave = () => {
-    if (newUserCreation && currUserDetails.role === 'Teacher') {
-      console.log('registration');
-      dispatch(registerTeacher(currUserDetails));
+    console.log(currUserDetails);
+    if (newUserCreation && currUserDetails.role === "Teacher") {
+      console.log("registration");
+      dispatch(
+        registerTeacher({
+          email: currUserDetails.email,
+          firstName: currUserDetails.firstName,
+          lastName: currUserDetails.lastName,
+          middleName: currUserDetails.middleName,
+          phoneNumber: currUserDetails.phoneNumber,
+          photo: currUserDetails.photo,
+          description: currUserDetails.description,
+        })
+      );
     }
     console.log(error);
     // dispatch(clearUserDetails());
@@ -124,13 +134,13 @@ const UserProfileEdit = () => {
             />
           </div>
           <div className={userEditStyles.enterField}>
-            <label htmlFor="password">Пароль</label>
+            <label htmlFor="phoneNumber">Телефон</label>
             <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Введите пароль"
-              value={currUserDetails.password}
+              type="phone"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="Введите номер телефона"
+              value={currUserDetails.phoneNumber}
               onChange={handleChange}
             />
           </div>
