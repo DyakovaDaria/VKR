@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUserDetails, fetchUserGroups, updateUserDetails } from "./UserThunks";
+import { fetchUserDetails, fetchUserGroups, registerTeacher, updateUserDetails } from "./UserThunks";
 
 const initialState = {
   userDetails: {
@@ -12,6 +12,7 @@ const initialState = {
     email: "",
     phoneNumber: "",
     photo: null,
+    description: '',
   },
   currentUserForChange: null,
   newUserCreation: false,
@@ -35,6 +36,7 @@ const UserSlice = createSlice({
         email: "",
         phoneNumber: "",
         photo: null,
+        description: '',
       };
       state.currentUserForChange = null;
       state.newUserCreation = false;
@@ -62,7 +64,14 @@ const UserSlice = createSlice({
         state.error = action.error.message;
         state.loading = false;
       })
-      .addCase(fetchUserGroups.pending, (state) => {
+      .addCase(registerTeacher.fulfilled, (state, action) => {
+        state.loading = false;
+      })
+      .addCase(registerTeacher.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loading = false;
+      })
+      .addCase(registerTeacher.pending, (state) => {
         state.loading = true;
       })
       .addCase(fetchUserGroups.fulfilled, (state, action) => {

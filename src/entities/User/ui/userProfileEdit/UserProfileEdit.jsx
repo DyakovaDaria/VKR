@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchUserDetails } from "../../model/UserThunks";
+import { fetchUserDetails, registerTeacher } from "../../model/UserThunks";
 import { clearUserDetails, setNewUserCreation } from "../../model/UserSlice";
 import userEditStyles from "./UserProfileEdit.module.css";
 import userProfilePic from "../../../../shared/assets/userPic.png";
@@ -18,13 +18,14 @@ const UserProfileEdit = () => {
       setCurrUserDetails({
         userId: Date.now(),
         firstName: "",
-        role: "",
-        roles: [],
+        role: "Teacher",
+        roles: ["Teacher"],
         lastName: "",
         middleName: "",
         email: "",
         phoneNumber: "",
         photo: null,
+        description: '',
       });
     } else {
       dispatch(fetchUserDetails(currentUserForChange));
@@ -34,13 +35,20 @@ const UserProfileEdit = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'role') {
+      setCurrUserDetails((prev) => ({ ...prev, roles: [value] }));
+    }
     setCurrUserDetails((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSave = () => {
-    // dispatch(updateUser(userDetails));
-    dispatch(clearUserDetails());
-    navigate("/users-list");
+    if (newUserCreation && currUserDetails.role === 'Teacher') {
+      console.log('registration');
+      dispatch(registerTeacher(currUserDetails));
+    }
+    console.log(error);
+    // dispatch(clearUserDetails());
+    // navigate("/users-list");
   };
 
   const handleDelete = () => {
@@ -148,6 +156,8 @@ const UserProfileEdit = () => {
           <textarea
             className={userEditStyles.userDescr}
             name="description"
+            value={currUserDetails.description}
+            onChange={handleChange}
           ></textarea>
         </div>
 

@@ -11,21 +11,9 @@ const UsersListView = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState(users);
-
-  // useEffect(() => {
-  //   setFilteredUsers(
-  //     searchTerm
-  //       ? users.filter(
-  //           (user) =>
-  //             user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //             user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //             user.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //             user.midname.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-  //         )
-  //       : users
-  //   );
-  // }, [searchTerm, users]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -44,6 +32,12 @@ const UsersListView = () => {
     navigate("/create-user");
   };
 
+  const handlePageChange = (newPage) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
   return (
     <div className={usersListStyles.usersListPageCont}>
       <div className={usersListStyles.usersListContainer}>
@@ -56,9 +50,26 @@ const UsersListView = () => {
           />
         </div>
         <div className={usersListStyles.userList}>
-          {users && users.map((user) => (
-            <UserPreview user={user}></UserPreview>
-          ))}
+          {users &&
+            users?.map((user) => <UserPreview user={user}></UserPreview>)}
+        </div>
+        <div>
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          <span>
+            {" "}
+            Page {currentPage} of {totalPages}{" "}
+          </span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
         </div>
         <div>
           <button className={usersListStyles.addUserBtn} onClick={addNewUser}>

@@ -77,7 +77,6 @@ export const fetchUserGroups = createAsyncThunk(
   }
 );
 
-// Запрос данных пользователя
 export const fetchUserDetails = createAsyncThunk(
   "user/fetchUserDetails",
   async (_, { rejectWithValue }) => {
@@ -90,6 +89,25 @@ export const fetchUserDetails = createAsyncThunk(
       });
       console.log(response.data);
       return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const registerTeacher = createAsyncThunk(
+  "user/registerTeacher",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`http://localhost:7001/Admins/RegisterTeacher`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        },
+        parameters: {userData}
+      });
+      console.log(response);
+      return response;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
