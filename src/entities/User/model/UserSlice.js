@@ -1,22 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUserDetails, updateUserDetails } from "./UserThunks";
+import { fetchUserDetails, fetchUserGroups, updateUserDetails } from "./UserThunks";
 
 const initialState = {
   userDetails: {
-    id: "",
-    name: "",
+    userId: "",
+    firstName: "",
     role: '',
+    roles: [],
     lastName: "",
-    secondName: "",
-    description: "",
+    middleName: "",
     email: "",
-    phone: "",
-    groups: [],
-    schedule: [],
-    pic: null,
+    phoneNumber: "",
+    photo: null,
   },
   currentUserForChange: null,
   newUserCreation: false,
+  groups: [],
   loading: false,
   error: null,
 };
@@ -27,20 +26,20 @@ const UserSlice = createSlice({
   reducers: {
     clearUserDetails(state) {
       state.userDetails = {
-        id: "",
-        name: "",
+        userId: "",
+        firstName: "",
+        role: "",
+        roles: [],
         lastName: "",
-        secondName: "",
-        description: "",
+        middleName: "",
         email: "",
-        phone: "",
-        groups: [],
-        schedule: [],
-        pic: null,
+        phoneNumber: "",
+        photo: null,
       };
       state.currentUserForChange = null;
       state.newUserCreation = false;
       state.error = null;
+      state.groups = [];
       state.loading = false;
     },
     addCurrentUser(state, action) {
@@ -60,6 +59,17 @@ const UserSlice = createSlice({
         state.loading = false;
       })
       .addCase(fetchUserDetails.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loading = false;
+      })
+      .addCase(fetchUserGroups.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchUserGroups.fulfilled, (state, action) => {
+        state.groups = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchUserGroups.rejected, (state, action) => {
         state.error = action.error.message;
         state.loading = false;
       })

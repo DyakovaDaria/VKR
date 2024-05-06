@@ -52,17 +52,44 @@ const mockUserData = {
   pic: null,
 };
 
+const mockGroups = [
+  {
+    level: "начинающие",
+    dates: [{ weekDay: "вторник", time: "17:00 - 18:30" }],
+  },
+  {
+    level: "продолжающие",
+    dates: [
+      { weekDay: "среда", time: "16:30 - 17:30" },
+      { weekDay: "пятница", time: "16:30 - 17:30" },
+    ],
+  },
+];
+
+export const fetchUserGroups = createAsyncThunk(
+  "user/fetchUserGroups",
+  async (_, { rejectWithValue }) => {
+    try {
+      return mockGroups;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 // Запрос данных пользователя
 export const fetchUserDetails = createAsyncThunk(
   "user/fetchUserDetails",
-  async (userId, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      // const response = await axios.get(`/api/users/${userId}`);
-      // return response.data;
-      // return await new Promise((resolve) =>
-      //   setTimeout(() => resolve(mockUserData), 500)
-      // );
-      return mockUserData;
+      const response = await axios.get(`http://localhost:7001/Identities/UserInformation`, {
+        headers: {
+          'accept': 'application/json', 
+          'Authorization': `Bearer ${localStorage.getItem("token")}` 
+        }
+      });
+      console.log(response.data);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

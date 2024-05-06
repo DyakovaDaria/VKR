@@ -16,33 +16,21 @@ const UserProfileEdit = () => {
   useEffect(() => {
     if (newUserCreation) {
       setCurrUserDetails({
-        id: "",
-        name: "",
+        userId: Date.now(),
+        firstName: "",
         role: "",
+        roles: [],
         lastName: "",
-        secondName: "",
-        description: "",
+        middleName: "",
         email: "",
-        phone: "",
-        groups: [],
-        pic: null,
+        phoneNumber: "",
+        photo: null,
       });
     } else {
       dispatch(fetchUserDetails(currentUserForChange));
-      setCurrUserDetails({
-        id: userDetails?.id,
-        name: userDetails?.name,
-        role: userDetails?.role,
-        lastName: userDetails?.lastName,
-        secondName: userDetails?.secondName,
-        description: userDetails?.description,
-        email: userDetails?.email,
-        phone: userDetails?.phone,
-        groups: userDetails?.groups,
-        pic: userDetails?.pic,
-      });
+      setCurrUserDetails(userDetails);
     }
-  }, [dispatch, userDetails]);
+  }, [dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,11 +72,11 @@ const UserProfileEdit = () => {
         </div>
         <div className={userEditStyles.enterForm}>
           <div className={userEditStyles.enterField}>
-            <label htmlFor="name">Имя</label>
+            <label htmlFor="firstName">Имя</label>
             <input
               type="text"
-              id="name"
-              name="name"
+              id="firstName"
+              name="firstName"
               placeholder="Введите имя"
               value={currUserDetails.name}
               onChange={handleChange}
@@ -106,11 +94,11 @@ const UserProfileEdit = () => {
             />
           </div>
           <div className={userEditStyles.enterField}>
-            <label htmlFor="secondName">Отчество</label>
+            <label htmlFor="middleName">Отчество</label>
             <input
               type="text"
-              id="secondName"
-              name="secondName"
+              id="middleName"
+              name="middleName"
               placeholder="Введите отчество (опционально)"
               value={currUserDetails.secondName}
               onChange={handleChange}
@@ -146,9 +134,9 @@ const UserProfileEdit = () => {
               onChange={handleChange}
               value={currUserDetails.role}
             >
-              <option value="teacher">Преподаватель</option>
-              <option value="student">Ученик</option>
-              <option value="admin">Администратор</option>
+              <option value="Teacher">Преподаватель</option>
+              <option value="Student">Ученик</option>
+              <option value="Administrator">Администратор</option>
             </select>
           </div>
         </div>
@@ -159,9 +147,7 @@ const UserProfileEdit = () => {
           <h2>Описание</h2>
           <textarea
             className={userEditStyles.userDescr}
-            value={currUserDetails.description}
             name="description"
-            onChange={handleChange}
           ></textarea>
         </div>
 
@@ -172,9 +158,11 @@ const UserProfileEdit = () => {
           >
             Сохранить
           </button>
-          <button className={userEditStyles.deleteBtn} onClick={handleDelete}>
-            Удалить профиль
-          </button>
+          {!newUserCreation && (
+            <button className={userEditStyles.deleteBtn} onClick={handleDelete}>
+              Удалить профиль
+            </button>
+          )}
           <button className={userEditStyles.deleteBtn} onClick={handleCancel}>
             Отменить
           </button>
