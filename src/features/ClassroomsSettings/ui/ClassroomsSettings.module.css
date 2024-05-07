@@ -201,3 +201,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.classStatusSelect {
+  width: 30%;
+  height: 35px;
+  border-radius: 7px;
+  border: #bebebe solid 1px;
+}
