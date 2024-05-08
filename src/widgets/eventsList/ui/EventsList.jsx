@@ -4,6 +4,7 @@ import eventsListStyles from "./EventsList.module.css";
 import { CreateEvent, EventPreview } from "../../../entities/Event";
 import { fetchEvents } from "../../../entities/Event";
 import { toggleNewEventCreationMode } from "../model/EventsListSlice";
+import { fetchCurrUserDetails } from "../../../entities/User";
 
 function EventsList() {
   const dispatch = useDispatch();
@@ -12,8 +13,7 @@ function EventsList() {
   const { userDetails } = useSelector((state) => state.user);
 
   useEffect(() => {
-    // dispatch(fetchEvents());
-    
+    dispatch(fetchCurrUserDetails());
     console.log(userDetails);
   }, []);
 
@@ -37,7 +37,7 @@ function EventsList() {
           ))}
         </div>
         {/* TODO пофиксить роли, они могут сломаться */}
-        {userDetails?.role === "Administrator" || userDetails?.roles[0] && (
+        {userDetails?.role === "Administrator" || userDetails?.roles[0] === "Administrator" && (
           <button
             className={eventsListStyles.addNewEventBtn}
             onClick={createNewEvent}

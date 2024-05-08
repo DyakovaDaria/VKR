@@ -138,8 +138,8 @@ const ClassroomsSettings = () => {
                   // onChange={(e) => onStatusChange(classroom.id, e.target.value)}
                   className={classroomsSettingsStyles.classStatusSelect}
                 >
-                  <option value="busy">Полный</option>
                   <option value="free">Свободный</option>
+                  <option value="busy">Полный</option>
                   <option value="partly">Частично загружен</option>
                 </select>
               </div>
