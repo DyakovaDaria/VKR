@@ -24,12 +24,10 @@ const ClassroomsSettings = () => {
   const [startTimeMoment, setStartTime] = useState(
     new Date(Date.now()).toISOString().split("T")[0]
   );
+
   const [finishTimeMoment, setFinishTime] = useState(
     new Date(Date.now()).toISOString().split("T")[0]
   );
-  // useEffect(() => {
-  //   dispatch(loadClassrooms());
-  // }, [list]);
 
   const onDeleteClick = (id) => {
     dispatch(deleteClassroom(id));
@@ -76,10 +74,11 @@ const ClassroomsSettings = () => {
       const slotIndex = classroom.timeSlots?.findIndex(
         (slot) =>
           slot.startTime === startTimeMoment &&
-          slot.endTime === finishTimeMoment
+          slot.endTime === finishTimeMoment &&
+          slot.date === selectedDate.toISOString().split("T")[0]
       );
       if (slotIndex !== -1) {
-        return classroom.timeSlots[slotIndex]?.status;
+        return classroom.timeSlots[slotIndex].status;
       } else {
         return "free";
       }
@@ -135,8 +134,8 @@ const ClassroomsSettings = () => {
                 <select
                   name="classroomStatus"
                   id="classroomStatus"
-                  value={getStatusClassroom(classroom.id)}
-                  onChange={(e) => onStatusChange(classroom.id, e.target.value)}
+                  // value={getStatusClassroom(classroom.id)}
+                  // onChange={(e) => onStatusChange(classroom.id, e.target.value)}
                   className={classroomsSettingsStyles.classStatusSelect}
                 >
                   <option value="busy">Полный</option>
