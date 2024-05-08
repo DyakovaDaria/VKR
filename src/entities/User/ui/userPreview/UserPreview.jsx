@@ -9,14 +9,14 @@ const UserPreview = ({ user }) => {
   const dispatch = useDispatch();
 
   const chooseRole = (role) => {
-    if (role === 'Administrator') {
-      return 'Администратор';
-    } else if (role === 'Student') {
-      return 'Ученик';
+    if (role === "Administrator") {
+      return "Администратор";
+    } else if (role === "Student") {
+      return "Ученик";
     } else {
-      return 'Преподаватель';
+      return "Преподаватель";
     }
-  }
+  };
 
   const handleEditClick = (userId) => {
     dispatch(addCurrentUser(userId));
@@ -29,9 +29,9 @@ const UserPreview = ({ user }) => {
         {user.firstName} {user.lastName} {user?.middleName}
       </h3>
       <p className={userPreviewStyles.userRole}>
-        {user.role ? chooseRole(user.role) : ''}
+        {user.role ? chooseRole(user.role) : ""}
       </p>
-      <button onClick={() => handleEditClick(user.id)}>
+      <button onClick={() => handleEditClick(user.userId)}>
         <svg
           className={userPreviewStyles.editPic}
           xmlns="http://www.w3.org/2000/svg"

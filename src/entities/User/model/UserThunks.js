@@ -77,8 +77,8 @@ export const fetchUserGroups = createAsyncThunk(
   }
 );
 
-export const fetchUserDetails = createAsyncThunk(
-  "user/fetchUserDetails",
+export const fetchCurrUserDetails = createAsyncThunk(
+  "user/fetchCurrUserDetails",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
@@ -91,6 +91,27 @@ export const fetchUserDetails = createAsyncThunk(
         }
       );
       console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const fetchUserDetails = createAsyncThunk(
+  "user/fetchUserDetails",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:7001/Admins/UserInformation/${userId}`,
+        {
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      console.log("user data: " + JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -164,14 +185,49 @@ export const registerAdmin = createAsyncThunk(
 // Обновление данных пользователя
 export const updateUserDetails = createAsyncThunk(
   "user/updateUserDetails",
-  async ({ userId, userData }, { rejectWithValue }) => {
+  async ({ userId, user }, { rejectWithValue }) => {
+    const userData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      middleName: user.middleName,
+      phoneNumber: user.phoneNumber,
+      photo: user.photo,
+    };
     try {
-      // const response = await axios.put(`/api/users/${userId}`, userData);
-      // return response.data;
-      return await new Promise((resolve) =>
-        setTimeout(() => resolve(userData), 500)
+      const response = await axios.put(
+        `http://localhost:7001/Admins/UpdateUser/${userId}`,
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
+      return response;
     } catch (error) {
+      console.log("error" + userData + JSON.stringify(error.response.data));
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deleteUser = createAsyncThunk(
+  "user/deleteUser",
+  async (userId, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:7001/Admins/Delete/${userId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      return response;
+    } catch (error) {
+      console.log("error" + JSON.stringify(error.response.data));
       return rejectWithValue(error.response.data);
     }
   }

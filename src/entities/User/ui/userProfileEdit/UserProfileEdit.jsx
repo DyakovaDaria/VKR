@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
+  deleteUser,
   fetchUserDetails,
   registerAdmin,
   registerStudent,
   registerTeacher,
+  updateUserDetails,
 } from "../../model/UserThunks";
 import { clearUserDetails, setNewUserCreation } from "../../model/UserSlice";
 import userEditStyles from "./UserProfileEdit.module.css";
@@ -21,21 +23,31 @@ const UserProfileEdit = () => {
   useEffect(() => {
     if (newUserCreation) {
       setCurrUserDetails({
+        userId: "",
         email: "",
         firstName: "",
         lastName: "",
         middleName: "",
         phoneNumber: "",
+        photo: "",
         role: "Teacher",
         roles: ["Teacher"],
-        photo: "",
         description: "",
       });
-    } else {
+    }
+  }, [newUserCreation]);
+
+  useEffect(() => {
+    if (currentUserForChange) {
       dispatch(fetchUserDetails(currentUserForChange));
-      setCurrUserDetails(userDetails);
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (userDetails) {
+      setCurrUserDetails(userDetails);
+    }
+  }, [userDetails]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -82,6 +94,14 @@ const UserProfileEdit = () => {
           description: currUserDetails.description,
         })
       );
+    } else if (!newUserCreation) {
+      console.log("мы меняем данные пользователя");
+      dispatch(
+        updateUserDetails({
+          userId: currentUserForChange,
+          user: currUserDetails,
+        })
+      );
     }
     if (!error) {
       dispatch(clearUserDetails());
@@ -90,7 +110,7 @@ const UserProfileEdit = () => {
   };
 
   const handleDelete = () => {
-    // dispatch(deleteUser(currentUser.id));
+    dispatch(deleteUser(currentUserForChange));
     dispatch(clearUserDetails());
     navigate("/users-list");
   };
@@ -124,7 +144,7 @@ const UserProfileEdit = () => {
               id="firstName"
               name="firstName"
               placeholder="Введите имя"
-              value={currUserDetails.name}
+              value={currUserDetails.firstName}
               onChange={handleChange}
             />
           </div>
@@ -146,7 +166,7 @@ const UserProfileEdit = () => {
               id="middleName"
               name="middleName"
               placeholder="Введите отчество (опционально)"
-              value={currUserDetails.secondName}
+              value={currUserDetails.middleName}
               onChange={handleChange}
             />
           </div>
