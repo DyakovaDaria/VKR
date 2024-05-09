@@ -95,7 +95,7 @@ const ClassInfo = () => {
           )}
         </div>
       </div>
-      {role === "admin" && (
+      {userDetails?.role === "Administrator" || userDetails?.roles[0] === "Administrator" && (
         <div className={classInfoStyles.adminEditBtns}>
           <button
             className={classInfoStyles.editScheduleBtn}

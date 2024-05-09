@@ -5,6 +5,7 @@ import { fetchScheduleForDate } from "../../../entities/Schedule/model/ScheduleT
 import { ClassPreview, toggleNewLessonCreation } from "../../../entities/Class";
 import { WeekCalendar } from "../../../widgets/weekCalendar";
 import schedStyles from "./ScheduleView.module.css";
+import { fetchCurrUserDetails } from "../../User";
 
 const ScheduleView = ({ teacherId }) => {
   const dispatch = useDispatch();
@@ -26,10 +27,15 @@ const ScheduleView = ({ teacherId }) => {
   };
 
   useEffect(() => {
+    dispatch(fetchCurrUserDetails());
+    // var newDate = new Date();
+    // newDate.setDate(newDate.getDate() + 1);
     dispatch(
       fetchScheduleForDate({
         teacherId: "123",
         date: selectedDate.toISOString().split("T")[0],
+        // from: selectedDate.toISOString(),
+        // to: newDate.toISOString()
       })
     );
   }, [selectedDate, dispatch]);
@@ -41,7 +47,7 @@ const ScheduleView = ({ teacherId }) => {
     <div className={schedStyles.teacherScheduleCont}>
       <WeekCalendar></WeekCalendar>
       <div className={schedStyles.classesList}>
-        {schedule.map((classInfo) => (
+        { schedule && schedule?.map((classInfo) => (
           <ClassPreview key={classInfo.id} classInfo={classInfo}></ClassPreview>
         ))}
       </div>
@@ -63,7 +69,7 @@ const ScheduleView = ({ teacherId }) => {
         </button>
       )}
       {/* TODO пофиксить могут сломаться роли */}
-      {userDetails?.role === "Administrator" || userDetails?.roles[0] && (
+      {userDetails?.role === "Administrator" || userDetails?.roles[0] === "Administrator" && (
         <button
           className={schedStyles.addNewClassBtn}
           onClick={createNewLesson}
