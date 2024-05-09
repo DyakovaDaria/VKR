@@ -45,7 +45,7 @@ const ScheduleView = ({ teacherId }) => {
           <ClassPreview key={classInfo.id} classInfo={classInfo}></ClassPreview>
         ))}
       </div>
-      {userDetails?.role === "Administrator" || userDetails?.roles[0] && (
+      {userDetails?.role === "Teacher" || userDetails?.roles[0] === "Teacher" && (
         <button
           className={schedStyles.editScheduleBtn}
           onClick={handleEditClick}
