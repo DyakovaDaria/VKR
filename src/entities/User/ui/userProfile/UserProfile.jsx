@@ -38,7 +38,7 @@ function UserProfile() {
           className={userProfileStyles.profilePic}
         />
         <h3>
-          {userDetails.lastName} {userDetails.name} {userDetails.secondName}
+          {userDetails.lastName} {userDetails.firstName} {userDetails.middleName}
         </h3>
         <p>{chooseRole(userDetails.roles[0])}</p>
         <p className={userProfileStyles.contactText}>контактные данные</p>

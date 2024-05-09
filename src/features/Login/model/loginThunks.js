@@ -41,7 +41,9 @@ export const loginUser = createAsyncThunk(
       );
       const data = response.data;
       if (data.accessToken) {
-        // const decodedToken = jwtDecode(data.accessToken);
+        const decodedToken = jwtDecode(data.accessToken);
+        console.log("Token: " + data.accessToken);
+        console.log(decodedToken);
         localStorage.setItem("token", data.accessToken);
         return {
           isLogin: true

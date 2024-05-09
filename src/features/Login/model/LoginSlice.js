@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, logoutUser, fetchUserInformation } from './LoginThunks';
 
 const initialState = {
-  isLogin: true, //!change later!,
+  isLogin: localStorage.getItem("token") !== null, 
   error: null,
 };
 
