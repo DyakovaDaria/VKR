@@ -10,7 +10,7 @@ function EventsList() {
   const dispatch = useDispatch();
   const { events, loading, error } = useSelector((state) => state.events);
   const { newEventCreationMode } = useSelector((state) => state.eventsList);
-  const { userDetails } = useSelector((state) => state.user);
+  const { userDetails } = useSelector((state) => state.user); 
 
   useEffect(() => {
     dispatch(fetchCurrUserDetails());

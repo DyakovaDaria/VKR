@@ -21,6 +21,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   const isLogin = useSelector((state) => state.login.isLogin);
+  const { userDetails } = useSelector((state) => state.user);
 
   if (!isLogin)
     return (
@@ -31,6 +32,49 @@ function App() {
       </Router>
     );
 
+  if (userDetails?.role === "Student" || userDetails?.roles[0] === "Student") {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/schedule" element={<ScheduleViewPage />} />
+          <Route
+            path="/teacher-schedule-edit"
+            element={<TeacherScheduleEditPage />}
+          />
+          <Route path="/student-profile" element={<StudentProfilePage />} />
+          <Route path="/user-subscriptions" element={<SubscriptionsPage />} />
+          <Route path="/class-info" element={<ClassInfo />} />
+          <Route path="/main-page" element={<MainPage />} />
+          <Route
+            path="/class-request-create"
+            element={<CreateClassRequestPage />}
+          />
+        </Routes>
+      </Router>
+    );
+  }
+
+  if (userDetails?.role === "Teacher" || userDetails?.roles[0] === "Teacher") {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/schedule" element={<ScheduleViewPage />} />
+          <Route
+            path="/teacher-schedule-edit"
+            element={<TeacherScheduleEditPage />}
+          />
+          <Route path="/teacher-profile" element={<TeacherProfilePage />} />
+          <Route path="/class-info" element={<ClassInfo />} />
+          <Route path="/main-page" element={<MainPage />} />
+          <Route
+            path="/class-requests"
+            element={<TeacherClassRequestsPage />}
+          />
+        </Routes>
+      </Router>
+    );
+  }
+
   return (
     <Router>
       <Routes>
@@ -39,13 +83,10 @@ function App() {
           path="/teacher-schedule-edit"
           element={<TeacherScheduleEditPage />}
         />
-        <Route path="/teacher-profile" element={<TeacherProfilePage />} />
-        <Route path="/student-profile" element={<StudentProfilePage />} />
         <Route path="/admin-profile" element={<AdminProfilePage />} />
         <Route path="/create-user" element={<CreateUserPage />} />
         <Route path="/users-list" element={<StudentsListPage />} />
         <Route path="/edit-class" element={<EditClassPage />} />
-        <Route path="/user-subscriptions" element={<SubscriptionsPage />} />
         <Route path="/create-event" element={<CreateEventsPage />} />
         <Route path="/change-classrooms" element={<ChangeClassroomsPage />} />
         <Route path="/class-info" element={<ClassInfo />} />
@@ -54,11 +95,6 @@ function App() {
           path="/subscriptions-management"
           element={<SubscriptionsManagementPage />}
         />
-        <Route
-          path="/class-request-create"
-          element={<CreateClassRequestPage />}
-        />
-        <Route path="/class-requests" element={<TeacherClassRequestsPage />} />
       </Routes>
     </Router>
   );

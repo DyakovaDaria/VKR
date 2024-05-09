@@ -14,9 +14,37 @@
   align-items: center;
   justify-content: start;
   flex-direction: column;
+  width: 100%;
+  height: 450px;
+  padding: 5px 0 5px 0;
+}
+
+.userProfileDataCont {
   width: 25%;
   height: 500px;
-  padding: 5px 0 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.logoutBtnCont {
+  height: 50px;
+}
+
+.logoutBtnCont > button {
+  background-color: #e02b8b;
+  color: white;
+  border-radius: 7px;
+  width: fit-content;
+  height: fit-content;
+  padding: 5px 35px 5px 35px;
+  border: none;
+  font-size: medium;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .userAdditionalInfoCont {

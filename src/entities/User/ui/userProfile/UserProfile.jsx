@@ -4,6 +4,7 @@ import userProfileStyles from "./UserProfile.module.css";
 import { fetchCurrUserDetails, fetchUserGroups } from "../../model/UserThunks";
 import GroupPreview from "../../../Group/ui/groupPreview/GroupPreview";
 import userProfilePic from "../../../../shared/assets/userPic.png";
+import { clearAuthState } from "../../../../features/Login";
 
 function UserProfile() {
   const dispatch = useDispatch();
@@ -26,28 +27,38 @@ function UserProfile() {
     }
   };
 
+  const handleLogout = () => {
+    dispatch(clearAuthState());
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!userDetails) return <div>No User Details Found</div>;
 
   return (
     <div className={userProfileStyles.userProfileCont}>
-      <div className={userProfileStyles.userInfoCont}>
-        <img
-          src={userDetails?.photo ? userDetails.photo : userProfilePic}
-          className={userProfileStyles.profilePic}
-        />
-        <h3>
-          {userDetails.lastName} {userDetails.firstName} {userDetails.middleName}
-        </h3>
-        <p>{chooseRole(userDetails.roles[0])}</p>
-        <p className={userProfileStyles.contactText}>контактные данные</p>
-        <p>
-          <strong> {userDetails?.email}</strong>
-        </p>
-        <p>
-          <strong>{userDetails?.phoneNumber}</strong>
-        </p>
+      <div className={userProfileStyles.userProfileDataCont}>
+        <div className={userProfileStyles.userInfoCont}>
+          <img
+            src={userDetails?.photo ? userDetails.photo : userProfilePic}
+            className={userProfileStyles.profilePic}
+          />
+          <h3>
+            {userDetails.lastName} {userDetails.firstName}{" "}
+            {userDetails.middleName}
+          </h3>
+          <p>{chooseRole(userDetails.roles[0])}</p>
+          <p className={userProfileStyles.contactText}>контактные данные</p>
+          <p>
+            <strong> {userDetails?.email}</strong>
+          </p>
+          <p>
+            <strong>{userDetails?.phoneNumber}</strong>
+          </p>
+        </div>
+        <div className={userProfileStyles.logoutBtnCont}>
+          <button onClick={handleLogout}>Выйти</button>
+        </div>
       </div>
       <div className={userProfileStyles.userAdditionalInfoCont}>
         <div className={userProfileStyles.userDescriptionCont}>

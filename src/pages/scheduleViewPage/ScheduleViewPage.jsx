@@ -5,11 +5,11 @@ import AdminNavbar from '../../widgets/adminNavbar/AdminNavbar';
 import { useSelector } from "react-redux";
 
 const ScheduleViewPage = () => {
-  const { role } = useSelector((state) => state.login);
+  const { userDetails } = useSelector((state) => state.user);
   const chooseMenu = () => {
-    if (role === 'teacher') {
+    if (userDetails?.role === "Teacher" || userDetails?.roles[0] === "Teacher") {
       return <TeacherNavbar></TeacherNavbar>;
-    } else if (role==='student') {
+    } else if (userDetails?.role === "Student" || userDetails?.roles[0] === "Student") {
       return <StudentNavbar></StudentNavbar>
     } else {
       return <AdminNavbar></AdminNavbar>

@@ -23,7 +23,7 @@ export const fetchUsers = createAsyncThunk(
         totalCount: response.data.totalCount,
       };
     } catch (error) {
-      return rejectWithValue(error("Failed to fetch users:", error));
+      return rejectWithValue(error);
     }
   }
 );
