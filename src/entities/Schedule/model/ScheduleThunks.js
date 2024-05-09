@@ -3,68 +3,27 @@ import axios from "axios";
 
 export const fetchScheduleForDate = createAsyncThunk(
   "schedule/fetchScheduleForDate",
-  async ({ userId, date }, { rejectWithValue }) => {
+  async ({ userId, date }, { getState, rejectWithValue }) => {
     try {
-      // const response = await axios.get(`https://api.yourschool.com/schedule/${teacherId}?date=${date}`);
-      // return response.data;
+      const schedule = getState().schedule.schedule;
       if (date === new Date().toISOString().split("T")[0]) {
-        return [
-          {
-            id: 123,
-            title: "Танго",
-            description: "",
-            startTime: "10:00",
-            endTime: "11:30",
-            classroom: "205",
-            type: 'group',
-            teacher: "Иванова Ольга",
-            group: "Продолжающие",
-          },
-          {
-            id: 133,
-            title: "Танго",
-            description: "",
-            startTime: "10:00",
-            endTime: "11:30",
-            classroom: "205",
-            type: 'group',
-            teacher: "Иванова Ольга",
-            group: "Продолжающие",
-          },
-          {
-            id: 345,
-            title: "Танго",
-            description: "",
-            startTime: "10:00",
-            endTime: "11:30",
-            classroom: "205",
-            type: 'group',
-            teacher: "Иванова Ольга",
-            group: "Продолжающие",
-          },
-          {
-            id: Date.now(),
-            title: "Танго",
-            description: "",
-            startTime: "10:00",
-            endTime: "11:30",
-            classroom: "205",
-            type: 'group',
-            teacher: "Иванова Ольга",
-            group: "Продолжающие",
-          },
-          {
-            id: Date.now(),
-            title: "Танго",
-            description: "",
-            startTime: "10:00",
-            endTime: "11:30",
-            classroom: "205",
-            type: 'group',
-            teacher: "Иванова Ольга",
-            group: "Продолжающие",
-          },
-        ];
+        return schedule;
+      } else {
+        return [];
+      }
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const fetchTeacherScheduleForDate = createAsyncThunk(
+  "schedule/fetchScheduleForDate",
+  async ({ userId, date }, { getState, rejectWithValue }) => {
+    try {
+      const schedule = getState().schedule.schedule;
+      if (date === new Date().toISOString().split("T")[0]) {
+        return schedule.filter((lesson) => lesson.teacher === userId);
       } else {
         return [];
       }

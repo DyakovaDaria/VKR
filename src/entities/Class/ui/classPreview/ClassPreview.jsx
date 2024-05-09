@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLessonDetails } from "../../model/ClassSlice";
 import { useNavigate } from "react-router-dom";
 import classPreviewStyles from "./ClassPreview.module.css";
-import { fetchUserDetails } from "../../../User";
+import { fetchCurrUserDetails } from "../../../User";
 
 const ClassPreview = ({ classInfo }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { role, user } = useSelector((state) => state.login);
+  const { user } = useSelector((state) => state.login);
   const { userDetails } = useSelector((state) => state.user);
   const [currSchedule, setCurrSchedule] = useState([]);
 
@@ -23,7 +23,7 @@ const ClassPreview = ({ classInfo }) => {
   };
 
   useEffect(() => {
-    dispatch(fetchUserDetails(user));
+    dispatch(fetchCurrUserDetails());
     const schedule = userDetails.schedule;
     if (schedule) {
       setCurrSchedule(schedule);
@@ -49,7 +49,7 @@ const ClassPreview = ({ classInfo }) => {
           {classInfo.group && <p>{classInfo.group}</p>}
           {classInfo.student && <p>{classInfo.student}</p>}
         </div>
-        {role === "student" && checkSchedule(classInfo.id) && (
+        {userDetails?.role === "Student" || userDetails?.roles[0] === "Student" && checkSchedule(classInfo.id) && (
           <div className={classPreviewStyles.studentClassStatus}>
             <p>Вы записаны</p>
           </div>

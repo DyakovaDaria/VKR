@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  fetchScheduleForDate,
-  updateScheduleForDate,
-} from "./ScheduleThunks"; 
+import { fetchScheduleForDate, updateScheduleForDate } from "./ScheduleThunks";
 import { act } from "react-dom/test-utils";
 
 const scheduleSlice = createSlice({
@@ -13,27 +10,39 @@ const scheduleSlice = createSlice({
     schedule: [
       {
         id: 123,
-        title: "Танго",
+        title: "Танго для начинающих",
         description: "",
         date: Date.now(),
         startTime: "10:00",
         endTime: "11:30",
         classroom: "205",
-        type: 'group',
-        teacher: "Иванова Ольга",
-        group: "Продолжающие",
+        type: "group",
+        teacher: "Дьякова Дарья",
+        group: "Начинающие",
       },
       {
         id: 133,
         title: "Танго",
         description: "",
         date: Date.now(),
-        startTime: "10:00",
-        endTime: "11:30",
+        startTime: "12:00",
+        endTime: "13:30",
         classroom: "205",
-        type: 'group',
-        teacher: "Иванова Ольга",
+        type: "group",
+        teacher: "Дьякова Дарья",
         group: "Продолжающие",
+      },
+      {
+        id: 134,
+        title: "Танго",
+        description: "",
+        date: Date.now(),
+        startTime: "14:00",
+        endTime: "15:10",
+        classroom: "205",
+        type: "individual",
+        teacher: "Дьякова Дарья",
+        student: "",
       },
       {
         id: 345,
@@ -43,7 +52,7 @@ const scheduleSlice = createSlice({
         startTime: "10:00",
         endTime: "11:30",
         classroom: "205",
-        type: 'group',
+        type: "group",
         teacher: "Иванова Ольга",
         group: "Продолжающие",
       },
@@ -55,7 +64,7 @@ const scheduleSlice = createSlice({
         startTime: "10:00",
         endTime: "11:30",
         classroom: "205",
-        type: 'group',
+        type: "group",
         teacher: "Иванова Ольга",
         group: "Продолжающие",
       },
@@ -67,7 +76,7 @@ const scheduleSlice = createSlice({
         startTime: "10:00",
         endTime: "11:30",
         classroom: "205",
-        type: 'group',
+        type: "group",
         teacher: "Иванова Ольга",
         group: "Продолжающие",
       },
@@ -115,5 +124,6 @@ const scheduleSlice = createSlice({
   },
 });
 
-export const { setSelectedDate, updateSchedule, toggleClassCreationModal } = scheduleSlice.actions;
+export const { setSelectedDate, updateSchedule, toggleClassCreationModal } =
+  scheduleSlice.actions;
 export default scheduleSlice.reducer;
