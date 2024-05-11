@@ -50,6 +50,7 @@ const UserProfileEdit = () => {
   }, [userDetails]);
 
   const handleChange = (e) => {
+    console.log(e.target);
     const { name, value } = e.target;
     if (name === "role") {
       setCurrUserDetails((prev) => ({ ...prev, roles: [value] }));
@@ -58,7 +59,11 @@ const UserProfileEdit = () => {
   };
 
   const handleSave = () => {
-    if (newUserCreation && currUserDetails.role === "Teacher") {
+    console.log(currUserDetails);
+    console.log('role is ' + currUserDetails.role);
+    console.log('roles are ' + currUserDetails.roles);
+    if (newUserCreation && (currUserDetails.role === "Teacher" || currUserDetails.roles[0] === "Teacher")) {
+      console.log('user data ' + currUserDetails);
       dispatch(
         registerTeacher({
           email: currUserDetails.email,

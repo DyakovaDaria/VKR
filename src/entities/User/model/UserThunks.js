@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { apiRequest } from "../../../shared/api/requests";
+import { useDispatch } from "react-redux";
 
 const mockUserData = {
   id: "123",
@@ -81,17 +83,17 @@ export const fetchCurrUserDetails = createAsyncThunk(
   "user/fetchCurrUserDetails",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `http://localhost:7001/Identities/UserInformation`,
+      const userDetails = await apiRequest(
+        "get",
+        `/Identities/UserInformation`,
+        {},
         {
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+          accept: "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         }
       );
-      console.log(response.data);
-      return response.data;
+      console.log("user data: " + JSON.stringify(userDetails));
+      return userDetails;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -102,17 +104,16 @@ export const fetchUserDetails = createAsyncThunk(
   "user/fetchUserDetails",
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `http://localhost:7001/Admins/UserInformation/${userId}`,
+      const userDetails = await apiRequest(
+        "get",
+        `/Admins/UserInformation/${userId}`,
+        {},
         {
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+          accept: "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         }
       );
-      console.log("user data: " + JSON.stringify(response.data));
-      return response.data;
+      return userDetails;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }

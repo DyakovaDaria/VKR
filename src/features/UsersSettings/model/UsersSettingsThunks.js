@@ -1,27 +1,31 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { apiRequest } from "../../../shared/api/requests";
 
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
   async (currPage, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `http://localhost:7001/Admins/AllUsers`,
+      console.log('fetch users...');
+      const userDetails = await apiRequest(
+        "get",
+        `/Admins/AllUsers`,
         {
-          params: {
-            page: currPage,
-            itemsPerPage: 9,
-          },
-          headers: {
-            accept: "accept: text/plain",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+          page: currPage,
+          itemsPerPage: 9,
+        },
+        {
+          accept: "accept: text/plain",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         }
       );
+      console.log("user data: " + JSON.stringify(userDetails));
       return {
-        users: response.data.users,
-        totalCount: response.data.totalCount,
+        users: userDetails.users,
+        totalCount: userDetails.totalCount,
       };
+      
     } catch (error) {
       return rejectWithValue(error);
     }
