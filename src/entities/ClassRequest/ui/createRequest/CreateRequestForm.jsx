@@ -5,7 +5,6 @@ import {
   loadClassrooms,
 } from "../../../../features/ClassroomsSettings";
 import createRequestStyles from "./CreateRequestForm.module.css";
-import moment from "moment";
 import { validation } from "../../lib/validation";
 
 const CreateRequestForm = () => {
@@ -18,8 +17,8 @@ const CreateRequestForm = () => {
     title: "",
     description: "",
     date: new Date(),
-    startTime: moment().format("HH:mm"),
-    endTime: moment().add(1, "hours").format("HH:mm"),
+    startTime: new Date(),
+    endTime: new Date(),
     classroom: "",
     teacher: "",
     group: null,
@@ -50,16 +49,23 @@ const CreateRequestForm = () => {
 
   const handleSave = (event) => {
     event.preventDefault();
-    const validationErrors = validation(
-      newClass.startTime,
-      newClass.endTime,
-      newClass.classroom,
-      newClass.teacher,
-      newClass.date
-    );
+    const validationErrors = validation(newClass);
     if (Object.keys(validationErrors).length === 0) {
       //   dispatch(updateSchedule(newClass));
       //   dispatch(toggleClassCreationModal(false));
+      setNewClass({
+        type: "individual",
+        id: Date.now(),
+        title: "",
+        description: "",
+        date: new Date(),
+        startTime: new Date(),
+        endTime: new Date(),
+        classroom: "",
+        teacher: "",
+        group: null,
+        student: user,
+      });
     } else {
       // setErrors(validationErrors);
       alert("All fields must be filled out.");

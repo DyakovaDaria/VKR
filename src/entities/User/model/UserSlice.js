@@ -26,6 +26,32 @@ const initialState = {
   currentUserForChange: null,
   newUserCreation: false,
   groups: [],
+  schedule: [
+    {
+      id: 123,
+      title: "Танго для начинающих",
+      description: "",
+      date: Date.now(),
+      startTime: "10:00",
+      endTime: "11:30",
+      classroom: "205",
+      type: "group",
+      teacher: "Дьякова Дарья",
+      group: "Начинающие",
+    },
+    {
+      id: 133,
+      title: "Танго",
+      description: "",
+      date: Date.now(),
+      startTime: "12:00",
+      endTime: "13:30",
+      classroom: "205",
+      type: "group",
+      teacher: "Дьякова Дарья",
+      group: "Продолжающие",
+    },
+  ],
   loading: false,
   error: null,
 };
@@ -59,6 +85,9 @@ const UserSlice = createSlice({
     setNewUserCreation(state, action) {
       state.newUserCreation = action.payload;
     },
+    updateUserSchedule(state, action) {
+      state.schedule = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -156,6 +185,6 @@ const UserSlice = createSlice({
   },
 });
 
-export const { clearUserDetails, addCurrentUser, setNewUserCreation } =
+export const { clearUserDetails, addCurrentUser, setNewUserCreation, updateUserSchedule } =
   UserSlice.actions;
 export default UserSlice.reducer;

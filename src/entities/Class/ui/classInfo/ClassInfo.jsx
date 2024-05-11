@@ -8,18 +8,19 @@ import {
   setStudent,
 } from "../../model/ClassSlice";
 import classInfoStyles from "./ClassInfo.module.css";
-import { fetchUserDetails, updateUserDetails } from "../../../User";
+import { fetchCurrUserDetails, updateUserDetails, updateUserSchedule } from "../../../User";
+import { deleteClass, updateSchedule } from "../../../Schedule/model/ScheduleSlice";
 
 const ClassInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { role, user } = useSelector((state) => state.login);
+  const { user } = useSelector((state) => state.login);
   const lesson = useSelector((state) => state.class.lesson);
-  const { userDetails } = useSelector((state) => state.user);
+  const { userDetails, schedule } = useSelector((state) => state.user);
   const [currSchedule, setCurrSchedule] = useState([]);
 
   const goBack = () => {
-    navigate("/main-page");
+    navigate("/schedule");
   };
 
   const handleEditClick = () => {
@@ -27,20 +28,21 @@ const ClassInfo = () => {
   };
 
   const handleDeleteClick = () => {
-    // navigate("/teacher-schedule-edit", { state: { teacherId: teacherId } });
+    // const newSched = currSchedule.filter((les) => les.id !== lesson.id);
+    // dispatch(deleteClass(newSched));
+    navigate('/schedule');
   };
 
   const handleCancelClassClick = () => {
-    const newSchedule = [...currSchedule, { ...lesson }];
+    const newSchedule = currSchedule.filter((les) => les.id !== lesson.id);
     setCurrSchedule(newSchedule);
-    const newUserDetails = { ...userDetails, schedule: currSchedule };
-    dispatch(updateUserDetails({ user, newUserDetails }));
+    dispatch(updateUserSchedule(newSchedule));
   };
 
   const handleAddClassClick = () => {
-    setCurrSchedule([...currSchedule, lesson]);
-    const newUserDetails = { ...userDetails, schedule: currSchedule };
-    dispatch(updateUserDetails({ user, newUserDetails }));
+    const newSchedule = [...currSchedule, lesson]
+    setCurrSchedule(newSchedule);
+    dispatch(updateUserSchedule(newSchedule));
   };
 
   const checkSchedule = (id) => {
@@ -49,9 +51,9 @@ const ClassInfo = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchUserDetails(user));
-    const schedule = userDetails.schedule;
-    if (schedule) {
+    dispatch(fetchCurrUserDetails());
+    const userSched = schedule;
+    if (userSched) {
       setCurrSchedule(schedule);
     }
   }, [dispatch, userDetails]);
@@ -88,7 +90,7 @@ const ClassInfo = () => {
           {lesson?.type === "individual" && <p>Индивидуальное занятие</p>}
           {lesson?.group && <p>{lesson.group}</p>}
           {lesson?.student && <p>{lesson.student}</p>}
-          {role === "student" && checkSchedule(lesson.id) && (
+          {userDetails?.role === "Student" || userDetails?.roles[0] === "Student" && checkSchedule(lesson.id) && (
             <div className={classInfoStyles.studentClassStatus}>
               <p>Вы записаны</p>
             </div>
@@ -111,7 +113,7 @@ const ClassInfo = () => {
           </button>
         </div>
       )}
-      {role === "student" && checkSchedule(lesson.id) && (
+      {userDetails?.role === "Student" || userDetails?.roles[0] === "Student" && checkSchedule(lesson.id) && (
         <div className={classInfoStyles.adminEditBtns}>
           <button
             className={classInfoStyles.setClassBtn}
@@ -121,7 +123,7 @@ const ClassInfo = () => {
           </button>
         </div>
       )}
-      {role === "student" && !checkSchedule(lesson.id) && (
+      {userDetails?.role === "Student" || userDetails?.roles[0] === "Student" && !checkSchedule(lesson.id) && (
         <div className={classInfoStyles.adminEditBtns}>
           <button
             className={classInfoStyles.setClassBtn}

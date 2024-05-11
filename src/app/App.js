@@ -32,49 +32,6 @@ function App() {
       </Router>
     );
 
-  if (userDetails?.role === "Student" || userDetails?.roles[0] === "Student") {
-    return (
-      <Router>
-        <Routes>
-          <Route path="/schedule" element={<ScheduleViewPage />} />
-          <Route
-            path="/teacher-schedule-edit"
-            element={<TeacherScheduleEditPage />}
-          />
-          <Route path="/student-profile" element={<StudentProfilePage />} />
-          <Route path="/user-subscriptions" element={<SubscriptionsPage />} />
-          <Route path="/class-info" element={<ClassInfo />} />
-          <Route path="/main-page" element={<MainPage />} />
-          <Route
-            path="/class-request-create"
-            element={<CreateClassRequestPage />}
-          />
-        </Routes>
-      </Router>
-    );
-  }
-
-  if (userDetails?.role === "Teacher" || userDetails?.roles[0] === "Teacher") {
-    return (
-      <Router>
-        <Routes>
-          <Route path="/schedule" element={<ScheduleViewPage />} />
-          <Route
-            path="/teacher-schedule-edit"
-            element={<TeacherScheduleEditPage />}
-          />
-          <Route path="/teacher-profile" element={<TeacherProfilePage />} />
-          <Route path="/class-info" element={<ClassInfo />} />
-          <Route path="/main-page" element={<MainPage />} />
-          <Route
-            path="/class-requests"
-            element={<TeacherClassRequestsPage />}
-          />
-        </Routes>
-      </Router>
-    );
-  }
-
   return (
     <Router>
       <Routes>
@@ -84,6 +41,7 @@ function App() {
           element={<TeacherScheduleEditPage />}
         />
         <Route path="/admin-profile" element={<AdminProfilePage />} />
+        <Route path="/teacher-profile" element={<TeacherProfilePage />} />
         <Route path="/create-user" element={<CreateUserPage />} />
         <Route path="/users-list" element={<StudentsListPage />} />
         <Route path="/edit-class" element={<EditClassPage />} />
@@ -94,6 +52,18 @@ function App() {
         <Route
           path="/subscriptions-management"
           element={<SubscriptionsManagementPage />}
+        />
+        <Route path="/student-profile" element={<StudentProfilePage />} />
+        <Route path="/user-subscriptions" element={<SubscriptionsPage />} />
+        <Route path="/class-info" element={<ClassInfo />} />
+        <Route path="/class-requests" element={<TeacherClassRequestsPage />} />
+        <Route
+          path="/teacher-schedule-edit"
+          element={<TeacherScheduleEditPage />}
+        />
+        <Route
+          path="/class-request-create"
+          element={<CreateClassRequestPage />}
         />
       </Routes>
     </Router>

@@ -24,9 +24,34 @@ export const fetchTeacherScheduleForDate = createAsyncThunk(
       const schedule = getState().schedule.schedule;
       if (date === new Date().toISOString().split("T")[0]) {
         return schedule.filter((lesson) => lesson.teacher === userId);
-      } else {
-        return [];
-      }
+      } else  {
+        return [
+          {
+            id: Date.now(),
+            title: "Танго",
+            description: "",
+            date: "2024-05-11",
+            startTime: "11:40",
+            endTime: "12:40",
+            classroom: "205",
+            type: "individual",
+            teacher: "Дьякова Дарья",
+            student: "Сидорова Ксения",
+          },
+          {
+            id: 133,
+            title: "Танго",
+            description: "",
+            date: Date.now(),
+            startTime: "12:00",
+            endTime: "13:30",
+            classroom: "205",
+            type: "group",
+            teacher: "Дьякова Дарья",
+            group: "Продолжающие",
+          },
+        ];
+      } 
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -41,7 +66,7 @@ export const fetchTeacherScheduleForDate = createAsyncThunk(
 //         `http://localhost:7001/Lessons/All`,
 //         {
 //           params: {
-//             From: from, 
+//             From: from,
 //             To: to,
 //             IncludeTerminated: false,
 //           },
@@ -62,7 +87,7 @@ export const fetchTeacherScheduleForDate = createAsyncThunk(
 
 export const updateScheduleForDate = createAsyncThunk(
   "schedule/updateScheduleForDate",
-  async ({updatedSchedule, date}, { rejectWithValue }) => {
+  async ({ updatedSchedule }, { rejectWithValue }) => {
     try {
       return updatedSchedule;
     } catch (error) {

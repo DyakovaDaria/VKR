@@ -1,54 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  updateSchedule,
-  toggleClassCreationModal,
-} from "../../../model/TeacherScheduleSlice";
+import { toggleClassCreationModal } from "../../../model/TeacherScheduleSlice";
+import { updateSchedule } from "../../../../../entities/Schedule";
 import {
   selectClassroom,
   loadClassrooms,
 } from "../../../../../features/ClassroomsSettings";
 import addClassFormStyles from "./AddClassForm.module.css";
-import moment from "moment";
 import { validation } from "../../../lib/validation";
 
 const AddClassForm = () => {
   const dispatch = useDispatch();
   const { selectedDate } = useSelector((state) => state.weekCalendar);
   const [newClass, setNewClass] = useState({
-    type: "individual",
     id: Date.now(),
     title: "",
     description: "",
     date: selectedDate.toISOString().split("T")[0],
-    startTime: "",
-    endTime: "",
+    startTime: '',
+    endTime: '',
     classroom: "",
+    type: "individual",
     teacher: "",
     group: null,
     student: null,
   });
   const classrooms = useSelector((state) => state.classroom.list);
-  const [startTimeMoment, setStartTime] = useState(moment().format("HH:mm"));
-  const [finishTimeMoment, setFinishTime] = useState(
-    moment().add(1, "hours").format("HH:mm")
-  );
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewClass((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleEditStartTime = (e) => {
-    const { name, value } = e.target;
-    setNewClass((prev) => ({ ...prev, [name]: value }));
-    setStartTime(value);
-  };
-
-  const handleEditFinishTime = (e) => {
-    const { name, value } = e.target;
-    setNewClass((prev) => ({ ...prev, [name]: value }));
-    setFinishTime(value);
   };
 
   const getStatusClassroom = (id) => {
@@ -56,8 +37,8 @@ const AddClassForm = () => {
     if (classroom && classroom.timeSlots) {
       const slotIndex = classroom.timeSlots?.findIndex(
         (slot) =>
-          slot.startTime === startTimeMoment &&
-          slot.endTime === finishTimeMoment
+          slot.startTime === newClass.startTime &&
+          slot.endTime === newClass.endTime
       );
       if (slotIndex !== -1) {
         return classroom.timeSlots[slotIndex]?.status;
@@ -116,21 +97,21 @@ const AddClassForm = () => {
           <div className={addClassFormStyles.startTimeContainer}>
             <label htmlFor="startTime">с</label>
             <input
-              onChange={handleEditStartTime}
+              onChange={handleInputChange}
               name="startTime"
               className={addClassFormStyles.timePick}
               type="time"
-              value={startTimeMoment}
+              value={newClass.startTime}
             />
           </div>
           <div className={addClassFormStyles.endTimeContainer}>
             <label htmlFor="endTime">до</label>
             <input
-              onChange={handleEditFinishTime}
+              onChange={handleInputChange}
               name="endTime"
               className={addClassFormStyles.timePick}
               type="time"
-              value={finishTimeMoment}
+              value={newClass.endTime}
             />
           </div>
         </div>

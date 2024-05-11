@@ -5,6 +5,7 @@ export { ScheduleView, reducer as scheduleSlice };
 
 export {
   fetchScheduleForDate,
+  fetchTeacherScheduleForDate,
   updateScheduleForDate,
 } from "./model/ScheduleThunks";
 

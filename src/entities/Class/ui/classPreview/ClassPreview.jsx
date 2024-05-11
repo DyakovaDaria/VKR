@@ -9,7 +9,7 @@ const ClassPreview = ({ classInfo }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.login);
-  const { userDetails } = useSelector((state) => state.user);
+  const { userDetails, schedule } = useSelector((state) => state.user);
   const [currSchedule, setCurrSchedule] = useState([]);
 
   const handleOnClick = () => {
@@ -24,8 +24,8 @@ const ClassPreview = ({ classInfo }) => {
 
   useEffect(() => {
     dispatch(fetchCurrUserDetails());
-    const schedule = userDetails.schedule;
-    if (schedule) {
+    const userSched = schedule;
+    if (userSched) {
       setCurrSchedule(schedule);
     }
   }, [dispatch, userDetails]);

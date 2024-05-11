@@ -45,6 +45,18 @@ const scheduleSlice = createSlice({
         student: "",
       },
       {
+        id: 134,
+        title: "Танго",
+        description: "",
+        date: Date.now(),
+        startTime: "11:00",
+        endTime: "12:00",
+        classroom: "205",
+        type: "individual",
+        teacher: "Дьякова Дарья",
+        student: "Иванов Иван",
+      },
+      {
         id: 345,
         title: "Танго",
         description: "",
@@ -91,6 +103,9 @@ const scheduleSlice = createSlice({
     updateSchedule: (state, action) => {
       state.schedule = [...state.schedule, action.payload];
     },
+    deleteClass: (state, action) => {
+      state.schedule = action.payload;
+    },
     toggleClassCreationModal: (state, action) => {
       state.classCreationMode = action.payload;
     },
@@ -114,7 +129,7 @@ const scheduleSlice = createSlice({
         state.error = null;
       })
       .addCase(updateScheduleForDate.fulfilled, (state, action) => {
-        state.schedule = action.payload;
+        state.schedule = [...state.schedule, action.payload];
         state.loading = false;
       })
       .addCase(updateScheduleForDate.rejected, (state, action) => {
@@ -124,6 +139,6 @@ const scheduleSlice = createSlice({
   },
 });
 
-export const { setSelectedDate, updateSchedule, toggleClassCreationModal } =
+export const { setSelectedDate, updateSchedule, toggleClassCreationModal, deleteClass } =
   scheduleSlice.actions;
 export default scheduleSlice.reducer;

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  updateSchedule,
-  toggleClassCreationModal,
-} from "../../model/TeacherScheduleSlice";
-import { fetchScheduleForDate } from "../../../../entities/Schedule";
+import { toggleClassCreationModal } from "../../model/TeacherScheduleSlice";
+import { updateSchedule } from "../../../../entities/Schedule";
+import { fetchTeacherScheduleForDate } from "../../../../entities/Schedule";
 import {
   selectClassroom,
   setClassrooms,
@@ -13,21 +11,26 @@ import { ClassPreview } from "../../../../entities/Class";
 import teacherSchedEditStyles from "./TeacherScheduleEdit.module.css";
 import AddClassForm from "./addClassForm/AddClassForm";
 import { useNavigate } from "react-router-dom";
+import { fetchCurrUserDetails } from "../../../../entities/User";
 
 const TeacherScheduleEdit = ({ teacherId }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { schedule, loading, error, classCreationMode } = useSelector(
+  const { loading, error, classCreationMode } = useSelector(
     (state) => state.teacherSchedule
   );
+  const { userDetails } = useSelector((state) => state.user);
+
+  const { schedule } = useSelector((state) => state.schedule);
 
   const { selectedDate } = useSelector((state) => state.weekCalendar);
 
   useEffect(() => {
+    dispatch(fetchCurrUserDetails());
     dispatch(
-      fetchScheduleForDate({
-        teacherId,
+      fetchTeacherScheduleForDate({
+        userId: `${userDetails.lastName} ${userDetails.firstName}`,
         date: selectedDate.toISOString().split("T")[0],
       })
     );
@@ -92,8 +95,13 @@ const TeacherScheduleEdit = ({ teacherId }) => {
         </button>
       </div>
       <div>
-        <button className={teacherSchedEditStyles.saveButton}>Сохранить</button>
-        <button className={teacherSchedEditStyles.cancelButton} onClick={() => navigate('/schedule')}>Отменить</button>
+        <button className={teacherSchedEditStyles.saveButton} onClick={() => navigate("/schedule")}>Сохранить</button>
+        <button
+          className={teacherSchedEditStyles.cancelButton}
+          onClick={() => navigate("/schedule")}
+        >
+          Отменить
+        </button>
       </div>
       {classCreationMode && (
         <div className={teacherSchedEditStyles.popupOverlay}>

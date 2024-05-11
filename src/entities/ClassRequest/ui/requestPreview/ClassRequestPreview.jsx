@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classRequestPreviewStyles from "./ClassRequestPreview.module.css";
+import { cancelCLassRequest } from "../../../../features/ClassRequestsView";
 
 const ClassRequestsPreview = ({ requestInfo }) => {
   const dispatch = useDispatch();
 
-  const handleAcceptBtnClick = () => {};
+  const handleAcceptBtnClick = () => {
+    dispatch(cancelCLassRequest(requestInfo.id));
+  };
 
-  const handleCancelRequest = () => {};
+  const handleCancelRequest = () => {
+    dispatch(cancelCLassRequest(requestInfo.id));
+  };
 
   return (
     <div className={classRequestPreviewStyles.classRequestPreviewCont}>

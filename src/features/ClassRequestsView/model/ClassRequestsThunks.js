@@ -3,9 +3,10 @@ import axios from "axios";
 
 export const fetchTeacherRequests = createAsyncThunk(
     "requestsList/fetchRequests",
-    async (id, { rejectWithValue }) => {
+    async (id, { getState, rejectWithValue }) => {
+      const requests = getState().requestsList.requests;
       try {
-        return id;
+        return requests;
       } catch (error) {
         return rejectWithValue(error.response.data);
       }
@@ -14,9 +15,10 @@ export const fetchTeacherRequests = createAsyncThunk(
 
 export const cancelCLassRequest = createAsyncThunk(
   "requestsList/removeRequest",
-  async (id, { rejectWithValue }) => {
+  async (id, { getState, rejectWithValue }) => {
+    const requests = getState().requestsList.requests;
     try {
-      return id;
+      return requests.filter((req) => req.id !== id);
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
