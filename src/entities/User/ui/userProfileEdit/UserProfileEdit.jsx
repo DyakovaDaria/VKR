@@ -12,6 +12,7 @@ import {
 import { clearUserDetails, setNewUserCreation } from "../../model/UserSlice";
 import userEditStyles from "./UserProfileEdit.module.css";
 import userProfilePic from "../../../../shared/assets/userPic.png";
+import { validateEmail, validation } from "../../lib/validation";
 
 const UserProfileEdit = () => {
   const dispatch = useDispatch();
@@ -30,8 +31,8 @@ const UserProfileEdit = () => {
         middleName: "",
         phoneNumber: "",
         photo: "",
-        role: "Teacher",
-        roles: ["Teacher"],
+        role: "",
+        roles: [],
         description: "",
       });
     }
@@ -59,58 +60,65 @@ const UserProfileEdit = () => {
   };
 
   const handleSave = () => {
-    console.log(currUserDetails);
-    console.log('role is ' + currUserDetails.role);
-    console.log('roles are ' + currUserDetails.roles);
-    if (newUserCreation && (currUserDetails.role === "Teacher" || currUserDetails.roles[0] === "Teacher")) {
-      console.log('user data ' + currUserDetails);
-      dispatch(
-        registerTeacher({
-          email: currUserDetails.email,
-          firstName: currUserDetails.firstName,
-          lastName: currUserDetails.lastName,
-          middleName: currUserDetails.middleName,
-          phoneNumber: currUserDetails.phoneNumber,
-          photo: currUserDetails.photo,
-          description: currUserDetails.description,
-        })
-      );
-    } else if (newUserCreation && currUserDetails.role === "Student") {
-      dispatch(
-        registerStudent({
-          email: currUserDetails.email,
-          firstName: currUserDetails.firstName,
-          lastName: currUserDetails.lastName,
-          middleName: currUserDetails.middleName,
-          phoneNumber: currUserDetails.phoneNumber,
-          photo: currUserDetails.photo,
-          description: currUserDetails.description,
-        })
-      );
-    } else if (newUserCreation && currUserDetails.role === "Administrator") {
-      dispatch(
-        registerAdmin({
-          email: currUserDetails.email,
-          firstName: currUserDetails.firstName,
-          lastName: currUserDetails.lastName,
-          middleName: currUserDetails.middleName,
-          phoneNumber: currUserDetails.phoneNumber,
-          photo: currUserDetails.photo,
-          description: currUserDetails.description,
-        })
-      );
-    } else if (!newUserCreation) {
-      console.log("мы меняем данные пользователя");
-      dispatch(
-        updateUserDetails({
-          userId: currentUserForChange,
-          user: currUserDetails,
-        })
-      );
-    }
-    if (!error) {
-      dispatch(clearUserDetails());
-      navigate("/users-list");
+    const validationErrors = validation(currUserDetails);
+    if (Object.keys(validationErrors).length === 0) {
+      const emailValid = validateEmail(currUserDetails.email);
+      if (emailValid) {
+        if (newUserCreation && currUserDetails.role === "Teacher") {
+          console.log("user data " + currUserDetails);
+          dispatch(
+            registerTeacher({
+              email: currUserDetails.email,
+              firstName: currUserDetails.firstName,
+              lastName: currUserDetails.lastName,
+              middleName: currUserDetails.middleName,
+              phoneNumber: currUserDetails.phoneNumber,
+              photo: currUserDetails.photo,
+              description: currUserDetails.description,
+            })
+          );
+        } else if (newUserCreation && currUserDetails.role === "Student") {
+          dispatch(
+            registerStudent({
+              email: currUserDetails.email,
+              firstName: currUserDetails.firstName,
+              lastName: currUserDetails.lastName,
+              middleName: currUserDetails.middleName,
+              phoneNumber: currUserDetails.phoneNumber,
+              photo: currUserDetails.photo,
+              description: currUserDetails.description,
+            })
+          );
+        } else if (newUserCreation && currUserDetails.role === "Administrator") {
+          dispatch(
+            registerAdmin({
+              email: currUserDetails.email,
+              firstName: currUserDetails.firstName,
+              lastName: currUserDetails.lastName,
+              middleName: currUserDetails.middleName,
+              phoneNumber: currUserDetails.phoneNumber,
+              photo: currUserDetails.photo,
+              description: currUserDetails.description,
+            })
+          );
+        } else if (!newUserCreation) {
+          console.log("мы меняем данные пользователя");
+          dispatch(
+            updateUserDetails({
+              userId: currentUserForChange,
+              user: currUserDetails,
+            })
+          );
+        }
+        if (!error) {
+          dispatch(clearUserDetails());
+          navigate("/users-list");
+        }
+      } else {
+        alert("email некорректен!");
+      }
+    } else {
+      alert("Заполните фамилию, имя, телефон, почту и роль пользователя!");
     }
   };
 

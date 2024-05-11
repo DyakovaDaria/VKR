@@ -67,7 +67,7 @@ const EditClass = () => {
         navigate("/class-info");
       }
     } else {
-      alert("All fields must be filled out.");
+      alert("Все поля должны быть заполнены.");
     }
   };
 
