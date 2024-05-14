@@ -48,7 +48,8 @@ function App() {
         <Route path="/create-event" element={<CreateEventsPage />} />
         <Route path="/change-classrooms" element={<ChangeClassroomsPage />} />
         <Route path="/class-info" element={<ClassInfo />} />
-        <Route path="/main-page" element={<MainPage />} />
+        {/* <Route path="/main-page" element={<MainPage />} /> */}
+        <Route path="/" element={<MainPage />} />
         <Route
           path="/subscriptions-management"
           element={<SubscriptionsManagementPage />}

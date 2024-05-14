@@ -8,7 +8,7 @@ const AdminNavbar = () => {
     <div className={styles.teacherNavbarCont}>
       <img src={logo} className={styles.logo} />
       <NavLink
-        to="/main-page"
+        to="/"
         className={({ isActive }) =>
           isActive ? styles.selectedNavItem : styles.navItem
         }
