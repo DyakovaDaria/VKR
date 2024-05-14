@@ -9,7 +9,6 @@ import {
   getClassroomStatus,
   toggleClassroomCreationModal,
 } from "../../../entities/Classroom";
-import moment from "moment";
 import classroomsSettingsStyles from "./ClassroomsSettings.module.css";
 
 const ClassroomsSettings = () => {
@@ -20,6 +19,10 @@ const ClassroomsSettings = () => {
   const { list, classroomCreationMode, loading, error } = useSelector(
     (state) => state.classroom
   );
+
+  useEffect(() => {
+    dispatch(loadClassrooms());
+  }, [dispatch, list]);
 
   const [startTimeMoment, setStartTime] = useState(
     new Date(Date.now()).toISOString().split("T")[0]
@@ -52,20 +55,9 @@ const ClassroomsSettings = () => {
     dispatch(toggleClassroomCreationModal(false));
   };
 
-  const onStatusChange = (id, status) => {
-    const classroom = list.filter((classroom) => classroom.id === id);
-    console.log(classroom.timeSlots);
-    const formattedDate = selectedDate.toISOString().split("T")[0];
-    dispatch(
-      updateClassroomStatus({
-        id,
-        status,
-        formattedDate,
-        startTimeMoment,
-        finishTimeMoment,
-      })
-    );
-    console.log(list.filter((classroom) => classroom.id === id).timeSlots);
+  const handleStatusChange = (classroomId, date, startTime, endTime, status) => {
+    const newDate = date.toISOString().split("T")[0];
+    dispatch(updateClassroomStatus({ id: classroomId, status: status, date: newDate, startTime, finishTime: endTime }));
   };
 
   const getStatusClassroom = (id) => {
@@ -87,7 +79,7 @@ const ClassroomsSettings = () => {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading schedule: {error}</p>;
+  if (error) return <p>Error loading classrooms: {error}</p>;
 
   return (
     <div className={classroomsSettingsStyles.classroomsSettingsCont}>
@@ -134,8 +126,8 @@ const ClassroomsSettings = () => {
                 <select
                   name="classroomStatus"
                   id="classroomStatus"
-                  // value={getStatusClassroom(classroom.id)}
-                  // onChange={(e) => onStatusChange(classroom.id, e.target.value)}
+                  value={getStatusClassroom(classroom.id)}
+                  onChange={(e) => handleStatusChange(classroom.id, selectedDate, startTimeMoment, finishTimeMoment, e.value)}
                   className={classroomsSettingsStyles.classStatusSelect}
                 >
                   <option value="free">Свободный</option>

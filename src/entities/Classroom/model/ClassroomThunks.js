@@ -5,8 +5,8 @@ export const loadClassrooms = createAsyncThunk(
   "classrooms/load",
   async (_, { rejectWithValue }) => {
     try {
-      const list = useSelector((state) => state.classroom.list);
-      return list;
+      // const list = useSelector((state) => state.classroom.list);
+      return [];
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -68,20 +68,13 @@ export const updateClassroomStatus = createAsyncThunk(
               slot.date === date
           );
           if (!slotExists) {
-            newTimeSlots.push({
-              date: date,
-              startTime: startTime,
-              endTime: finishTime,
-              status: status,
-            });
+            newTimeSlots.push({ date, startTime, endTime: finishTime, status });
           }
-          return { ...classroom, timeSlots: newTimeSlots }; 
+          return { ...classroom, timeSlots: newTimeSlots };
         }
         return classroom;
       });
       return updatedList;
-      // const response = await api.patch(`/classrooms/${id}`, { status });
-      // return { id, status: response.data.status };
     } catch (err) {
       return rejectWithValue(err.response.data);
     }

@@ -15,9 +15,15 @@ export const classroomSlice = createSlice({
         name: "Зал 200",
         timeSlots: [
           {
-            date: "2024-05-02",
+            date: new Date(Date.now()).toISOString().split("T")[0],
             startTime: "20:55",
             endTime: "21:55",
+            status: "busy",
+          },
+          {
+            date: new Date(Date.now()).toISOString().split("T")[0],
+            startTime: "11:00",
+            endTime: "12:00",
             status: "busy",
           },
         ],
@@ -27,7 +33,7 @@ export const classroomSlice = createSlice({
         name: "Зал 201",
         timeSlots: [
           {
-            date: "2024-05-02",
+            date: new Date(Date.now()).toISOString().split("T")[0],
             startTime: "20:55",
             endTime: "21:55",
             status: "partly",
@@ -37,17 +43,17 @@ export const classroomSlice = createSlice({
       {
         id: 202,
         name: "Зал 202",
-        timeSlots: [{ date: "", startTime: "", endTime: "", status: "" }],
+        timeSlots: [],
       },
       {
         id: 203,
         name: "Зал 203",
-        timeSlots: [{ date: "", startTime: "", endTime: "", status: "" }],
+        timeSlots: [],
       },
       {
         id: 204,
         name: "Зал 204",
-        timeSlots: [{ date: "", startTime: "", endTime: "", status: "" }],
+        timeSlots: [],
       },
     ],
     selected: null,
@@ -68,8 +74,9 @@ export const classroomSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(loadClassrooms.fulfilled, (state, action) => {
-      state.list = action.payload;
+      // state.list = action.payload;
       state.loading = false;
+      state.error = null;
     });
     builder.addCase(loadClassrooms.pending, (state, action) => {
       state.loading = true;
@@ -90,7 +97,6 @@ export const classroomSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(addClassroom.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.list = action.payload;
       state.loading = false;
     });
