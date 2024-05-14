@@ -32,7 +32,7 @@ const LoginForm = () => {
     );
     if (Object.keys(validationErrors).length === 0) {
       dispatch(loginUser(credentials));
-      navigate("/main-page");
+      navigate("/");
     } else {
       setErrors(validationErrors);
     }
