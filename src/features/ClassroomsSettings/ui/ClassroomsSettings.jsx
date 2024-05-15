@@ -10,6 +10,7 @@ import {
   toggleClassroomCreationModal,
 } from "../../../entities/Classroom";
 import classroomsSettingsStyles from "./ClassroomsSettings.module.css";
+import { validation } from "../lib/validation";
 
 const ClassroomsSettings = () => {
   const dispatch = useDispatch();
@@ -43,21 +44,40 @@ const ClassroomsSettings = () => {
 
   const onSaveClassroomClick = () => {
     console.log(newClassroomName);
-    const id =
-      !isNaN(parseFloat(newClassroomName)) && isFinite(newClassroomName)
-        ? parseFloat(newClassroomName)
-        : Date.now();
-    dispatch(addClassroom({ newClassroomName, id }));
-    dispatch(toggleClassroomCreationModal(false));
+    const validationErrors = validation(newClassroomName);
+    if (Object.keys(validationErrors).length === 0) {
+      const id =
+        !isNaN(parseFloat(newClassroomName)) && isFinite(newClassroomName)
+          ? parseFloat(newClassroomName)
+          : Date.now();
+      dispatch(addClassroom({ newClassroomName, id }));
+      dispatch(toggleClassroomCreationModal(false));
+    } else {
+      alert("All fields must be filled out.");
+    }
   };
 
   const exitClassromCreationModal = () => {
     dispatch(toggleClassroomCreationModal(false));
   };
 
-  const handleStatusChange = (classroomId, date, startTime, endTime, status) => {
+  const handleStatusChange = (
+    classroomId,
+    date,
+    startTime,
+    endTime,
+    status
+  ) => {
     const newDate = date.toISOString().split("T")[0];
-    dispatch(updateClassroomStatus({ id: classroomId, status: status, date: newDate, startTime, finishTime: endTime }));
+    dispatch(
+      updateClassroomStatus({
+        id: classroomId,
+        status: status,
+        date: newDate,
+        startTime,
+        finishTime: endTime,
+      })
+    );
   };
 
   const getStatusClassroom = (id) => {
@@ -127,7 +147,15 @@ const ClassroomsSettings = () => {
                   name="classroomStatus"
                   id="classroomStatus"
                   value={getStatusClassroom(classroom.id)}
-                  onChange={(e) => handleStatusChange(classroom.id, selectedDate, startTimeMoment, finishTimeMoment, e.value)}
+                  onChange={(e) =>
+                    handleStatusChange(
+                      classroom.id,
+                      selectedDate,
+                      startTimeMoment,
+                      finishTimeMoment,
+                      e.value
+                    )
+                  }
                   className={classroomsSettingsStyles.classStatusSelect}
                 >
                   <option value="free">Свободный</option>
