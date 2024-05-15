@@ -6,8 +6,8 @@ export const validation = (lesson) => {
   if (!lesson.startTime) {
     errors.endTime = "Выберите время окончания занятия";
   }
-  if (!lesson.name) {
-    errors.endTime = "Введите название занятия";
+  if (!lesson.endTime) {
+    errors.endTime = "Выберите время окончания занятия";
   }
   if (!lesson.classroom) {
     errors.classroom = "Выберите класс для занятия";
